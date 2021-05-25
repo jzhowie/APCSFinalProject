@@ -54,26 +54,81 @@ void display() {
   text("Score: " + getCurrentScore() + "\nMoves Left: " + getMovesLeft(), 0+4, 24+4);
 }
 
-void check3Combo(){
+void check6Combo(){
   for (int i=0;i<6;i++){
-     for (int y=0;y<4;y++){
-       for (int z=0;z<3;z++){
-         if (board[i][y+z]==board[i][y+z+1]==board[i][y+z+2]{
-           //notes which elements are in a row
-         }
-       }
-     }
+    int[] subArray=board[i];
+    int temp=board[i][0];
+    for (int y:subArray){
+      if (y!=temp){
+        //no 6 combo
+      }
+      else{
+        //clear the row
+      }
+    }
   }
     for (int i=0;i<6;i++){
-     for (int y=0;y<4;y++){
-       for (int z=0;z<3;z++){
-         if (board[y+z][i]==board[y+z+1][i]==board[y+z+2][i]{
-           //notes which elements are in a row
-         }
+     for (int y=0;y<6;y++){
+       int temp=board[i][0];
+       if (board[i][y]!=temp){
+         // no 6 combo
+       }
+       else{
+         // clear the column
        }
      }
   }
 }
 
+void check3Combo(){
+  for (int i=0;i<6;i++){
+     for (int y=0;y<4;y++){
+       if (board[i][y+z]==board[i][y+1]&&board[i][y+z]==board[i][y+2]){
+         //notes which elements are in a row
+       }
+     }
+  }
+    for (int i=0;i<6;i++){
+     for (int y=0;y<4;y++){
+       if (board[y][i]==board[y+1][i]&&board[y][i]==board[y+2][i]){
+           //notes which elements are in a row
+         }
+       }
+     }
+  }
+
+void check4Combo(){
+  for (int i=0;i<6;i++){
+     for (int y=0;y<3;y++){
+         if (board[i][y]==board[i][y+1]&&board[i][y]==board[i][y+2]&&board[i][y]==board[i][y+3]){
+           //notes which elements are in a row
+       }
+     }
+  }
+  for (int i=0;i<6;i++){
+   for (int y=0;y<3;y++){ 
+       if (board[y][i]==board[y+1][i]&&board[y][i]==board[y+2][i]&&board[y][i]==board[y+3][i]){
+         //notes which elements are in a row
+       }
+     }
+   }
+ }
+ 
+ void check5Combo(){
+  for (int i=0;i<6;i++){
+     for (int y=0;y<2;y++){
+         if (board[i][y]==board[i][y+1]&&board[i][y]==board[i][y+2]&&board[i][y]==board[i][y+3]&&board[i][y]==board[i][y+4]){
+           //notes which elements are in a row
+       }
+     }
+  }
+  for (int i=0;i<6;i++){
+   for (int y=0;y<2;y++){ 
+       if (board[y][i]==board[y+1][i]&&board[y][i]==board[y+2][i]&&board[y][i]==board[y+3][i]&&board[y][i]==board[y+4][i]){
+         //notes which elements are in a row
+       }
+     }
+   }
+ }
 
 }
