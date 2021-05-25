@@ -14,7 +14,7 @@ We are trying to create a Pokemon Shuffle “clone”, mainly focusing on its ma
 ### May 24:
 Jason:
 
-Austin:
+Austin: Finished creating boss and Pokemon classes with their respective constructors and get methods, as well as added the check combos methods for the board class.
 
 ## UML Diagram Updates:
 **May 23:**
