@@ -13,6 +13,7 @@ We are trying to create a Pokemon Shuffle “clone”, mainly focusing on its ma
 ## Development Log:
 ### May 24:
 Jason:
+
 Austin:
 
 ## UML Diagram Updates:
