@@ -12,9 +12,10 @@ We are trying to create a Pokemon Shuffle “clone”, mainly focusing on its ma
 
 ## Development Log:
 ### May 24:
-Jason:
+Jason: Worked on board class to add variables, added a way to display the board with score and moves remaining. Also started on moving elements of the array with a swap method.  
 
-Austin: Finished creating boss and Pokemon classes with their respective constructors and get methods, as well as added the check combos methods for the board class.
+Austin: Finished creating boss and Pokemon classes with their respective constructors and get methods, as well as added the check combos methods for the board class.  
 
+### May 25:
 ## UML Diagram Updates:
-**May 23:**
+**May 23:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
