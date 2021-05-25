@@ -2,6 +2,7 @@ public class Board {
   int[][] board;
   int currentScore;
   int movesLeft;
+  
 
 Board(int moves) {
   board = new int[6][6];
@@ -52,4 +53,27 @@ void display() {
   textSize(24);
   text("Score: " + getCurrentScore() + "\nMoves Left: " + getMovesLeft(), 0+4, 24+4);
 }
+
+void check3Combo(){
+  for (int i=0;i<6;i++){
+     for (int y=0;y<4;y++){
+       for (int z=0;z<3;z++){
+         if (board[i][y+z]==board[i][y+z+1]==board[i][y+z+2]{
+           //notes which elements are in a row
+         }
+       }
+     }
+  }
+    for (int i=0;i<6;i++){
+     for (int y=0;y<4;y++){
+       for (int z=0;z<3;z++){
+         if (board[y+z][i]==board[y+z+1][i]==board[y+z+2][i]{
+           //notes which elements are in a row
+         }
+       }
+     }
+  }
+}
+
+
 }
