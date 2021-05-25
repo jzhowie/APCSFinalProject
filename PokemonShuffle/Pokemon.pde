@@ -3,6 +3,11 @@ public class Pokemon{
   private String type;
   private boolean selected;
   
+  Pokemon(String element){
+    selected=false;
+    type=element;
+  }
+   
   public String getType(){
     return type;
   }
@@ -10,5 +15,5 @@ public class Pokemon{
   public boolean isSelected(){
     return selected;
   }
-  
+ 
 }
