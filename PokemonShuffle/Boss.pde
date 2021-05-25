@@ -1,1 +1,9 @@
-private int neededScore;
+public class Boss{
+
+  private int neededScore;
+  
+  public int getNeededScore(){
+    return neededScore;
+  }
+    
+}
