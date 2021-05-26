@@ -3,6 +3,9 @@ public class Board {
   int currentScore;
   int movesLeft;
   
+  ArrayList<ArrayList<Integer>> rows; //for combo calc
+  ArrayList<ArrayList<Integer>> cols; //for combo calc
+  
 
 Board(int moves) {
   board = new int[6][6];
@@ -54,6 +57,24 @@ void display() {
   text("Score: " + getCurrentScore() + "\nMoves Left: " + getMovesLeft(), 0+4, 24+4);
 }
 
+//works bottom to top
+void clearCombo() {
+ for (int i = board.length - 1; i > -1; i--) {
+    for (int j = 0; j < board[0].length; j++) {
+      if (board[i][j] == -1) {
+        shift(i, j);
+      }
+    }
+ }
+}
+
+void shift(int row, int col) {
+  for (int i = row; i > 0; i--) {
+    board[i][col] = board[i-1][col];
+  }
+  board[0][col] = (int) (Math.random() * 4);
+}
+
 void check6Combo(){
   for (int i=0;i<6;i++){
     int[] subArray=board[i];
@@ -83,7 +104,7 @@ void check6Combo(){
 void check3Combo(){
   for (int i=0;i<6;i++){
      for (int y=0;y<4;y++){
-       if (board[i][y+z]==board[i][y+1]&&board[i][y+z]==board[i][y+2]){
+       if (board[i][y]==board[i][y+1]&&board[i][y]==board[i][y+2]){
          //notes which elements are in a row
        }
      }
