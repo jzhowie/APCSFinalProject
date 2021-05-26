@@ -49,10 +49,11 @@ void display() {
   fill(0);
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
-      if (board[i][j] == 0) fill(0);
-      if (board[i][j] == 1) fill(60);
-      if (board[i][j] == 2) fill(180);
-      if (board[i][j] == 3) fill(240);
+      if (board[i][j] == -1) fill(0);
+      if (board[i][j] == 0) fill(#FF1538);
+      if (board[i][j] == 1) fill(#8915FF);
+      if (board[i][j] == 2) fill(#1588FF);
+      if (board[i][j] == 3) fill(#15FF1E);
       rect(0+96*j, 448+96*i, 96, 96);
     }
   }
@@ -90,6 +91,27 @@ void scoreCalc() {
   check5Combo();
   println(6);
   check6Combo();
+  
+  println();
+  println(rows.size());
+  
+  while(rows.size() != 0) {
+    ArrayList<Integer> temp = rows.remove(rows.size() - 1);
+    if (board[temp.get(0)][temp.get(1)] != temp.get(2) || board[temp.get(0)][temp.get(1)+1] != temp.get(2)) {
+      
+      int i = temp.get(0);
+      int j = temp.get(1);
+      
+      while (j < board.length && board[i][j] == temp.get(2)) {
+        //score
+        board[i][j] = -1;
+        j++;
+      }
+      println("r");
+      display();
+    }
+  }
+  
   //take values from arrayList (remove()), turn into -1 (cleared)
   //if checking for dupes, check if your coord and the one to the right are both -1
 }
@@ -131,7 +153,7 @@ void check3Combo(){
      for (int y=0;y<4;y++){
        if (board[i][y]==board[i][y+1]&&board[i][y]==board[i][y+2]){
          //notes which elements are in a row
-         rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y})));
+         rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y], 3})));
          println(i + ", " + y);
        }
      }
@@ -140,7 +162,7 @@ void check3Combo(){
      for (int y=0;y<4;y++){
        if (board[y][i]==board[y+1][i]&&board[y][i]==board[y+2][i]){
            //notes which elements are in a row
-           cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i})));
+           cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i], 3})));
            println(y + ", " + i);
          }
        }
@@ -152,7 +174,7 @@ void check4Combo(){
      for (int y=0;y<3;y++){
          if (board[i][y]==board[i][y+1]&&board[i][y]==board[i][y+2]&&board[i][y]==board[i][y+3]){
            //notes which elements are in a row
-           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y})));
+           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y], 4})));
            println(i + ", " + y);
        }
      }
@@ -161,7 +183,7 @@ void check4Combo(){
    for (int y=0;y<3;y++){ 
        if (board[y][i]==board[y+1][i]&&board[y][i]==board[y+2][i]&&board[y][i]==board[y+3][i]){
          //notes which elements are in a row
-         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i})));
+         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i], 4})));
          println(y + ", " + i);
        }
      }
@@ -173,7 +195,7 @@ void check4Combo(){
      for (int y=0;y<2;y++){
          if (board[i][y]==board[i][y+1]&&board[i][y]==board[i][y+2]&&board[i][y]==board[i][y+3]&&board[i][y]==board[i][y+4]){
            //notes which elements are in a row
-           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y})));
+           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y], 5})));
            println(i + ", " + y);
        }
      }
@@ -182,7 +204,7 @@ void check4Combo(){
    for (int y=0;y<2;y++){ 
        if (board[y][i]==board[y+1][i]&&board[y][i]==board[y+2][i]&&board[y][i]==board[y+3][i]&&board[y][i]==board[y+4][i]){
          //notes which elements are in a row
-         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i})));
+         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i], 5})));
          println(y + ", " + i);
        }
      }
