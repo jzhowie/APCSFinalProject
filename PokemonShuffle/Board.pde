@@ -1,16 +1,21 @@
+import java.util.*;
+
 public class Board {
   int[][] board;
   int currentScore;
   int movesLeft;
   
-  ArrayList<ArrayList<Integer>> rows; //for combo calc
-  ArrayList<ArrayList<Integer>> cols; //for combo calc
+  ArrayList<ArrayList<Integer>> rows; //for combo calc in rows
+  ArrayList<ArrayList<Integer>> cols; //for combo calc in cols
   
 
 Board(int moves) {
   board = new int[6][6];
   currentScore = 0;
   movesLeft = moves;
+  rows = new ArrayList<ArrayList<Integer>>();
+  cols = new ArrayList<ArrayList<Integer>>();
+  
   generateBoard();
 }
 
@@ -75,29 +80,49 @@ void shift(int row, int col) {
   board[0][col] = (int) (Math.random() * 4);
 }
 
+void scoreCalc() {
+  //score calculation
+  println(3);
+  check3Combo();
+  println(4);
+  check4Combo();
+  println(5);
+  check5Combo();
+  println(6);
+  check6Combo();
+  //take values from arrayList (remove()), turn into -1 (cleared)
+  //if checking for dupes, check if your coord and the one to the right are both -1
+}
+
 void check6Combo(){
-  for (int i=0;i<6;i++){
-    int[] subArray=board[i];
-    int temp=board[i][0];
-    for (int y:subArray){
-      if (y!=temp){
-        //no 6 combo
-      }
-      else{
-        //clear the row
+  // ho
+  boolean combo = true;
+  for (int i=0; i<6; i++){
+    for (int y=0; y<6; y++){
+      if (board[i][y] != board[i][0]){
+        combo = false;
       }
     }
+    if (combo) {
+      println(i + ", " + 0);
+    }
+    combo = true;
   }
-    for (int i=0;i<6;i++){
-     for (int y=0;y<6;y++){
-       int temp=board[i][0];
-       if (board[i][y]!=temp){
+  
+  combo = true;
+  // vert
+   for (int i=0; i<6; i++){
+     int temp = board[0][i];
+     for (int y=0; y<6; y++){
+       if (board[y][i] != temp){
          // no 6 combo
-       }
-       else{
-         // clear the column
+         combo = false;
        }
      }
+     if (combo) {
+      println(0 + ", " + i);
+     }
+    combo = true;
   }
 }
 
@@ -106,6 +131,8 @@ void check3Combo(){
      for (int y=0;y<4;y++){
        if (board[i][y]==board[i][y+1]&&board[i][y]==board[i][y+2]){
          //notes which elements are in a row
+         rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y})));
+         println(i + ", " + y);
        }
      }
   }
@@ -113,6 +140,8 @@ void check3Combo(){
      for (int y=0;y<4;y++){
        if (board[y][i]==board[y+1][i]&&board[y][i]==board[y+2][i]){
            //notes which elements are in a row
+           cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i})));
+           println(y + ", " + i);
          }
        }
      }
@@ -123,6 +152,8 @@ void check4Combo(){
      for (int y=0;y<3;y++){
          if (board[i][y]==board[i][y+1]&&board[i][y]==board[i][y+2]&&board[i][y]==board[i][y+3]){
            //notes which elements are in a row
+           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y})));
+           println(i + ", " + y);
        }
      }
   }
@@ -130,6 +161,8 @@ void check4Combo(){
    for (int y=0;y<3;y++){ 
        if (board[y][i]==board[y+1][i]&&board[y][i]==board[y+2][i]&&board[y][i]==board[y+3][i]){
          //notes which elements are in a row
+         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i})));
+         println(y + ", " + i);
        }
      }
    }
@@ -140,6 +173,8 @@ void check4Combo(){
      for (int y=0;y<2;y++){
          if (board[i][y]==board[i][y+1]&&board[i][y]==board[i][y+2]&&board[i][y]==board[i][y+3]&&board[i][y]==board[i][y+4]){
            //notes which elements are in a row
+           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y})));
+           println(i + ", " + y);
        }
      }
   }
@@ -147,6 +182,8 @@ void check4Combo(){
    for (int y=0;y<2;y++){ 
        if (board[y][i]==board[y+1][i]&&board[y][i]==board[y+2][i]&&board[y][i]==board[y+3][i]&&board[y][i]==board[y+4][i]){
          //notes which elements are in a row
+         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i})));
+         println(y + ", " + i);
        }
      }
    }
