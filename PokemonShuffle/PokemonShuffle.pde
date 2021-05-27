@@ -28,6 +28,9 @@ void mouseReleased() {
   
   if (mouseY >= 448 && mouseY < 1024) {
     test.getPokemon(row, col).toggleSelect();
-    test.swap(prevRow, prevCol, (mouseY - 448) / 96, mouseX / 96);
+    try {
+      test.swap(prevRow, prevCol, (mouseY - 448) / 96, mouseX / 96);
+    }
+    catch (InterruptedException e) {}
   }
 }

@@ -35,7 +35,8 @@ int getMovesLeft() {
   return movesLeft;
 }
 
-void swap(int r1, int c1, int r2, int c2) {
+void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
+  Thread.sleep(150);
   Pokemon temp = board[r1][c1];
   board[r1][c1] = board[r2][c2];
   board[r2][c2] = temp;
