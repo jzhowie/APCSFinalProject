@@ -22,7 +22,7 @@ Board(int moves) {
 void generateBoard() {
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
-      board[i][j] = new Pokemon("element",Math.random() * 4);
+      board[i][j] = new Pokemon("element",(int)(Math.random() * 4));
     }
   }
 }
@@ -78,7 +78,7 @@ void shift(int row, int col) {
   for (int i = row; i > 0; i--) {
     board[i][col] = board[i-1][col];
   }
-  board[0][col] = new Pokemon("element",Math.random() * 4);
+  board[0][col] = new Pokemon("element",(int)(Math.random() * 4));
 }
 
 void scoreCalc() {
@@ -97,14 +97,14 @@ void scoreCalc() {
   
   while(rows.size() != 0) {
     ArrayList<Integer> temp = rows.remove(rows.size() - 1);
-    if (board[temp.get(0)][temp.get(1)] != temp.get(2) || board[temp.get(0)][temp.get(1)+1] != temp.get(2)) {
+    if (board[temp.get(0)][temp.get(1)].getTemp() != temp.get(2) || board[temp.get(0)][temp.get(1)+1].getTemp() != temp.get(2)) {
       
       int i = temp.get(0);
       int j = temp.get(1);
       
-      while (j < board.length && board[i][j] == temp.get(2)) {
+      while (j < board.length && board[i][j].getTemp() == temp.get(2)) {
         //score
-        board[i][j] = -1;
+        board[i][j].setTemp(-1);
         j++;
       }
       println("r");
@@ -134,9 +134,9 @@ void check6Combo(){
   combo = true;
   // vert
    for (int i=0; i<6; i++){
-     int temp = board[0][i];
+     int temp = board[0][i].getTemp();
      for (int y=0; y<6; y++){
-       if (board[y][i] != temp){
+       if (board[y][i].getTemp() != temp){
          // no 6 combo
          combo = false;
        }
@@ -153,7 +153,7 @@ void check3Combo(){
      for (int y=0;y<4;y++){
        if (board[i][y].getTemp()==board[i][y+1].getTemp()&&board[i][y].getTemp()==board[i][y+2].getTemp()){
          //notes which elements are in a row
-         rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y], 3})));
+         rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y].getTemp(), 3})));
          println(i + ", " + y);
        }
      }
@@ -162,7 +162,7 @@ void check3Combo(){
      for (int y=0;y<4;y++){
        if (board[y][i].getTemp()==board[y+1][i].getTemp()&&board[y][i].getTemp()==board[y+2][i].getTemp()){
            //notes which elements are in a row
-           cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i], 3})));
+           cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i].getTemp(), 3})));
            println(y + ", " + i);
          }
        }
@@ -174,7 +174,7 @@ void check4Combo(){
      for (int y=0;y<3;y++){
          if (board[i][y].getTemp()==board[i][y+1].getTemp()&&board[i][y].getTemp()==board[i][y+2].getTemp()&&board[i][y].getTemp()==board[i][y+3].getTemp()){
            //notes which elements are in a row
-           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y], 4})));
+           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y].getTemp(), 4})));
            println(i + ", " + y);
        }
      }
@@ -183,7 +183,7 @@ void check4Combo(){
    for (int y=0;y<3;y++){ 
        if (board[y][i].getTemp()==board[y+1][i].getTemp()&&board[y][i].getTemp()==board[y+2][i].getTemp()&&board[y][i].getTemp()==board[y+3][i].getTemp()){
          //notes which elements are in a row
-         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i], 4})));
+         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i].getTemp(), 4})));
          println(y + ", " + i);
        }
      }
@@ -195,16 +195,16 @@ void check4Combo(){
      for (int y=0;y<2;y++){
          if (board[i][y].getTemp()==board[i][y+1].getTemp()&&board[i][y].getTemp()==board[i][y+2].getTemp()&&board[i][y].getTemp()==board[i][y+3].getTemp()&&board[i][y].getTemp()==board[i][y+4].getTemp()){
            //notes which elements are in a row
-           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y], 5})));
+           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y].getTemp(), 5})));
            println(i + ", " + y);
        }
      }
   }
   for (int i=0;i<6;i++){
    for (int y=0;y<2;y++){ 
-       if (board[y][i].getTemp()==board[y+1][i].getTemp()&&board[y][i].getTemp()==board[y+2][i].getTemp()&&board[y][i].getTemp()==board[y+3][i]&&board[y][i].getTemp()==board[y+4][i].getTemp()){
+       if (board[y][i].getTemp()==board[y+1][i].getTemp()&&board[y][i].getTemp()==board[y+2][i].getTemp()&&board[y][i].getTemp()==board[y+3][i].getTemp()&&board[y][i].getTemp()==board[y+4][i].getTemp()){
          //notes which elements are in a row
-         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i], 5})));
+         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i].getTemp(), 5})));
          println(y + ", " + i);
        }
      }
