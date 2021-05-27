@@ -4,8 +4,9 @@ public class Pokemon{
   private String type;
   private boolean selected;
   
-  Pokemon(String element){
+  Pokemon(String element, int temporary){
     selected=false;
+    temp=temporary;
     type=element;
   }
    
@@ -15,6 +16,10 @@ public class Pokemon{
   
   public int getTemp(){
     return temp;  
+  }
+  
+  public void setTemp(int newTemp){
+    temp=newTemp;
   }
   
   public boolean isSelected(){
