@@ -49,11 +49,16 @@ void display() {
   fill(0);
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
-      if (board[i][j].getPNum() == -1) fill(0);
-      if (board[i][j].getPNum() == 0) fill(#FF1538);
-      if (board[i][j].getPNum() == 1) fill(#8915FF);
-      if (board[i][j].getPNum() == 2) fill(#1588FF);
-      if (board[i][j].getPNum() == 3) fill(#15FF1E);
+      if (board[i][j].isSelected()) {
+        fill(0);
+      }
+      else {
+        if (board[i][j].getPNum() == -1) fill(0);
+        if (board[i][j].getPNum() == 0) fill(#FF1538);
+        if (board[i][j].getPNum() == 1) fill(#8915FF);
+        if (board[i][j].getPNum() == 2) fill(#1588FF);
+        if (board[i][j].getPNum() == 3) fill(#15FF1E);
+      }
       rect(0+96*j, 448+96*i, 96, 96);
     }
   }
@@ -94,7 +99,7 @@ void scoreCalc() {
   
   println();
   println(rows.size());
-  
+  //removing combos wip
   while(rows.size() != 0) {
     ArrayList<Integer> temp = rows.remove(rows.size() - 1);
     if (board[temp.get(0)][temp.get(1)].getPNum() != temp.get(2) || board[temp.get(0)][temp.get(1)+1].getPNum() != temp.get(2)) {
@@ -209,6 +214,11 @@ void check4Combo(){
        }
      }
    }
+ }
+ 
+ 
+ Pokemon getPokemon(int row, int col) {
+   return board[row][col];
  }
 
 }

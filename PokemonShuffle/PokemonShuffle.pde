@@ -1,14 +1,11 @@
 Board test;
+int row;
+int col;
 
 void setup() {
   size(576, 1024);
-<<<<<<< Updated upstream
-  Board test = new Board(99);
+  test = new Board(99);
   test.display();
-  test.scoreCalc();
-=======
-  test = new Board(6);
->>>>>>> Stashed changes
 }
 
 void draw() {
@@ -17,9 +14,16 @@ void draw() {
 
 // orb moving during board
 void mousePressed() {
-  if (mouseY >= 576) { // and if game started
-    int row = (mouseY - 576) / 96;
-    int col = mouseX / 96;
+  if (mouseY >= 448) { // and if game started
+    row = (mouseY - 448) / 96;
+    col = mouseX / 96;
     println(row + ", " + col);
+    test.getPokemon(row, col).toggleSelect();
+  }
+}
+
+void mouseReleased() {
+  if (mouseY >= 448) {
+    test.getPokemon(row, col).toggleSelect();
   }
 }
