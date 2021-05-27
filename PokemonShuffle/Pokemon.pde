@@ -1,5 +1,6 @@
 public class Pokemon{
   
+  private int temp;
   private String type;
   private boolean selected;
   
@@ -10,6 +11,10 @@ public class Pokemon{
    
   public String getType(){
     return type;
+  }
+  
+  public int getTemp(){
+    return temp;  
   }
   
   public boolean isSelected(){
