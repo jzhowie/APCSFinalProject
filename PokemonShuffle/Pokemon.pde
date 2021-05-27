@@ -1,12 +1,12 @@
 public class Pokemon{
   
-  private int temp;
+  private int pNum;
   private String type;
   private boolean selected;
   
   Pokemon(String element, int temporary){
     selected=false;
-    temp=temporary;
+    pNum=temporary;
     type=element;
   }
    
@@ -14,12 +14,12 @@ public class Pokemon{
     return type;
   }
   
-  public int getTemp(){
-    return temp;  
+  public int getPNum(){
+    return pNum;  
   }
   
-  public void setTemp(int newTemp){
-    temp=newTemp;
+  public void setPNum(int newTemp){
+    pNum=newTemp;
   }
   
   public boolean isSelected(){
