@@ -49,11 +49,11 @@ void display() {
   fill(0);
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
-      if (board[i][j].getTemp() == -1) fill(0);
-      if (board[i][j].getTemp() == 0) fill(#FF1538);
-      if (board[i][j].getTemp() == 1) fill(#8915FF);
-      if (board[i][j].getTemp() == 2) fill(#1588FF);
-      if (board[i][j].getTemp() == 3) fill(#15FF1E);
+      if (board[i][j].getPNum() == -1) fill(0);
+      if (board[i][j].getPNum() == 0) fill(#FF1538);
+      if (board[i][j].getPNum() == 1) fill(#8915FF);
+      if (board[i][j].getPNum() == 2) fill(#1588FF);
+      if (board[i][j].getPNum() == 3) fill(#15FF1E);
       rect(0+96*j, 448+96*i, 96, 96);
     }
   }
@@ -67,7 +67,7 @@ void display() {
 void clearCombo() {
  for (int i = board.length - 1; i > -1; i--) {
     for (int j = 0; j < board[0].length; j++) {
-      if (board[i][j].getTemp() == -1) {
+      if (board[i][j].getPNum() == -1) {
         shift(i, j);
       }
     }
@@ -97,14 +97,14 @@ void scoreCalc() {
   
   while(rows.size() != 0) {
     ArrayList<Integer> temp = rows.remove(rows.size() - 1);
-    if (board[temp.get(0)][temp.get(1)].getTemp() != temp.get(2) || board[temp.get(0)][temp.get(1)+1].getTemp() != temp.get(2)) {
+    if (board[temp.get(0)][temp.get(1)].getPNum() != temp.get(2) || board[temp.get(0)][temp.get(1)+1].getPNum() != temp.get(2)) {
       
       int i = temp.get(0);
       int j = temp.get(1);
       
-      while (j < board.length && board[i][j].getTemp() == temp.get(2)) {
+      while (j < board.length && board[i][j].getPNum() == temp.get(2)) {
         //score
-        board[i][j].setTemp(-1);
+        board[i][j].setPNum(-1);
         j++;
       }
       println("r");
@@ -134,9 +134,9 @@ void check6Combo(){
   combo = true;
   // vert
    for (int i=0; i<6; i++){
-     int temp = board[0][i].getTemp();
+     int temp = board[0][i].getPNum();
      for (int y=0; y<6; y++){
-       if (board[y][i].getTemp() != temp){
+       if (board[y][i].getPNum() != temp){
          // no 6 combo
          combo = false;
        }
@@ -151,18 +151,18 @@ void check6Combo(){
 void check3Combo(){
   for (int i=0;i<6;i++){
      for (int y=0;y<4;y++){
-       if (board[i][y].getTemp()==board[i][y+1].getTemp()&&board[i][y].getTemp()==board[i][y+2].getTemp()){
+       if (board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()){
          //notes which elements are in a row
-         rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y].getTemp(), 3})));
+         rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y].getPNum(), 3})));
          println(i + ", " + y);
        }
      }
   }
     for (int i=0;i<6;i++){
      for (int y=0;y<4;y++){
-       if (board[y][i].getTemp()==board[y+1][i].getTemp()&&board[y][i].getTemp()==board[y+2][i].getTemp()){
+       if (board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()){
            //notes which elements are in a row
-           cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i].getTemp(), 3})));
+           cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i].getPNum(), 3})));
            println(y + ", " + i);
          }
        }
@@ -172,18 +172,18 @@ void check3Combo(){
 void check4Combo(){
   for (int i=0;i<6;i++){
      for (int y=0;y<3;y++){
-         if (board[i][y].getTemp()==board[i][y+1].getTemp()&&board[i][y].getTemp()==board[i][y+2].getTemp()&&board[i][y].getTemp()==board[i][y+3].getTemp()){
+         if (board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()&&board[i][y].getPNum()==board[i][y+3].getPNum()){
            //notes which elements are in a row
-           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y].getTemp(), 4})));
+           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y].getPNum(), 4})));
            println(i + ", " + y);
        }
      }
   }
   for (int i=0;i<6;i++){
    for (int y=0;y<3;y++){ 
-       if (board[y][i].getTemp()==board[y+1][i].getTemp()&&board[y][i].getTemp()==board[y+2][i].getTemp()&&board[y][i].getTemp()==board[y+3][i].getTemp()){
+       if (board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()&&board[y][i].getPNum()==board[y+3][i].getPNum()){
          //notes which elements are in a row
-         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i].getTemp(), 4})));
+         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i].getPNum(), 4})));
          println(y + ", " + i);
        }
      }
@@ -193,18 +193,18 @@ void check4Combo(){
  void check5Combo(){
   for (int i=0;i<6;i++){
      for (int y=0;y<2;y++){
-         if (board[i][y].getTemp()==board[i][y+1].getTemp()&&board[i][y].getTemp()==board[i][y+2].getTemp()&&board[i][y].getTemp()==board[i][y+3].getTemp()&&board[i][y].getTemp()==board[i][y+4].getTemp()){
+         if (board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()&&board[i][y].getPNum()==board[i][y+3].getPNum()&&board[i][y].getPNum()==board[i][y+4].getPNum()){
            //notes which elements are in a row
-           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y].getTemp(), 5})));
+           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, board[i][y].getPNum(), 5})));
            println(i + ", " + y);
        }
      }
   }
   for (int i=0;i<6;i++){
    for (int y=0;y<2;y++){ 
-       if (board[y][i].getTemp()==board[y+1][i].getTemp()&&board[y][i].getTemp()==board[y+2][i].getTemp()&&board[y][i].getTemp()==board[y+3][i].getTemp()&&board[y][i].getTemp()==board[y+4][i].getTemp()){
+       if (board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()&&board[y][i].getPNum()==board[y+3][i].getPNum()&&board[y][i].getPNum()==board[y+4][i].getPNum()){
          //notes which elements are in a row
-         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i].getTemp(), 5})));
+         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, board[y][i].getPNum(), 5})));
          println(y + ", " + i);
        }
      }
