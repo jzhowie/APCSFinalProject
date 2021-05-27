@@ -1,14 +1,36 @@
+Board test;
+int row;
+int col;
+
 void setup() {
   size(576, 1024);
-  Board test = new Board(99);
+  test = new Board(99);
   test.display();
-  test.scoreCalc();
 }
 
 void draw() {
-    //updates board
+  test.display();
 }
 
+// orb moving during board
 void mousePressed() {
-    // orb moving during board
+  if (mouseY >= 448 && mouseY < 1024) { // and if game started
+    row = (mouseY - 448) / 96;
+    col = mouseX / 96;
+    //println(row + ", " + col);
+    test.getPokemon(row, col).toggleSelect();
+  }
+}
+
+void mouseReleased() {
+  int prevRow = row;
+  int prevCol = col;
+  
+  if (mouseY >= 448 && mouseY < 1024) {
+    test.getPokemon(row, col).toggleSelect();
+    try {
+      test.swap(prevRow, prevCol, (mouseY - 448) / 96, mouseX / 96);
+    }
+    catch (InterruptedException e) {}
+  }
 }

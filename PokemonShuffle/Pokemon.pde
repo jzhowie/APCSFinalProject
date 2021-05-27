@@ -25,5 +25,9 @@ public class Pokemon{
   public boolean isSelected(){
     return selected;
   }
+  
+  public void toggleSelect() {
+    selected = !selected;
+  }
  
 }

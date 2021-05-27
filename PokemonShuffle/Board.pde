@@ -23,20 +23,17 @@ void generateBoard() {
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
       board[i][j] = new Pokemon("element",(int)(Math.random() * 4));
+      if (i>1){
+        while (board[i][j].getPNum()==board[i-1][j].getPNum()&&board[i-1][j].getPNum()==board[i-2][j].getPNum()){
+          board[i][j] = new Pokemon("element",(int)(Math.random() * 4));
+        }
+      }
       if (j>1){
         while (board[i][j].getPNum()==board[i][j-1].getPNum()&&board[i][j].getPNum()==board[i][j-2].getPNum()){
           board[i][j] = new Pokemon("element",(int)(Math.random() * 4));
         }
       }
-      if (i>1){
-        while (board[i][j].getPNum()==board[i-1][1].getPNum()&&board[i][j].getPNum()==board[i-2][j].getPNum()){
-          board[i][j] = new Pokemon("element",(int)(Math.random() * 4));
-        }
-      }
     }
-  }
-  if (this.check3Combo()){
-    clearCombo();
   }
 }
 
