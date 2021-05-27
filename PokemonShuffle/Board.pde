@@ -47,10 +47,17 @@ void display() {
   background(255);
   noStroke();
   fill(0);
+  int selectedRow = 0;
+  int selectedCol = 0;
+  boolean selected = false;
+  
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
       if (board[i][j].isSelected()) {
         fill(0);
+        selected = true;
+        selectedRow = i;
+        selectedCol = j;
       }
       else {
         if (board[i][j].getPNum() == -1) fill(0);
@@ -62,6 +69,16 @@ void display() {
       rect(0+96*j, 448+96*i, 96, 96);
     }
   }
+  
+  if (selected) {
+    if (board[selectedRow][selectedCol].getPNum() == -1) fill(0);
+    if (board[selectedRow][selectedCol].getPNum() == 0) fill(#FF1538);
+    if (board[selectedRow][selectedCol].getPNum() == 1) fill(#8915FF);
+    if (board[selectedRow][selectedCol].getPNum() == 2) fill(#1588FF);
+    if (board[selectedRow][selectedCol].getPNum() == 3) fill(#15FF1E);
+    rect(mouseX - 48, mouseY - 48, 96, 96);
+  }
+  
   
   fill(0);
   textSize(24);
