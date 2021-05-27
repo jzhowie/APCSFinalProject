@@ -1,7 +1,8 @@
 void setup() {
   size(576, 1024);
-  Board test = new Board(6);
+  Board test = new Board(99);
   test.display();
+  test.scoreCalc();
 }
 
 void draw() {
