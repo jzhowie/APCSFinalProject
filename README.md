@@ -19,7 +19,12 @@ Austin: Finished creating boss and Pokemon classes with their respective constru
 ### May 25:
 Jason: Worked on scanning board for valid combos and started on the process of removing combos.
 
-Austin: Tried to create a way to use the Pokemon class in board, rather than using int arrays
+Austin: Tried to create a way to use the Pokemon class in board, rather than using int arrays.
+
+### May 26:
+Jason: Finished manipulating the board through mouse input, so being able to drag and drop tiles.
+
+Austin: 
 
 ## UML Diagram Updates:
 **May 23:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
