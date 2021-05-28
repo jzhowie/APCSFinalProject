@@ -69,15 +69,24 @@ void display() {
         selected = true;
         selectedRow = i;
         selectedCol = j;
+        rect(0+96*j, 448+96*i, 96, 96);
       }
       else {
-        if (board[i][j].getPNum() == -1) fill(0);
-        if (board[i][j].getPNum() == 0) fill(#FF1538);
-        if (board[i][j].getPNum() == 1) fill(#8915FF);
-        if (board[i][j].getPNum() == 2) fill(#1588FF);
-        if (board[i][j].getPNum() == 3) fill(#15FF1E);
+        if (board[i][j].getPNum() == -1) {
+          fill(0);
+          rect(0+96*j, 448+96*i, 96, 96);
+          fill(255);
+          textSize(10);
+          text("R", 10+96*j, 458+96*i);
+        }
+        else {
+          if (board[i][j].getPNum() == 0) fill(#FF1538);
+          if (board[i][j].getPNum() == 1) fill(#8915FF);
+          if (board[i][j].getPNum() == 2) fill(#1588FF);
+          if (board[i][j].getPNum() == 3) fill(#15FF1E);
+          rect(0+96*j, 448+96*i, 96, 96);
+        }
       }
-      rect(0+96*j, 448+96*i, 96, 96);
     }
   }
   
@@ -96,6 +105,8 @@ void display() {
   text("Score: " + getCurrentScore() + "\nMoves Left: " + getMovesLeft(), 0+4, 24+4);
 }
 
+
+// PRINTLN IN HERE FOR DEBUGGING
 void comboCheck() {
   // FOR ROWS
   // Loops through everything adjacent to the right that is equal as itself
@@ -112,7 +123,7 @@ void comboCheck() {
         col++;
       }
       if (len >= 3) {
-        println(i + ", " + j + ", " + len);
+        //println(i + ", " + j + ", " + len);
         rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, j, len})));
       }
       j = col;
@@ -134,14 +145,15 @@ void comboCheck() {
         row++;
       }
       if (len >= 3) {
-        println(j + ", " + i + ", " + len);
+        //println(j + ", " + i + ", " + len);
         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {j, i, len})));
       }
       j = row;
     }
   }
 }
-//works bottom to top
+
+//Clear combos from bottom to top
 void clearCombo() {
  for (int i = board.length - 1; i > -1; i--) {
     for (int j = 0; j < board[0].length; j++) {
