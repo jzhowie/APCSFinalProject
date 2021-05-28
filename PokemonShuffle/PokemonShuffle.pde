@@ -4,7 +4,7 @@ int col;
 
 void setup() {
   size(576, 1024);
-  test = new Board(99);
+  test = new Board(1);
   test.display();
 }
 
@@ -19,6 +19,12 @@ void mousePressed() {
     col = mouseX / 96;
     //println(row + ", " + col);
     test.getPokemon(row, col).toggleSelect();
+  }
+  if (test.gameOver){
+    if (mouseX<=360&&mouseX>=180&&mouseY>=500-100&&mouseY<=580-100){
+      test=new Board(99);
+      //just for testing, actual game over should probably send to start menu
+    }
   }
 }
 
