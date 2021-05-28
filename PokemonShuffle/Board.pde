@@ -97,6 +97,9 @@ void display() {
 }
 
 void comboCheck() {
+  // FOR ROWS
+  // Loops through everything adjacent to the right that is equal as itself
+  // Records length and only adds to the arraylist if it is greater than 3
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < 4; j++) {
       int p = board[i][j].getPNum();
@@ -113,6 +116,28 @@ void comboCheck() {
         rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, j, len})));
       }
       j = col;
+    }
+  }
+  
+  // FOR COLS i = Col #, j = Row # 
+  // Loops through everything adjacent down that is equal as itself
+  // Records length and only adds to the arraylist if it is greater than 3
+  for (int i = 0; i < board.length; i++) {
+    for (int j = 0; j < 4; j++) {
+      int p = board[j][i].getPNum();
+      int len = 1;
+      int col = i;
+      int row = j;
+      
+      while (row < board.length - 1 && p == board[row+1][col].getPNum()) {
+        len++;
+        row++;
+      }
+      if (len >= 3) {
+        println(j + ", " + i + ", " + len);
+        cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {j, i, len})));
+      }
+      j = row;
     }
   }
 }
