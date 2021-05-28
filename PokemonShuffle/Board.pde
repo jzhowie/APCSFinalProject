@@ -163,7 +163,7 @@ void comboCheck() {
 
 //Clear combos from bottom to top
 void clearCombo() {
- for (int i = board.length - 1; i > -1; i--) {
+ for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
       if (board[i][j].getPNum() == -1) {
         shift(i, j);
