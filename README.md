@@ -24,7 +24,7 @@ Austin: Tried to create a way to use the Pokemon class in board, rather than usi
 ### May 26:
 Jason: Finished manipulating the board through mouse input, so being able to drag and drop tiles.
 
-Austin: 
+Austin: Fully implemented the use of the Pokemon class in the board class, as well as prevented full combos from spawning when the board is initially generated.
 
 ## UML Diagram Updates:
 **May 23:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
