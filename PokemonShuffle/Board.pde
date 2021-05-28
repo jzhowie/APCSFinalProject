@@ -45,6 +45,10 @@ int getMovesLeft() {
   return movesLeft;
 }
 
+void addScore(int s) {
+  currentScore += s;
+}
+
 void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
   Thread.sleep(100);
   Pokemon temp = board[r1][c1];
@@ -185,9 +189,11 @@ void scoreCalc() {
   
   comboCheck();
   
+  int baseScore = 50;
   while(rows.size() > 0) {
     ArrayList<Integer> temp = rows.remove(rows.size() - 1);
     int len = 0;
+    addScore(baseScore * temp.get(2));
     while (len < temp.get(2)) {
       board[temp.get(0)][temp.get(1) + len].setPNum(-1);
       len++;
@@ -198,6 +204,7 @@ void scoreCalc() {
   while(cols.size() > 0) {
     ArrayList<Integer> temp = cols.remove(cols.size() - 1);
     int len = 0;
+    addScore(baseScore * temp.get(2));
     while (len < temp.get(2)) {
       board[temp.get(0) + len][temp.get(1)].setPNum(-1);
       len++;
