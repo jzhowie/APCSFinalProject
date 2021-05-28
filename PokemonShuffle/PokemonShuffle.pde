@@ -30,6 +30,12 @@ void mouseReleased() {
     test.getPokemon(row, col).toggleSelect();
     try {
       test.swap(prevRow, prevCol, (mouseY - 448) / 96, mouseX / 96);
+      if (!test.check3Combo()) {
+        test.swap((mouseY - 448) / 96, mouseX / 96, prevRow, prevCol);
+      }
+      else {
+        test.scoreCalc();
+      }
     }
     catch (InterruptedException e) {}
   }
