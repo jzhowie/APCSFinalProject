@@ -49,6 +49,10 @@ void addScore(int s) {
   currentScore += s;
 }
 
+void decrementMoves() {
+  movesLeft--;
+}
+
 void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
   Thread.sleep(100);
   Pokemon temp = board[r1][c1];
@@ -159,7 +163,7 @@ void comboCheck() {
 
 //Clear combos from bottom to top
 void clearCombo() {
- for (int i = board.length - 1; i > -1; i--) {
+ for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
       if (board[i][j].getPNum() == -1) {
         shift(i, j);
@@ -176,7 +180,7 @@ private void shift(int row, int col) {
 }
 
 //Take values from arrayList (remove()), turn into -1 (cleared)
-void scoreCalc() {
+void scoreCalc() throws InterruptedException {
   //score calculation
   //println(3);
   //check3Combo();
@@ -186,10 +190,11 @@ void scoreCalc() {
   //check5Combo();
   //println(6);
   //check6Combo();
-  
+  decrementMoves();
+  while (check3Combo()) {
   comboCheck();
   
-  int baseScore = 50;
+  int baseScore = 50; // potential to add bonus for extra combos
   while(rows.size() > 0) {
     ArrayList<Integer> temp = rows.remove(rows.size() - 1);
     int len = 0;
@@ -198,7 +203,6 @@ void scoreCalc() {
       board[temp.get(0)][temp.get(1) + len].setPNum(-1);
       len++;
     }
-    display();
     }
   
   while(cols.size() > 0) {
@@ -209,8 +213,14 @@ void scoreCalc() {
       board[temp.get(0) + len][temp.get(1)].setPNum(-1);
       len++;
     }
-    display();
     }
+    
+    // Tweaks:
+    // Have board display after removing combos, dropping new ones, removing, repeat
+    display();
+    clearCombo();
+    display();
+  }
   }
 
 void check6Combo(){
