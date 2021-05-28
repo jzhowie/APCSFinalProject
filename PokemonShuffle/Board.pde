@@ -4,6 +4,9 @@ public class Board {
   Pokemon[][] board;
   int currentScore;
   int movesLeft;
+  boolean gameOver=false;
+  boolean win=false;
+  Boss giant=new Boss(10000,"element");
   
   ArrayList<ArrayList<Integer>> rows; //for combo calc in rows
   ArrayList<ArrayList<Integer>> cols; //for combo calc in cols
@@ -15,6 +18,8 @@ Board(int moves) {
   movesLeft = moves;
   rows = new ArrayList<ArrayList<Integer>>();
   cols = new ArrayList<ArrayList<Integer>>();
+  gameOver=false;
+  win=false;
   
   generateBoard();
 }
@@ -111,6 +116,25 @@ void display() {
   fill(0);
   textSize(24);
   text("Score: " + getCurrentScore() + "\nMoves Left: " + getMovesLeft(), 0+4, 24+4);
+  
+  checkWin();
+  if (win){
+    
+  }
+  
+  checkGameOver();
+  if (gameOver){
+    background(0);
+    fill(255);
+    textSize(24);
+    text("Game Over...",200, 480-100);
+    fill(#9E7AD8);
+    rect(180,500-100,180,80);
+    fill(0);
+    text("Restart?",220,550-100);
+   
+  }
+  
 }
 
 
@@ -326,6 +350,16 @@ void check4Combo(){
    return board[row][col];
  }
 
+ void checkWin(){
+   if (giant.getNeededScore()<=this.currentScore){
+     win=true;
+   }
+ }
 
+ void checkGameOver(){
+   if (giant.getNeededScore()>this.currentScore&&this.movesLeft==0){
+     gameOver=true;
+   }
+ }
 
 }
