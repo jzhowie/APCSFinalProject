@@ -164,13 +164,14 @@ void clearCombo() {
  }
 }
 
-void shift(int row, int col) {
+private void shift(int row, int col) {
   for (int i = row; i > 0; i--) {
     board[i][col] = board[i-1][col];
   }
   board[0][col] = new Pokemon("element",(int)(Math.random() * 4));
 }
 
+//Take values from arrayList (remove()), turn into -1 (cleared)
 void scoreCalc() {
   //score calculation
   //println(3);
@@ -183,19 +184,27 @@ void scoreCalc() {
   //check6Combo();
   
   comboCheck();
-  println();
   
-  //removing combos wip
   while(rows.size() > 0) {
     ArrayList<Integer> temp = rows.remove(rows.size() - 1);
-    
+    int len = 0;
+    while (len < temp.get(2)) {
+      board[temp.get(0)][temp.get(1) + len].setPNum(-1);
+      len++;
+    }
+    display();
+    }
+  
+  while(cols.size() > 0) {
+    ArrayList<Integer> temp = cols.remove(cols.size() - 1);
+    int len = 0;
+    while (len < temp.get(2)) {
+      board[temp.get(0) + len][temp.get(1)].setPNum(-1);
+      len++;
+    }
     display();
     }
   }
-  
-  //take values from arrayList (remove()), turn into -1 (cleared)
-  //if checking for dupes, check if your coord and the one to the right are both -1
-
 
 void check6Combo(){
   // ho
