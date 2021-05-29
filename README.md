@@ -29,7 +29,7 @@ Austin: Fully implemented the use of the Pokemon class in the board class, as we
 ### May 28:
 Jason: Finished implementation of detecting and removing combos from board and the board will continue to match combos and award points until there are no combos left.
 
-Austin:  
+Austin: Started implementing a start, win, and game over screen.
 
 ### May 29:
 Jason: 
