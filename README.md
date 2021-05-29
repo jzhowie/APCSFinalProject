@@ -11,20 +11,30 @@ We are trying to create a Pokemon Shuffle “clone”, mainly focusing on its ma
 **Prototype:** https://docs.google.com/document/d/1n__b3dagQLo8h0CAY-NgloRj4c0hSL9zSHTDt-R-eH8/edit?usp=sharing
 
 ## Development Log:
-### May 24:
+### May 25:
 Jason: Worked on board class to add variables, added a way to display the board with score and moves remaining. Also started on moving elements of the array with a swap method.  
 
 Austin: Finished creating boss and Pokemon classes with their respective constructors and get methods, as well as added the check combos methods for the board class.  
 
-### May 25:
+### May 26:
 Jason: Worked on scanning board for valid combos and started on the process of removing combos.
 
 Austin: Tried to create a way to use the Pokemon class in board, rather than using int arrays.
 
-### May 26:
+### May 27:
 Jason: Finished manipulating the board through mouse input, so being able to drag and drop tiles.
 
 Austin: Fully implemented the use of the Pokemon class in the board class, as well as prevented full combos from spawning when the board is initially generated.
+
+### May 28:
+Jason: Finished implementation of detecting and removing combos from board and the board will continue to match combos and award points until there are no combos left.
+
+Austin:  
+
+### May 29:
+Jason: 
+
+Austin: 
 
 ## UML Diagram Updates:
 **May 23:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
