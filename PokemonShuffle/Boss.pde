@@ -12,6 +12,10 @@ public class Boss{
     return neededScore;
   }
   
+  public String getType() {
+    return type;
+  }
+  
   public void display(int score) {
     shapeMode(CORNER);
     fill(#F5FC24);
