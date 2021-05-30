@@ -6,11 +6,12 @@ public class Board {
   int movesLeft;
   boolean gameOver=false;
   boolean win=false;
-  Boss giant = new Boss(10000,"element");
+  Boss giant = new Boss(10000,"Water");
   
   ArrayList<ArrayList<Integer>> rows; //for combo calc in rows
   ArrayList<ArrayList<Integer>> cols; //for combo calc in cols
-  
+  ArrayList<Float> calcVertMultipliers;
+  ArrayList<Float> calcHorzMultipliers;
 
 Board(int moves) {
   board = new Pokemon[6][6];
@@ -40,6 +41,23 @@ void generateBoard() {
       }
     }
   }
+ //THIS PART IS FOR TESTING TYPE EFFECTIVENESS
+ for (int i=0;i<board.length;i++){
+   for (int y=0;y<board.length;y++){
+     if (board[i][y].getPNum()==0){
+       board[i][y].setType("Grass");
+     }
+     if (board[i][y].getPNum()==1){
+       board[i][y].setType("Water");
+     }
+     if (board[i][y].getPNum()==2){
+       board[i][y].setType("Fire");
+     }
+     if (board[i][y].getPNum()==3){
+       board[i][y].setType("Ice");
+     }
+   }
+ }
 }
 
 int getCurrentScore() {
@@ -160,7 +178,8 @@ void comboCheck() {
         col++;
       }
       if (len >= 3) {
-        //println(i + ", " + j + ", " + len);
+        //println(i + ", " + j + ", " + len);        
+        
         rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, j, len})));
       }
       j = col;
@@ -183,6 +202,7 @@ void comboCheck() {
       }
       if (len >= 3) {
         //println(j + ", " + i + ", " + len);
+        
         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {j, i, len})));
       }
       j = row;
@@ -219,7 +239,8 @@ void scoreCalc() throws InterruptedException {
   while(rows.size() > 0) {
     ArrayList<Integer> temp = rows.remove(rows.size() - 1);
     int len = 0;
-    addScore(baseScore * temp.get(2));
+    float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
+    addScore((int)(baseScore * temp.get(2) * multiplier));
     while (len < temp.get(2)) {
       board[temp.get(0)][temp.get(1) + len].setPNum(-1);
       len++;
@@ -229,7 +250,8 @@ void scoreCalc() throws InterruptedException {
   while(cols.size() > 0) {
     ArrayList<Integer> temp = cols.remove(cols.size() - 1);
     int len = 0;
-    addScore(baseScore * temp.get(2));
+    float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
+    addScore((int)(baseScore * temp.get(2) * multiplier));
     while (len < temp.get(2)) {
       board[temp.get(0) + len][temp.get(1)].setPNum(-1);
       len++;
