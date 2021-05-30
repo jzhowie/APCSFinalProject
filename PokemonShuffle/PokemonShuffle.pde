@@ -25,6 +25,7 @@ void draw() {
   }
   else if (modeSelect) {
     background(255);
+<<<<<<< HEAD
     fill(0);
     noStroke();
     textSize(25);
@@ -35,6 +36,16 @@ void draw() {
     rect(width/2 - 100, height/2 - 15, 200, 30);
     fill(0);
     text("Endless", width/2, height/2);
+=======
+    fill(255, 0, 0);
+    noStroke();
+    textSize(25);
+    textAlign(CENTER, CENTER);
+    text("PKMN SHUFFLE", width/2, height/4);
+    
+    shapeMode(CENTER);
+    text("Click anywhere to proceed", width/2, height/2);
+>>>>>>> be8d73cce98d716e1e4707b2bac24be3d3402d47
   }
   else {
     test.display();
@@ -65,7 +76,11 @@ void mouseReleased() {
     modeSelect = true;
   }
   else if (modeSelect) {
+<<<<<<< HEAD
     if (mouseY > (height/2) - 15 && mouseY < (height/2) + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100) {
+=======
+    if (mouseY > smth && mouseX > smth) {
+>>>>>>> be8d73cce98d716e1e4707b2bac24be3d3402d47
       boardSetup(); // mode
       modeSelect = false;
     }
