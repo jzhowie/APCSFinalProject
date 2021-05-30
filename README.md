@@ -34,7 +34,7 @@ Austin: Started implementing a start, win, and game over screen.
 ### May 29:
 Jason: Created screens for start and choosing a mode. Also implemented a boss health bar.
 
-Austin: 
+Austin: Finished the calculations based off of type effectiveness, weaknesses multiply the calculated score from the combo by 0.5, 2 if it is effective.
 
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
