@@ -1,12 +1,15 @@
 Board test;
 int row;
 int col;
+int stage;
 boolean start;
 boolean modeSelect;
+boolean partySelect;
 
 void setup() {
   size(576, 1024);
   start = true;
+  stage = 1;
   //test = new Board(1);
   //test.display();
 }
@@ -20,8 +23,12 @@ void draw() {
     noStroke();
     textSize(25); //n needs tweaking
     textAlign(CENTER, CENTER);
-    text("PKMN SHUFFLE", width/2, height/4);
-    text("Click anywhere to proceed", width/2, height/2);
+    
+    imageMode(CENTER);
+    PImage title = loadImage("TitleScreen.png");
+    title.resize(title.width/2, title.height/2);
+    image(title, width/2, height/4);
+    text("<< Click anywhere to proceed >>", width/2, height * 0.80);
   }
   else if (modeSelect) {
     background(255);
@@ -36,6 +43,20 @@ void draw() {
     fill(0);
     text("Endless", width/2, height/2);
   }
+  else if (partySelect) {
+    background(255);
+    fill(0);
+    noStroke();
+    textSize(25);
+    textAlign(CENTER, CENTER);
+    text("Party Select", width/2, height/4);
+    
+    shapeMode(CORNER);
+    fill(#55F766);
+    rect(width/2 - 100, height * (0.80) - 15, 200, 30);
+    fill(0);
+    text("Confirm", width/2, height * (0.80));
+  }
   else {
     test.display();
   }
@@ -43,7 +64,7 @@ void draw() {
 
 // orb moving during board
 void mousePressed() {
-  if (!start && !modeSelect) {
+  if (!start && !modeSelect && !partySelect) {
     if (mouseY >= 448 && mouseY < 1024) { // and if game started
       row = (mouseY - 448) / 96;
       col = mouseX / 96;
@@ -52,13 +73,14 @@ void mousePressed() {
     }
     else if (test.win) {
       if (mouseX<=360&&mouseX>=180&&mouseY>=500-100&&mouseY<=580-100){
-        test=new Board(99);
+        stage++;
+        test=new Board(99, stage);
         //just for testing, actual game over should probably send to start menu
       }
     }
     else if (test.gameOver){
       if (mouseX<=360&&mouseX>=180&&mouseY>=500-100&&mouseY<=580-100){
-        test=new Board(99);
+        test=new Board(99, stage);
         //just for testing, actual game over should probably send to start menu
       }
     }
@@ -72,9 +94,14 @@ void mouseReleased() {
   }
   else if (modeSelect) {
     if (mouseY > (height/2) - 15 && mouseY < (height/2) + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100) {
-      boardSetup(); // mode
+      partySelect = true;
       modeSelect = false;
     }
+  }
+  else if (partySelect) {
+    if (mouseY > height * 0.8 - 15 && mouseY < height * 0.8 + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100)
+    partySelect = false;
+    boardSetup(); // parameter for mode?
   }
   else {
     int prevRow = row;
@@ -96,6 +123,6 @@ void mouseReleased() {
 }
 
 void boardSetup() {
-  test = new Board(99); // set to 1 to test game over
+  test = new Board(99, stage); // set to 1 to test game over
   test.display();
 }
