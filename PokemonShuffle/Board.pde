@@ -75,6 +75,7 @@ void display() {
   int selectedCol = 0;
   boolean selected = false;
   textAlign(BASELINE, BASELINE);
+  shapeMode(CORNER);
   
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
@@ -125,6 +126,7 @@ void display() {
   
   checkGameOver();
   if (gameOver){
+    shapeMode(CORNER);
     background(0);
     fill(255);
     textSize(24);
