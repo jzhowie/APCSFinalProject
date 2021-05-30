@@ -4,6 +4,7 @@ public class Board {
   Pokemon[][] board;
   int currentScore;
   int movesLeft;
+  int level;
   boolean gameOver=false;
   boolean win=false;
   Boss giant;
@@ -13,10 +14,11 @@ public class Board {
   ArrayList<Float> calcVertMultipliers;
   ArrayList<Float> calcHorzMultipliers;
 
-Board(int moves) {
+Board(int moves, int lvl) {
   board = new Pokemon[6][6];
   rows = new ArrayList<ArrayList<Integer>>();
   cols = new ArrayList<ArrayList<Integer>>();
+  level = lvl;
   gameOver=false;
   win=false;
   currentScore = 0;
@@ -61,21 +63,15 @@ void generateBoard() {
  }
 }
 
-int getCurrentScore() {
-  return currentScore;
-}
+// ACCESSORS AND MODIFIERS
+int getCurrentScore() { return currentScore; }
+int getMovesLeft() { return movesLeft; }
+int getStage() { return level; }
+Pokemon getPokemon(int row, int col) { return board[row][col]; }
 
-int getMovesLeft() {
-  return movesLeft;
-}
+void addScore(int s) { currentScore += s; }
+void decrementMoves() { movesLeft--; }
 
-void addScore(int s) {
-  currentScore += s;
-}
-
-void decrementMoves() {
-  movesLeft--;
-}
 
 void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
   Thread.sleep(100);
@@ -135,8 +131,8 @@ void display() {
   
   
   fill(0);
-  textSize(24);
-  text("Score: " + getCurrentScore() + "\nMoves Left: " + getMovesLeft(), 0+4, 24+4);
+  textSize(20);
+  text("Score: " + getCurrentScore() + "\nMoves: " + getMovesLeft() + "\nStage: " + getStage(), 0+4, 20+4);
   giant.display(getCurrentScore());
   
   checkWin();
@@ -293,10 +289,6 @@ boolean check3Combo(){
      }
      return false;
   }
-
-Pokemon getPokemon(int row, int col) {
-   return board[row][col];
- }
 
 void checkWin(){
    if (giant.getNeededScore()<=this.currentScore){
