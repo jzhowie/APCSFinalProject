@@ -32,7 +32,7 @@ Jason: Finished implementation of detecting and removing combos from board and t
 Austin: Started implementing a start, win, and game over screen.
 
 ### May 29:
-Jason: 
+Jason: Created screens for start and choosing a mode. Also implemented a boss health bar.
 
 Austin: 
 
