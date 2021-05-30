@@ -13,6 +13,8 @@ public class Board {
   ArrayList<ArrayList<Integer>> cols; //for combo calc in cols
   ArrayList<Float> calcVertMultipliers;
   ArrayList<Float> calcHorzMultipliers;
+  String[] allTypes={"Normal", "Fighting", "Flying", "Poison", "Ground", "Rock",
+  "Bug", "Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon"};
 
 Board(int moves, int lvl) {
   board = new Pokemon[6][6];
@@ -23,7 +25,8 @@ Board(int moves, int lvl) {
   win=false;
   currentScore = 0;
   movesLeft = moves;
-  giant = new Boss(1000,"Water");
+  String bossType=allTypes[(int)(Math.random()*allTypes.length)];
+  giant = new Boss(1000,bossType);
   
   generateBoard();
 }
