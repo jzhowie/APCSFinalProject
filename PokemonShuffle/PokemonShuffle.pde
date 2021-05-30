@@ -2,6 +2,7 @@ Board test;
 int row;
 int col;
 boolean start;
+boolean modeSelect;
 
 void setup() {
   size(576, 1024);
@@ -13,6 +14,7 @@ void setup() {
 void draw() {
   // starting screen hopefully
   if (start) {
+    shapeMode(CORNER);
     background(255);
     fill(0);
     noStroke();
@@ -21,6 +23,19 @@ void draw() {
     text("PKMN SHUFFLE", width/2, height/4);
     text("Click anywhere to proceed", width/2, height/2);
   }
+  else if (modeSelect) {
+    background(255);
+    fill(0);
+    noStroke();
+    textSize(25);
+    textAlign(CENTER, CENTER);
+    text("Gamemode(s)", width/2, height/4);
+    shapeMode(CORNER);
+    fill(255, 0, 0);
+    rect(width/2 - 100, height/2 - 15, 200, 30);
+    fill(0);
+    text("Endless", width/2, height/2);
+  }
   else {
     test.display();
   }
@@ -28,10 +43,7 @@ void draw() {
 
 // orb moving during board
 void mousePressed() {
-  if (start) {
-    boardSetup();
-  }
-  else {
+  if (!start && !modeSelect) {
     if (mouseY >= 448 && mouseY < 1024) { // and if game started
       row = (mouseY - 448) / 96;
       col = mouseX / 96;
@@ -50,6 +62,13 @@ void mousePressed() {
 void mouseReleased() {
   if (start) {
     start = false;
+    modeSelect = true;
+  }
+  else if (modeSelect) {
+    if (mouseY > (height/2) - 15 && mouseY < (height/2) + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100) {
+      boardSetup(); // mode
+      modeSelect = false;
+    }
   }
   else {
     int prevRow = row;
@@ -71,6 +90,6 @@ void mouseReleased() {
 }
 
 void boardSetup() {
-  test = new Board(1);
+  test = new Board(99); // set to 1 to test game over
   test.display();
 }
