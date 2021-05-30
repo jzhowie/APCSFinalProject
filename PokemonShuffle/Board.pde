@@ -6,7 +6,7 @@ public class Board {
   int movesLeft;
   boolean gameOver=false;
   boolean win=false;
-  Boss giant = new Boss(10000,"Water");
+  Boss giant;
   
   ArrayList<ArrayList<Integer>> rows; //for combo calc in rows
   ArrayList<ArrayList<Integer>> cols; //for combo calc in cols
@@ -15,12 +15,13 @@ public class Board {
 
 Board(int moves) {
   board = new Pokemon[6][6];
-  currentScore = 0;
-  movesLeft = moves;
   rows = new ArrayList<ArrayList<Integer>>();
   cols = new ArrayList<ArrayList<Integer>>();
   gameOver=false;
   win=false;
+  currentScore = 0;
+  movesLeft = moves;
+  giant = new Boss(1000,"Water");
   
   generateBoard();
 }
@@ -140,7 +141,16 @@ void display() {
   
   checkWin();
   if (win){
-    
+    shapeMode(CORNER);
+    background(0);
+    fill(255);
+    textAlign(BASELINE, BASELINE);
+    textSize(24);
+    text("You are win",200, 480-100);
+    fill(#9E7AD8);
+    rect(180,500-100,180,80);
+    fill(0);
+    text("Next stage",220,550-100);
   }
   
   checkGameOver();
