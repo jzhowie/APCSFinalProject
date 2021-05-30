@@ -5,11 +5,18 @@ int stage;
 boolean start;
 boolean modeSelect;
 boolean partySelect;
+ArrayList<Pokemon> generator;
+ArrayList<String> types;
 
 void setup() {
   size(576, 1024);
   start = true;
   stage = 1;
+  types = new ArrayList<String>(Arrays.asList(new String[] {"Grass", "Water", "Fire", "Ice"}));
+  generator = new ArrayList<Pokemon>();
+  for (int i = 0; i < 4; i++) {
+    generator.add(new Pokemon(types.get(i), i));
+  }
   //test = new Board(1);
   //test.display();
 }
@@ -65,7 +72,7 @@ void draw() {
 // orb moving during board
 void mousePressed() {
   if (!start && !modeSelect && !partySelect) {
-    if (mouseY >= 448 && mouseY < 1024) { // and if game started
+    if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) { // and if game started
       row = (mouseY - 448) / 96;
       col = mouseX / 96;
       //println(row + ", " + col);
@@ -106,7 +113,7 @@ void mouseReleased() {
   else {
     int prevRow = row;
     int prevCol = col;
-    if (mouseY >= 448 && mouseY < 1024) {
+    if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 57) {
       test.getPokemon(row, col).toggleSelect();
       try {
         test.swap(prevRow, prevCol, (mouseY - 448) / 96, mouseX / 96);
