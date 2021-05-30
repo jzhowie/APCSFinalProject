@@ -26,7 +26,7 @@ Board(int moves, int lvl) {
   currentScore = 0;
   movesLeft = moves;
   String bossType=allTypes[(int)(Math.random()*allTypes.length)];
-  giant = new Boss(1000,bossType);
+  giant = new Boss(10000,bossType);
   
   generateBoard();
 }
@@ -52,6 +52,7 @@ void generateBoard() {
    for (int y=0;y<board.length;y++){
      if (board[i][y].getPNum()==0){
        board[i][y].setType("Grass");
+       
      }
      if (board[i][y].getPNum()==1){
        board[i][y].setType("Water");
@@ -113,10 +114,27 @@ void display() {
           text("R", 10+96*j, 458+96*i);
         }
         else {
-          if (board[i][j].getPNum() == 0) fill(#FF1538);
-          if (board[i][j].getPNum() == 1) fill(#8915FF);
-          if (board[i][j].getPNum() == 2) fill(#1588FF);
-          if (board[i][j].getPNum() == 3) fill(#15FF1E);
+          PImage charmander = loadImage("Charmander.png");
+          if (board[i][j].getPNum() == 0){ 
+            charmander.resize(0+96,96);
+            image(charmander,0+96*j,448+96*i);
+            //charmander.resize(20,20);
+          }
+          if (board[i][j].getPNum() == 1) {
+            charmander.resize(0+96,96);
+            image(charmander,0+96*j,448+96*i);
+            //charmander.resize(20,20);
+          }
+          if (board[i][j].getPNum() == 2) {
+            charmander.resize(0+96,96);
+            image(charmander,0+96*j,448+96*i);
+            //charmander.resize(20,20);;
+          }
+          if (board[i][j].getPNum() == 3) {
+            charmander.resize(0+96,96);
+            image(charmander,0+96*j,448+96*i);
+            //charmander.resize(20,20);;
+          }
           rect(0+96*j, 448+96*i, 96, 96);
         }
       }
@@ -124,12 +142,30 @@ void display() {
   }
   
   if (selected) {
+    PImage charmander = loadImage("Charmander.png");
     if (board[selectedRow][selectedCol].getPNum() == -1) fill(0);
-    if (board[selectedRow][selectedCol].getPNum() == 0) fill(#FF1538);
-    if (board[selectedRow][selectedCol].getPNum() == 1) fill(#8915FF);
-    if (board[selectedRow][selectedCol].getPNum() == 2) fill(#1588FF);
-    if (board[selectedRow][selectedCol].getPNum() == 3) fill(#15FF1E);
-    rect(mouseX - 48, mouseY - 48, 96, 96);
+    if (board[selectedRow][selectedCol].getPNum() == 0) {
+      charmander.resize(0+96,96);
+      image(charmander,0+96*selectedRow,448+96*selectedCol);
+      //charmander.resize(20,20);
+    }
+    if (board[selectedRow][selectedCol].getPNum() == 1) {
+       charmander.resize(0+96,96);
+       image(charmander,0+96*selectedRow,448+96*selectedCol);
+       //charmander.resize(20,20);
+    }
+    if (board[selectedRow][selectedCol].getPNum() == 2) {
+      charmander.resize(0+96,96);
+      image(charmander,0+96*selectedRow,448+96*selectedCol);
+      //charmander.resize(20,20);
+    }
+    if (board[selectedRow][selectedCol].getPNum() == 3) {
+      charmander.resize(0+96,96);
+      image(charmander,0+96*selectedRow,448+96*selectedCol);
+      //charmander.resize(20,20);
+    }
+    charmander.resize(0+96,96);
+    image(charmander,mouseX - 48, mouseY - 48);
   }
   
   
