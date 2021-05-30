@@ -31,7 +31,7 @@ void draw() {
     noStroke();
     textSize(25); //n needs tweaking
     textAlign(CENTER, CENTER);
-    
+
     imageMode(CENTER);
     PImage title = loadImage("TitleScreen.png");
     title.resize(title.width/2, title.height/2);
