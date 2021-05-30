@@ -16,6 +16,10 @@ public class Boss{
     return type;
   }
   
+  public void setType(String element){
+    type=element;
+  }
+  
   public void display(int score) {
     shapeMode(CORNER);
     fill(#F5FC24);
@@ -32,6 +36,9 @@ public class Boss{
     textSize(15);
     textAlign(CENTER, CENTER);
     text("HP", width/2 - 130, height/5 + 127);
+    textSize(15);
+    textAlign(CENTER, CENTER);
+    text(getType(), width/2 , height/5 - 127);
   }
     
 }
