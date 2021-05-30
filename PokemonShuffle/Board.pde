@@ -6,7 +6,7 @@ public class Board {
   int movesLeft;
   boolean gameOver=false;
   boolean win=false;
-  Boss giant=new Boss(10000,"element");
+  Boss giant = new Boss(10000,"element");
   
   ArrayList<ArrayList<Integer>> rows; //for combo calc in rows
   ArrayList<ArrayList<Integer>> cols; //for combo calc in cols
@@ -75,6 +75,7 @@ void display() {
   int selectedCol = 0;
   boolean selected = false;
   textAlign(BASELINE, BASELINE);
+  shapeMode(CORNER);
   
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
@@ -117,6 +118,7 @@ void display() {
   fill(0);
   textSize(24);
   text("Score: " + getCurrentScore() + "\nMoves Left: " + getMovesLeft(), 0+4, 24+4);
+  giant.display(getCurrentScore());
   
   checkWin();
   if (win){
@@ -125,8 +127,10 @@ void display() {
   
   checkGameOver();
   if (gameOver){
+    shapeMode(CORNER);
     background(0);
     fill(255);
+    textAlign(BASELINE, BASELINE);
     textSize(24);
     text("Game Over...",200, 480-100);
     fill(#9E7AD8);
@@ -207,14 +211,6 @@ private void shift(int row, int col) {
 //Take values from arrayList (remove()), turn into -1 (cleared)
 void scoreCalc() throws InterruptedException {
   //score calculation
-  //println(3);
-  //check3Combo();
-  //println(4);
-  //check4Combo();
-  //println(5);
-  //check5Combo();
-  //println(6);
-  //check6Combo();
   decrementMoves();
   while (check3Combo()) {
   comboCheck();
@@ -242,51 +238,15 @@ void scoreCalc() throws InterruptedException {
     
     // Tweaks:
     // Have board display after removing combos, dropping new ones, removing, repeat
-    display();
     clearCombo();
-    display();
   }
   }
-
-void check6Combo(){
-  // ho
-  boolean combo = true;
-  for (int i=0; i<6; i++){
-    for (int y=0; y<6; y++){
-      if (board[i][y] != board[i][0]){
-        combo = false;
-      }
-    }
-    if (combo) {
-      println(i + ", " + 0);
-    }
-    combo = true;
-  }
-  
-  combo = true;
-  // vert
-   for (int i=0; i<6; i++){
-     int temp = board[0][i].getPNum();
-     for (int y=0; y<6; y++){
-       if (board[y][i].getPNum() != temp){
-         // no 6 combo
-         combo = false;
-       }
-     }
-     if (combo) {
-      println(0 + ", " + i);
-     }
-    combo = true;
-  }
-}
 
 boolean check3Combo(){
   for (int i=0;i<6;i++){
      for (int y=0;y<4;y++){
        if (board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()){
          //notes which elements are in a row
-         //rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, 3})));         
-         //println(i + ", " + y);
          return true;
        }
      }
@@ -295,8 +255,6 @@ boolean check3Combo(){
      for (int y=0;y<4;y++){
        if (board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()){
            //notes which elements are in a row
-           //cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, 3})));
-           //println(y + ", " + i);
            return true;
          }
        }
@@ -304,63 +262,92 @@ boolean check3Combo(){
      return false;
   }
 
-void check4Combo(){
-  for (int i=0;i<6;i++){
-     for (int y=0;y<3;y++){
-         if (board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()&&board[i][y].getPNum()==board[i][y+3].getPNum()){
-           //notes which elements are in a row
-           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, 4})));
-           println(i + ", " + y);
-       }
-     }
-  }
-  for (int i=0;i<6;i++){
-   for (int y=0;y<3;y++){ 
-       if (board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()&&board[y][i].getPNum()==board[y+3][i].getPNum()){
-         //notes which elements are in a row
-         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, 4})));
-         println(y + ", " + i);
-       }
-     }
-   }
- }
- 
- void check5Combo(){
-  for (int i=0;i<6;i++){
-     for (int y=0;y<2;y++){
-         if (board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()&&board[i][y].getPNum()==board[i][y+3].getPNum()&&board[i][y].getPNum()==board[i][y+4].getPNum()){
-           //notes which elements are in a row
-           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, 5})));
-           println(i + ", " + y);
-       }
-     }
-  }
-  for (int i=0;i<6;i++){
-   for (int y=0;y<2;y++){ 
-       if (board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()&&board[y][i].getPNum()==board[y+3][i].getPNum()&&board[y][i].getPNum()==board[y+4][i].getPNum()){
-         //notes which elements are in a row
-         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, 5})));
-         println(y + ", " + i);
-       }
-     }
-   }
- }
- 
- 
- Pokemon getPokemon(int row, int col) {
+Pokemon getPokemon(int row, int col) {
    return board[row][col];
  }
 
- void checkWin(){
+void checkWin(){
    if (giant.getNeededScore()<=this.currentScore){
      win=true;
    }
  }
 
- void checkGameOver(){
+void checkGameOver(){
    if (giant.getNeededScore()>this.currentScore&&this.movesLeft==0){
      gameOver=true;
    }
  }
 
+//void check4Combo(){
+//  for (int i=0;i<6;i++){
+//     for (int y=0;y<3;y++){
+//         if (board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()&&board[i][y].getPNum()==board[i][y+3].getPNum()){
+//           //notes which elements are in a row
+//           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, 4})));
+//           println(i + ", " + y);
+//       }
+//     }
+//  }
+//  for (int i=0;i<6;i++){
+//   for (int y=0;y<3;y++){ 
+//       if (board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()&&board[y][i].getPNum()==board[y+3][i].getPNum()){
+//         //notes which elements are in a row
+//         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, 4})));
+//         println(y + ", " + i);
+//       }
+//     }
+//   }
+// }
+ 
+// void check5Combo(){
+//  for (int i=0;i<6;i++){
+//     for (int y=0;y<2;y++){
+//         if (board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()&&board[i][y].getPNum()==board[i][y+3].getPNum()&&board[i][y].getPNum()==board[i][y+4].getPNum()){
+//           //notes which elements are in a row
+//           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, 5})));
+//           println(i + ", " + y);
+//       }
+//     }
+//  }
+//  for (int i=0;i<6;i++){
+//   for (int y=0;y<2;y++){ 
+//       if (board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()&&board[y][i].getPNum()==board[y+3][i].getPNum()&&board[y][i].getPNum()==board[y+4][i].getPNum()){
+//         //notes which elements are in a row
+//         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, 5})));
+//         println(y + ", " + i);
+//       }
+//     }
+//   }
+// }
+//void check6Combo(){
+//  // ho
+//  boolean combo = true;
+//  for (int i=0; i<6; i++){
+//    for (int y=0; y<6; y++){
+//      if (board[i][y] != board[i][0]){
+//        combo = false;
+//      }
+//    }
+//    if (combo) {
+//      println(i + ", " + 0);
+//    }
+//    combo = true;
+//  }
+  
+//  combo = true;
+//  // vert
+//   for (int i=0; i<6; i++){
+//     int temp = board[0][i].getPNum();
+//     for (int y=0; y<6; y++){
+//       if (board[y][i].getPNum() != temp){
+//         // no 6 combo
+//         combo = false;
+//       }
+//     }
+//     if (combo) {
+//      println(0 + ", " + i);
+//     }
+//    combo = true;
+//  }
+//}
 }
