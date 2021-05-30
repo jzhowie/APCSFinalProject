@@ -50,6 +50,12 @@ void mousePressed() {
       //println(row + ", " + col);
       test.getPokemon(row, col).toggleSelect();
     }
+    else if (test.win) {
+      if (mouseX<=360&&mouseX>=180&&mouseY>=500-100&&mouseY<=580-100){
+        test=new Board(99);
+        //just for testing, actual game over should probably send to start menu
+      }
+    }
     else if (test.gameOver){
       if (mouseX<=360&&mouseX>=180&&mouseY>=500-100&&mouseY<=580-100){
         test=new Board(99);
