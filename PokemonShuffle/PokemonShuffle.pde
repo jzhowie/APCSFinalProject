@@ -5,11 +5,19 @@ int stage;
 boolean start;
 boolean modeSelect;
 boolean partySelect;
+ArrayList<Pokemon> generator;
+ArrayList<Pokemon> party;
+ArrayList<String> types;
 
 void setup() {
   size(576, 1024);
   start = true;
   stage = 1;
+  types = new ArrayList<String>(Arrays.asList(new String[] {"Grass", "Water", "Fire", "Ice"}));
+  generator = new ArrayList<Pokemon>();
+  for (int i = 0; i < 4; i++) {
+    generator.add(new Pokemon(types.get(i), i));
+  }
   //test = new Board(1);
   //test.display();
 }
@@ -48,14 +56,36 @@ void draw() {
     fill(0);
     noStroke();
     textSize(25);
-    textAlign(CENTER, CENTER);
-    text("Party Select", width/2, height/4);
-    
     shapeMode(CORNER);
+    textAlign(CENTER, CENTER);
+    party = new ArrayList<Pokemon>(4);
+    text("Party Select", width/2, height/6);
+
+    // Party box
+    fill(#595F59);
+    rect(width/2 - 205, height/3 - 55, 410, 110);
+    for (int i = 0; i < party.size(); i++) {
+      if (party.get(i).getPNum() == 0) fill(#FF1538);
+      if (party.get(i).getPNum() == 1) fill(#8915FF);
+      if (party.get(i).getPNum() == 2) fill(#1588FF);
+      if (party.get(i).getPNum() == 3) fill(#15FF1E);
+      rect(width/2 - 200 + 100*i, height/3 - 50, 100, 100);
+    }
+
+    for (int i = 0; i < generator.size(); i++) {
+      if (generator.get(i).getPNum() == 0) fill(#FF1538);
+      if (generator.get(i).getPNum() == 1) fill(#8915FF);
+      if (generator.get(i).getPNum() == 2) fill(#1588FF);
+      if (generator.get(i).getPNum() == 3) fill(#15FF1E);
+      rect(0+144*i, 448, 144, 144);
+    }
+
+    // Confirm?
     fill(#55F766);
     rect(width/2 - 100, height * (0.80) - 15, 200, 30);
     fill(0);
     text("Confirm", width/2, height * (0.80));
+
   }
   else {
     test.display();
@@ -65,7 +95,7 @@ void draw() {
 // orb moving during board
 void mousePressed() {
   if (!start && !modeSelect && !partySelect) {
-    if (mouseY >= 448 && mouseY < 1024) { // and if game started
+    if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) { // and if game started
       row = (mouseY - 448) / 96;
       col = mouseX / 96;
       //println(row + ", " + col);
@@ -99,14 +129,19 @@ void mouseReleased() {
     }
   }
   else if (partySelect) {
-    if (mouseY > height * 0.8 - 15 && mouseY < height * 0.8 + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100)
-    partySelect = false;
-    boardSetup(); // parameter for mode?
+    if (mouseY > height * 0.8 - 15 && mouseY < height * 0.8 + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100 && party.size() == 0) {
+      partySelect = false;
+      boardSetup(); // parameter for mode?
+    }
+    //else if (mouseY > 448 && mouseY < 448 + 144 && mouseX > 0 && mouseX < width) {
+    //  party.add(new Pokemon(generator.get(col).getType(), col));
+    //  println(party.size());
+    //}
   }
   else {
     int prevRow = row;
     int prevCol = col;
-    if (mouseY >= 448 && mouseY < 1024) {
+    if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) {
       test.getPokemon(row, col).toggleSelect();
       try {
         test.swap(prevRow, prevCol, (mouseY - 448) / 96, mouseX / 96);
