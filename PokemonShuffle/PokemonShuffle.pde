@@ -103,6 +103,9 @@ void mousePressed() {
     }
     else if (test.win) {
       if (mouseX<=360&&mouseX>=180&&mouseY>=500-100&&mouseY<=580-100){
+        if (stage % 5 == 0) {
+          partySelect = true;
+        }
         stage++;
         test=new Board(99, stage);
         //just for testing, actual game over should probably send to start menu
