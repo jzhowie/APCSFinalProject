@@ -39,7 +39,7 @@ Austin: Finished the calculations based off of type effectiveness, weaknesses mu
 ### May 30:
 Jason: Added win screen and started developing a party picker screen to choose which Pokemon you take into board.
 
-Austin: 
+Austin: Created a branch that attempts to use pngs for their respective Pokemon, rather than the colored tiles used in the previous demo. Also, the boss is generated with a random element.
 
 
 ## UML Diagram Updates:
