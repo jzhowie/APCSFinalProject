@@ -36,6 +36,12 @@ Jason: Created screens for start and choosing a mode. Also implemented a boss he
 
 Austin: Finished the calculations based off of type effectiveness, weaknesses multiply the calculated score from the combo by 0.5, 2 if it is effective.
 
+### May 30:
+Jason: Added win screen and started developing a party picker screen to choose which Pokemon you take into board.
+
+Austin: 
+
+
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
 **May 24:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
