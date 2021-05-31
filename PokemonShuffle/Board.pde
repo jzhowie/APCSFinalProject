@@ -114,32 +114,33 @@ void display() {
       }
       else {
         if (board[i][j].getPNum() == -1) {
-          fill(255);
+          fill(0);
           rect(0+96*j, 448+96*i, 96, 96);
           fill(255);
           textSize(10);
           text("R", 10+96*j, 458+96*i);
         }
         else {
-          
+          fill(#897575);
+          rect(0+96*j, 448+96*i, 96, 96);
           if (board[i][j].getPNum() == 0){ 
             
-            image(charmander,48+96*j,488+96*i);
+            image(charmander,48+96*j,496+96*i);
 
           }
           if (board[i][j].getPNum() == 1) {
             
-            image(bulbasaur,48+96*j,488+96*i);
+            image(bulbasaur,48+96*j,496+96*i);
 
           }
           if (board[i][j].getPNum() == 2) {
             
-            image(dratini,48+96*j,488+96*i);
+            image(dratini,48+96*j,496+96*i);
 
           }
           if (board[i][j].getPNum() == 3) {
             
-            image(squirtle,48+96*j,488+96*i);
+            image(squirtle,48+96*j,496+96*i);
 
           }
           
