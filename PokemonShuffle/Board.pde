@@ -26,7 +26,7 @@ Board(int moves, int lvl) {
   currentScore = 0;
   movesLeft = moves;
   String bossType=allTypes[(int)(Math.random()*allTypes.length)];
-  giant = new Boss(1000,bossType);
+  giant = new Boss(10000,bossType);
   
   generateBoard();
 }
@@ -52,6 +52,7 @@ void generateBoard() {
    for (int y=0;y<board.length;y++){
      if (board[i][y].getPNum()==0){
        board[i][y].setType("Grass");
+       
      }
      if (board[i][y].getPNum()==1){
        board[i][y].setType("Water");
@@ -94,7 +95,14 @@ void display() {
   boolean selected = false;
   textAlign(BASELINE, BASELINE);
   shapeMode(CORNER);
-  
+  PImage charmander = loadImage("Charmander.png");
+  PImage bulbasaur = loadImage("Bulbasaur.png");
+  PImage dratini = loadImage("Dratini.png");
+  PImage squirtle = loadImage("Squirtle.png");
+  charmander.resize(0+80,80);
+  bulbasaur.resize(0+80,80);
+  dratini.resize(0+80,80);
+  squirtle.resize(0+80,80);
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
       if (board[i][j].isSelected()) {
@@ -106,30 +114,59 @@ void display() {
       }
       else {
         if (board[i][j].getPNum() == -1) {
-          fill(0);
+          fill(255);
           rect(0+96*j, 448+96*i, 96, 96);
           fill(255);
           textSize(10);
           text("R", 10+96*j, 458+96*i);
         }
         else {
-          if (board[i][j].getPNum() == 0) fill(#FF1538);
-          if (board[i][j].getPNum() == 1) fill(#8915FF);
-          if (board[i][j].getPNum() == 2) fill(#1588FF);
-          if (board[i][j].getPNum() == 3) fill(#15FF1E);
-          rect(0+96*j, 448+96*i, 96, 96);
+          
+          if (board[i][j].getPNum() == 0){ 
+            
+            image(charmander,48+96*j,488+96*i);
+
+          }
+          if (board[i][j].getPNum() == 1) {
+            
+            image(bulbasaur,48+96*j,488+96*i);
+
+          }
+          if (board[i][j].getPNum() == 2) {
+            
+            image(dratini,48+96*j,488+96*i);
+
+          }
+          if (board[i][j].getPNum() == 3) {
+            
+            image(squirtle,48+96*j,488+96*i);
+
+          }
+          
         }
       }
     }
   }
   
   if (selected) {
-    if (board[selectedRow][selectedCol].getPNum() == -1) fill(0);
-    if (board[selectedRow][selectedCol].getPNum() == 0) fill(#FF1538);
-    if (board[selectedRow][selectedCol].getPNum() == 1) fill(#8915FF);
-    if (board[selectedRow][selectedCol].getPNum() == 2) fill(#1588FF);
-    if (board[selectedRow][selectedCol].getPNum() == 3) fill(#15FF1E);
-    rect(mouseX - 48, mouseY - 48, 96, 96);
+    
+    if (board[selectedRow][selectedCol].getPNum() == -1) fill(#FFFFFF);
+    if (board[selectedRow][selectedCol].getPNum() == 0) {
+
+      image(charmander,mouseX, mouseY);
+    }
+    if (board[selectedRow][selectedCol].getPNum() == 1) {
+
+       image(bulbasaur,mouseX, mouseY);
+    }
+    if (board[selectedRow][selectedCol].getPNum() == 2) {
+
+      image(dratini,mouseX, mouseY);
+    }
+    if (board[selectedRow][selectedCol].getPNum() == 3) {
+
+      image(squirtle,mouseX, mouseY);
+    }
   }
   
   
