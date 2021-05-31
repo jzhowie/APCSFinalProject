@@ -19,8 +19,6 @@ void setup() {
   for (int i = 0; i < 4; i++) {
     generator.add(new Pokemon(types.get(i), i));
   }
-  //test = new Board(1);
-  //test.display();
 }
 
 void draw() {
@@ -43,14 +41,42 @@ void draw() {
     background(255);
     fill(0);
     noStroke();
-    textSize(25);
+    textSize(45);
     textAlign(CENTER, CENTER);
-    text("Gamemode(s)", width/2, height/4);
+    text("Gamemode(s)", width/2, height/6);
+    
     shapeMode(CORNER);
     fill(255, 0, 0);
     rect(width/2 - 100, height/2 - 15, 200, 30);
     fill(0);
+    textSize(25);
     text("Endless", width/2, height/2);
+    
+    fill(255, 0, 0);
+    
+    rect(width/2 - 100, height * 0.55 - 15, 200, 30);
+    fill(0);
+    textSize(25);
+    text("Time Trial", width/2, height * 0.55);
+    
+    if (mouseY >= height/2 - 15 && mouseY < height/2 + 15 && mouseX > width/2 - 100 && mouseX < width/2 + 100) {
+      PImage msgBox = loadImage("messageBox.png");
+      msgBox.resize(msgBox.width/2, msgBox.height/2 + 25);
+      image(msgBox, width/2, height * 0.82);
+      text("Play until you lose.", width/2, height * 0.8);
+      textSize(15);
+      text("Bosses get progressively harder. \nOption to change party every 5 levels", width/2, height * 0.85);
+    }
+    
+    if (mouseY >= height * 0.55 - 15 && mouseY < height * 0.55 + 15 && mouseX > width/2 - 100 && mouseX < width/2 + 100) {
+      PImage msgBox = loadImage("messageBox.png");
+      msgBox.resize(msgBox.width/2, msgBox.height/2 + 25);
+      image(msgBox, width/2, height * 0.82);
+      text("Short on time?", width/2, height * 0.8);
+      textSize(15);
+      text("Unlimited moves. \nLimited time. Get score. (WIP)", width/2, height * 0.85);
+    }
+    
   }
   else if (partySelect) {
     background(255);
@@ -85,7 +111,6 @@ void draw() {
     rect(width/2 - 100, height * (0.80) - 15, 200, 30);
     fill(0);
     text("Confirm", width/2, height * (0.80));
-
   }
   else {
     test.display();
