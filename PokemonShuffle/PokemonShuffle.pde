@@ -15,6 +15,7 @@ void setup() {
   stage = 1;
   types = new ArrayList<String>(Arrays.asList(new String[] {"Grass", "Water", "Fire", "Ice"}));
   generator = new ArrayList<Pokemon>();
+  party = new ArrayList<Pokemon>();
   for (int i = 0; i < 4; i++) {
     generator.add(new Pokemon(types.get(i), i));
   }
@@ -58,7 +59,6 @@ void draw() {
     textSize(25);
     shapeMode(CORNER);
     textAlign(CENTER, CENTER);
-    party = new ArrayList<Pokemon>(4);
     text("Party Select", width/2, height/6);
 
     // Party box
@@ -110,6 +110,7 @@ void mousePressed() {
     }
     else if (test.gameOver){
       if (mouseX<=360&&mouseX>=180&&mouseY>=500-100&&mouseY<=580-100){
+        stage = 1;
         test=new Board(99, stage);
         //just for testing, actual game over should probably send to start menu
       }
@@ -129,14 +130,25 @@ void mouseReleased() {
     }
   }
   else if (partySelect) {
-    if (mouseY > height * 0.8 - 15 && mouseY < height * 0.8 + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100 && party.size() == 0) {
+    if (mouseY > height * 0.8 - 15 && mouseY < height * 0.8 + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100 && party.size() == 4) {
       partySelect = false;
       boardSetup(); // parameter for mode?
     }
-    //else if (mouseY > 448 && mouseY < 448 + 144 && mouseX > 0 && mouseX < width) {
-    //  party.add(new Pokemon(generator.get(col).getType(), col));
-    //  println(party.size());
-    //}
+    else if (mouseY > 448 && mouseY < 448 + 144 && mouseX > 0 && mouseX < width) {
+      if (party.size() < 4) {
+        col = mouseX / 144;
+        if (!containDupe(generator.get(col), party)) {
+          party.add(generator.get(col));
+        }
+      }
+    }
+    else if (mouseY > height/3 - 50 && mouseY < height/3 + 50 && mouseX > width/2 - 100 && mouseX < width / 2 + 100) {
+      if (party.size() > 0) {
+        col = (mouseX - (height/3 - 50)) / 100;
+        println(col);
+        party.remove(col);
+      }
+    }
   }
   else {
     int prevRow = row;
@@ -160,4 +172,11 @@ void mouseReleased() {
 void boardSetup() {
   test = new Board(99, stage); // set to 1 to test game over
   test.display();
+}
+
+boolean containDupe(Pokemon input, ArrayList<Pokemon> test) {
+  for (int i = 0; i < test.size(); i++) {
+    if (input == test.get(i)) return true;
+  }
+  return false;
 }
