@@ -142,11 +142,12 @@ void mouseReleased() {
         }
       }
     }
-    else if (mouseY > height/3 - 50 && mouseY < height/3 + 50 && mouseX > width/2 - 100 && mouseX < width / 2 + 100) {
+    else if (mouseY > height/3 - 50 && mouseY < height/3 + 50 && mouseX > width/2 - 200 && mouseX < width / 2 + 200) {
       if (party.size() > 0) {
-        col = (mouseX - (height/3 - 50)) / 100;
-        println(col);
-        party.remove(col);
+        col = (mouseX - (width/2 - 200)) / 100;
+        if (col < party.size()) {
+          party.remove(col);
+        }
       }
     }
   }
