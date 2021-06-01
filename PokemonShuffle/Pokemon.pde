@@ -39,6 +39,13 @@ public class Pokemon{
     type=newType;
   }
   
+  public PImage getPImage(){
+    String picName=getName()+".png";
+    PImage pic=loadImage(picName);
+    pic.resize(120,120);
+    return pic;
+  }
+  
   public void setName(String newName){
     name=newName;
   }
