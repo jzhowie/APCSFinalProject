@@ -86,35 +86,33 @@ void draw() {
     shapeMode(CORNER);
     textAlign(CENTER, CENTER);
     text("Party Select", width/2, height/6);
-    PImage charmander = loadImage("Charmander.png");
-    PImage bulbasaur = loadImage("Bulbasaur.png");
-    PImage dratini = loadImage("Dratini.png");
-    PImage squirtle = loadImage("Squirtle.png");
-    charmander.resize(100,100);
-    bulbasaur.resize(100,100);
-    dratini.resize(100,100);
-    squirtle.resize(100,100);
     // Party box
     fill(#595F59);
     rect(width/2 - 205, height/3 - 55, 410, 110);
     for (int i = 0; i < party.size(); i++) {
-      //rect(width/2 - 200 + 100*i, height/3 - 50, 100, 100);
-      if (party.get(i).getPNum() == 0) image(charmander,width/2 - 150 + 100*i, height/3);
-      if (party.get(i).getPNum() == 1) image(bulbasaur,width/2 - 150 + 100*i, height/3);
-      if (party.get(i).getPNum() == 2) image(dratini,width/2 - 150 + 100*i, height/3);
-      if (party.get(i).getPNum() == 3) image(squirtle,width/2 - 150 + 100*i, height/3);
+      image(party.get(i).getPImage(),width/2-150  + 100*i, height/3 );
+      image(party.get(i).getPImage(),width/2-150 + 100*i, height/3 );
+      image(party.get(i).getPImage(),width/2 -150 + 100*i, height/3 );
+      image(party.get(i).getPImage(),width/2 -150+ 100*i, height/3 );
+      
     }
-
-    charmander.resize(144,144);
-    bulbasaur.resize(144,144);
-    dratini.resize(144,144);
-    squirtle.resize(144,144);
     for (int i = 0; i < generator.size(); i++) {
-      rect(0+144*i, 448, 144, 144);
-      if (generator.get(i).getPNum() == 0) image(charmander,72+144*i, 520);
-      if (generator.get(i).getPNum() == 1) image(bulbasaur,72+144*i, 520);
-      if (generator.get(i).getPNum() == 2) image(dratini,72+144*i, 520);
-      if (generator.get(i).getPNum() == 3) image(squirtle,72+144*i, 520);
+      if (generator.get(i).getPNum() == 0){
+       image(Charmander,0+200-100, 448);
+       generator.get(i).setName("Charmander"); 
+      }
+      if (generator.get(i).getPNum() == 1){
+        image(Bulbasaur,0+325-100, 448);
+        generator.get(i).setName("Bulbasaur"); 
+      }
+      if (generator.get(i).getPNum() == 2){
+        image(Dratini,0+450-100, 448);
+        generator.get(i).setName("Dratini");
+      }
+      if (generator.get(i).getPNum() == 3){
+        image(Squirtle,0+575-100, 448);
+        generator.get(i).setName("Squirtle");
+      }
     }
 
     // Confirm?
