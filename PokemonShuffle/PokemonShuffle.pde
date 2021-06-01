@@ -86,12 +86,19 @@ void draw() {
     shapeMode(CORNER);
     textAlign(CENTER, CENTER);
     text("Party Select", width/2, height/6);
-
+    PImage charmander = loadImage("Charmander.png");
+    PImage bulbasaur = loadImage("Bulbasaur.png");
+    PImage dratini = loadImage("Dratini.png");
+    PImage squirtle = loadImage("Squirtle.png");
+    charmander.resize(0+80,80);
+    bulbasaur.resize(0+80,80);
+    dratini.resize(0+80,80);
+    squirtle.resize(0+80,80);
     // Party box
     fill(#595F59);
     rect(width/2 - 205, height/3 - 55, 410, 110);
     for (int i = 0; i < party.size(); i++) {
-      if (party.get(i).getPNum() == 0) fill(#FF1538);
+      if (party.get(i).getPNum() == 0) image(charmander,width/2 - 200 + 100*i, height/3 - 50);
       if (party.get(i).getPNum() == 1) fill(#8915FF);
       if (party.get(i).getPNum() == 2) fill(#1588FF);
       if (party.get(i).getPNum() == 3) fill(#15FF1E);
@@ -99,10 +106,10 @@ void draw() {
     }
 
     for (int i = 0; i < generator.size(); i++) {
-      if (generator.get(i).getPNum() == 0) fill(#FF1538);
-      if (generator.get(i).getPNum() == 1) fill(#8915FF);
-      if (generator.get(i).getPNum() == 2) fill(#1588FF);
-      if (generator.get(i).getPNum() == 3) fill(#15FF1E);
+      if (generator.get(i).getPNum() == 0) image(charmander,0+144*i, 448);;
+      if (generator.get(i).getPNum() == 1) image(bulbasaur,0+144*i, 448);
+      if (generator.get(i).getPNum() == 2) image(dratini,0+144*i, 448);
+      if (generator.get(i).getPNum() == 3) image(squirtle,0+144*i, 448);;
       rect(0+144*i, 448, 144, 144);
     }
 
