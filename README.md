@@ -41,6 +41,11 @@ Jason: Added win screen and started developing a party picker screen to choose w
 
 Austin: <strike> Created a branch that attempts to use pngs for their respective Pokemon, rather than the colored tiles used in the previous demo. Apparently multiple  PImages in Processing makes displaying very slow, might just try to display drawn images. </strike> Was just a mistake constantly loading PImage every single iteration in a nested loop. Also, the boss is generated with a random element.
 
+### May 31:
+Jason: Fixed the party picker screen after the ArrayList storing the party was wiped every frame. Completed the party picker where you can add and remove, added descriptors for gamemode on hover.
+
+Austin:
+
 
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
