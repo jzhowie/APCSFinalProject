@@ -86,6 +86,14 @@ void draw() {
     shapeMode(CORNER);
     textAlign(CENTER, CENTER);
     text("Party Select", width/2, height/6);
+    PImage Charmander = loadImage("Charmander.png");
+    PImage Bulbasaur = loadImage("Bulbasaur.png");
+    PImage Dratini = loadImage("Dratini.png");
+    PImage Squirtle = loadImage("Squirtle.png");
+    Charmander.resize(100,100);
+    Bulbasaur.resize(100,100);
+    Dratini.resize(100,100);
+    Squirtle.resize(100,100);
     // Party box
     fill(#595F59);
     rect(width/2 - 205, height/3 - 55, 410, 110);
