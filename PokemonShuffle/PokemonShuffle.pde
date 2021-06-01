@@ -90,27 +90,31 @@ void draw() {
     PImage bulbasaur = loadImage("Bulbasaur.png");
     PImage dratini = loadImage("Dratini.png");
     PImage squirtle = loadImage("Squirtle.png");
-    charmander.resize(0+80,80);
-    bulbasaur.resize(0+80,80);
-    dratini.resize(0+80,80);
-    squirtle.resize(0+80,80);
+    charmander.resize(100,100);
+    bulbasaur.resize(100,100);
+    dratini.resize(100,100);
+    squirtle.resize(100,100);
     // Party box
     fill(#595F59);
     rect(width/2 - 205, height/3 - 55, 410, 110);
     for (int i = 0; i < party.size(); i++) {
-      if (party.get(i).getPNum() == 0) image(charmander,width/2 - 200 + 100*i, height/3 - 50);
-      if (party.get(i).getPNum() == 1) fill(#8915FF);
-      if (party.get(i).getPNum() == 2) fill(#1588FF);
-      if (party.get(i).getPNum() == 3) fill(#15FF1E);
-      rect(width/2 - 200 + 100*i, height/3 - 50, 100, 100);
+      //rect(width/2 - 200 + 100*i, height/3 - 50, 100, 100);
+      if (party.get(i).getPNum() == 0) image(charmander,width/2 - 150 + 100*i, height/3);
+      if (party.get(i).getPNum() == 1) image(bulbasaur,width/2 - 150 + 100*i, height/3);
+      if (party.get(i).getPNum() == 2) image(dratini,width/2 - 150 + 100*i, height/3);
+      if (party.get(i).getPNum() == 3) image(squirtle,width/2 - 150 + 100*i, height/3);
     }
 
+    charmander.resize(144,144);
+    bulbasaur.resize(144,144);
+    dratini.resize(144,144);
+    squirtle.resize(144,144);
     for (int i = 0; i < generator.size(); i++) {
-      if (generator.get(i).getPNum() == 0) image(charmander,0+144*i, 448);;
-      if (generator.get(i).getPNum() == 1) image(bulbasaur,0+144*i, 448);
-      if (generator.get(i).getPNum() == 2) image(dratini,0+144*i, 448);
-      if (generator.get(i).getPNum() == 3) image(squirtle,0+144*i, 448);;
       rect(0+144*i, 448, 144, 144);
+      if (generator.get(i).getPNum() == 0) image(charmander,72+144*i, 520);
+      if (generator.get(i).getPNum() == 1) image(bulbasaur,72+144*i, 520);
+      if (generator.get(i).getPNum() == 2) image(dratini,72+144*i, 520);
+      if (generator.get(i).getPNum() == 3) image(squirtle,72+144*i, 520);
     }
 
     // Confirm?
