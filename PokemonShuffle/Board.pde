@@ -15,6 +15,7 @@ public class Board {
   ArrayList<Float> calcHorzMultipliers;
   String[] allTypes={"Normal", "Fighting", "Flying", "Poison", "Ground", "Rock",
   "Bug", "Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon"};
+  ArrayList<Pokemon> party;
 
 Board(int moves, int lvl) {
   board = new Pokemon[6][6];
@@ -29,6 +30,10 @@ Board(int moves, int lvl) {
   giant = new Boss(10000,bossType);
   
   generateBoard();
+}
+
+void setParty(ArrayList<Pokemon> newParty){
+  party=newParty;
 }
 
 void generateBoard() {
@@ -85,7 +90,6 @@ void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
 }
 
 //"updates" board everytime something happens
-//colors for now, might be replaced with PImages later
 void display() {
   background(255);
   noStroke();
@@ -95,14 +99,18 @@ void display() {
   boolean selected = false;
   textAlign(BASELINE, BASELINE);
   shapeMode(CORNER);
-  PImage charmander = loadImage("Charmander.png");
-  PImage bulbasaur = loadImage("Bulbasaur.png");
-  PImage dratini = loadImage("Dratini.png");
-  PImage squirtle = loadImage("Squirtle.png");
-  charmander.resize(0+80,80);
-  bulbasaur.resize(0+80,80);
-  dratini.resize(0+80,80);
-  squirtle.resize(0+80,80);
+  String pName1=party.get(0).getName();
+  String pName2=party.get(1).getName();
+  String pName3=party.get(2).getName();
+  String pName4=party.get(3).getName();
+  PImage p1 = loadImage("Charmander.png");
+  PImage p2 = loadImage("Bulbasaur.png");
+  PImage p3 = loadImage("Dratini.png");
+  PImage p4 = loadImage("Squirtle.png");
+  p1.resize(0+80,80);
+  p2.resize(0+80,80);
+  p3.resize(0+80,80);
+  p4.resize(0+80,80);
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
       if (board[i][j].isSelected()) {
@@ -125,22 +133,22 @@ void display() {
           rect(0+96*j, 448+96*i, 96, 96);
           if (board[i][j].getPNum() == 0){ 
             
-            image(charmander,48+96*j,496+96*i);
+            image(p1,48+96*j,496+96*i);
 
           }
           if (board[i][j].getPNum() == 1) {
             
-            image(bulbasaur,48+96*j,496+96*i);
+            image(p2,48+96*j,496+96*i);
 
           }
           if (board[i][j].getPNum() == 2) {
             
-            image(dratini,48+96*j,496+96*i);
+            image(p3,48+96*j,496+96*i);
 
           }
           if (board[i][j].getPNum() == 3) {
             
-            image(squirtle,48+96*j,496+96*i);
+            image(p4,48+96*j,496+96*i);
 
           }
           
@@ -154,19 +162,19 @@ void display() {
     if (board[selectedRow][selectedCol].getPNum() == -1) fill(#FFFFFF);
     if (board[selectedRow][selectedCol].getPNum() == 0) {
 
-      image(charmander,mouseX, mouseY);
+      image(p1,mouseX, mouseY);
     }
     if (board[selectedRow][selectedCol].getPNum() == 1) {
 
-       image(bulbasaur,mouseX, mouseY);
+       image(p2,mouseX, mouseY);
     }
     if (board[selectedRow][selectedCol].getPNum() == 2) {
 
-      image(dratini,mouseX, mouseY);
+      image(p3,mouseX, mouseY);
     }
     if (board[selectedRow][selectedCol].getPNum() == 3) {
 
-      image(squirtle,mouseX, mouseY);
+      image(p4,mouseX, mouseY);
     }
   }
   
