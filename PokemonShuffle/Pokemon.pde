@@ -3,6 +3,7 @@ public class Pokemon{
   private int pNum;
   private String type;
   private boolean selected;
+  private String name;
   
   Pokemon(String element, int temporary){
     selected=false;
@@ -12,6 +13,10 @@ public class Pokemon{
    
   public String getType(){
     return type;
+  }
+  
+  public String getName(){
+    return name;
   }
   
   public int getPNum(){
@@ -32,6 +37,10 @@ public class Pokemon{
   
   public void setType(String newType){
     type=newType;
+  }
+  
+  public void setName(String newName){
+    name=newName;
   }
  
   public float effectiveness(String bossElement){
