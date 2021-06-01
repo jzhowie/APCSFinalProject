@@ -44,7 +44,7 @@ Austin: <strike> Created a branch that attempts to use pngs for their respective
 ### May 31:
 Jason: Fixed the party picker screen after the ArrayList storing the party was wiped every frame. Completed the party picker where you can add and remove, added descriptors for gamemode on hover.
 
-Austin:
+Austin: Party picker screen now uses pngs to display the base 4 Pokemon, planning on adding more Pokemon to the party picker screen later and having the board generate based off the Pokemon picked.
 
 
 ## UML Diagram Updates:
