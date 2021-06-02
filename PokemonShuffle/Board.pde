@@ -17,11 +17,12 @@ public class Board {
   "Bug", "Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon"};
   ArrayList<Pokemon> party;
 
-Board(int moves, int lvl) {
+Board(int moves, int lvl, ArrayList<Pokemon> p) {
   board = new Pokemon[6][6];
   rows = new ArrayList<ArrayList<Integer>>();
   cols = new ArrayList<ArrayList<Integer>>();
   level = lvl;
+  party = p;
   gameOver=false;
   win=false;
   currentScore = 0;

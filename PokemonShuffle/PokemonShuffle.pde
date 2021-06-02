@@ -216,7 +216,7 @@ void mouseReleased() {
 }
 
 void boardSetup() {
-  test = new Board(99, stage); // set to 1 to test game over
+  test = new Board(99, stage, party); // set to 1 to test game over
   test.display();
 }
 
