@@ -14,6 +14,7 @@ public class Pokemon{
   Pokemon(String n) {
     selected = false;
     name = n;
+    pNum = 0;
     setType();
   }
    
@@ -42,10 +43,10 @@ public class Pokemon{
   }
   
   private void setType() {
-    if (name.equals("Charmander")) type = "Grass";
-    if (name.equals("Bulbasaur")) type = "Water";
-    if (name.equals("Dratini")) type = "Fire";
-    if (name.equals("Squirtle")) type = "Ice";
+    if (name.equals("Charmander")) { type = "Grass"; pNum = 0; }
+    if (name.equals("Bulbasaur")) { type = "Water"; pNum = 1; }
+    if (name.equals("Dratini")) { type = "Fire"; pNum = 2; }
+    if (name.equals("Squirtle")) { type = "Ice"; pNum = 3; }
   }
   
   public void setType(String newType){

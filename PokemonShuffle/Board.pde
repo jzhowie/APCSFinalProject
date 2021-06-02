@@ -40,37 +40,37 @@ void setParty(ArrayList<Pokemon> newParty){
 void generateBoard() {
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
-      board[i][j] = new Pokemon("element",(int)(Math.random() * 4));
+      board[i][j] = new Pokemon(party.get((int)(Math.random() * 4)).getPokemonName());
       if (i>1){
         while (board[i][j].getPNum()==board[i-1][j].getPNum()&&board[i-1][j].getPNum()==board[i-2][j].getPNum()){
-          board[i][j] = new Pokemon("element",(int)(Math.random() * 4));
+          board[i][j] = new Pokemon(party.get((int)(Math.random() * 4)).getPokemonName());
         }
       }
       if (j>1){
         while (board[i][j].getPNum()==board[i][j-1].getPNum()&&board[i][j].getPNum()==board[i][j-2].getPNum()){
-          board[i][j] = new Pokemon("element",(int)(Math.random() * 4));
+          board[i][j] = new Pokemon(party.get((int)(Math.random() * 4)).getPokemonName());
         }
       }
     }
   }
  //THIS PART IS FOR TESTING TYPE EFFECTIVENESS
- for (int i=0;i<board.length;i++){
-   for (int y=0;y<board.length;y++){
-     if (board[i][y].getPNum()==0){
-       board[i][y].setType("Grass");
+ //for (int i=0;i<board.length;i++){
+ //  for (int y=0;y<board.length;y++){
+ //    if (board[i][y].getPNum()==0){
+ //      board[i][y].setType("Grass");
        
-     }
-     if (board[i][y].getPNum()==1){
-       board[i][y].setType("Water");
-     }
-     if (board[i][y].getPNum()==2){
-       board[i][y].setType("Fire");
-     }
-     if (board[i][y].getPNum()==3){
-       board[i][y].setType("Ice");
-     }
-   }
- }
+ //    }
+ //    if (board[i][y].getPNum()==1){
+ //      board[i][y].setType("Water");
+ //    }
+ //    if (board[i][y].getPNum()==2){
+ //      board[i][y].setType("Fire");
+ //    }
+ //    if (board[i][y].getPNum()==3){
+ //      board[i][y].setType("Ice");
+ //    }
+ //  }
+ //}
 }
 
 // ACCESSORS AND MODIFIERS
@@ -277,7 +277,7 @@ private void shift(int row, int col) {
   for (int i = row; i > 0; i--) {
     board[i][col] = board[i-1][col];
   }
-  board[0][col] = new Pokemon("element",(int)(Math.random() * 4));
+  board[0][col] = new Pokemon(party.get((int)(Math.random() * 4)).getPokemonName());
 }
 
 //Take values from arrayList (remove()), turn into -1 (cleared)
