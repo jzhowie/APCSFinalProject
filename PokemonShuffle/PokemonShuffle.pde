@@ -149,14 +149,14 @@ void mousePressed() {
           partySelect = true;
         }
         stage++;
-        test=new Board(99, stage);
+        test=new Board(99, stage, party);
         //just for testing, actual game over should probably send to start menu
       }
     }
     else if (test.gameOver){
       if (mouseX<=360&&mouseX>=180&&mouseY>=500-100&&mouseY<=580-100){
         stage = 1;
-        test=new Board(99, stage);
+        test=new Board(99, stage, party);
         //just for testing, actual game over should probably send to start menu
       }
     }
