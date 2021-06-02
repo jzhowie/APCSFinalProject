@@ -14,10 +14,13 @@ void setup() {
   start = true;
   stage = 1;
   types = new ArrayList<String>(Arrays.asList(new String[] {"Grass", "Water", "Fire", "Ice"}));
+  String[] pokemon = {"Charmander", "Bulbasaur", "Dratini", "Squirtle"};
   generator = new ArrayList<Pokemon>();
   party = new ArrayList<Pokemon>();
   for (int i = 0; i < 4; i++) {
-    generator.add(new Pokemon(types.get(i), i));
+    generator.add(new Pokemon(pokemon[i]));
+    println(generator.get(i).getType());
+    println(generator.get(i).getPokemonName());
   }
 }
 
@@ -86,41 +89,15 @@ void draw() {
     shapeMode(CORNER);
     textAlign(CENTER, CENTER);
     text("Party Select", width/2, height/6);
-    PImage Charmander = loadImage("Charmander.png");
-    PImage Bulbasaur = loadImage("Bulbasaur.png");
-    PImage Dratini = loadImage("Dratini.png");
-    PImage Squirtle = loadImage("Squirtle.png");
-    Charmander.resize(100,100);
-    Bulbasaur.resize(100,100);
-    Dratini.resize(100,100);
-    Squirtle.resize(100,100);
     // Party box
     fill(#595F59);
     rect(width/2 - 205, height/3 - 55, 410, 110);
     for (int i = 0; i < party.size(); i++) {
-      image(party.get(i).getPImage(),width/2-150  + 100*i, height/3 );
-      image(party.get(i).getPImage(),width/2-150 + 100*i, height/3 );
-      image(party.get(i).getPImage(),width/2 -150 + 100*i, height/3 );
-      image(party.get(i).getPImage(),width/2 -150+ 100*i, height/3 );
+      party.get(i).display(width/2 - 150 + 100 * i, height/3, 100);
       
     }
     for (int i = 0; i < generator.size(); i++) {
-      if (generator.get(i).getPNum() == 0){
-       image(Charmander,0+200-100, 448);
-       generator.get(i).setName("Charmander"); 
-      }
-      if (generator.get(i).getPNum() == 1){
-        image(Bulbasaur,0+325-100, 448);
-        generator.get(i).setName("Bulbasaur"); 
-      }
-      if (generator.get(i).getPNum() == 2){
-        image(Dratini,0+450-100, 448);
-        generator.get(i).setName("Dratini");
-      }
-      if (generator.get(i).getPNum() == 3){
-        image(Squirtle,0+575-100, 448);
-        generator.get(i).setName("Squirtle");
-      }
+      generator.get(i).display(100 + 125*i, 520, 144);
     }
 
     // Confirm?

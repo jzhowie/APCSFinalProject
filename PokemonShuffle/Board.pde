@@ -100,10 +100,6 @@ void display() {
   boolean selected = false;
   textAlign(BASELINE, BASELINE);
   shapeMode(CORNER);
-  String pName1=party.get(0).getName();
-  String pName2=party.get(1).getName();
-  String pName3=party.get(2).getName();
-  String pName4=party.get(3).getName();
   PImage p1 = loadImage("Charmander.png");
   PImage p2 = loadImage("Bulbasaur.png");
   PImage p3 = loadImage("Dratini.png");
