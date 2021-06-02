@@ -46,6 +46,12 @@ public class Pokemon{
     return pic;
   }
   
+  public void display(int x, int y, int s) {
+    PImage pic = loadImage(getName() + ".png");
+    pic.resize(s, s);
+    image(pic, x, y);
+  }
+  
   public void setName(String newName){
     name=newName;
   }
