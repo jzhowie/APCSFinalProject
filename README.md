@@ -46,6 +46,11 @@ Jason: Fixed the party picker screen after the ArrayList storing the party was w
 
 Austin: Party picker screen now uses pngs to display the base 4 Pokemon, planning on adding more Pokemon to the party picker screen later and having the board generate based off the Pokemon picked.
 
+### June 1:
+Jason: <strike> Attempted to implement a display function and constructor that only takes in a pokemon name in Pokemon. </strike> Program works fine up until you click the "confirm" button, rolled back changes, tinkered with graphics.
+
+Austin: 
+
 
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
