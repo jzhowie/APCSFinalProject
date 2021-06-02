@@ -10,12 +10,18 @@ public class Pokemon{
     pNum=temporary;
     type=element;
   }
+  
+  Pokemon(String n) {
+    selected = false;
+    name = n;
+    setType();
+  }
    
   public String getType(){
     return type;
   }
   
-  public String getName(){
+  public String getPokemonName(){
     return name;
   }
   
@@ -35,19 +41,26 @@ public class Pokemon{
     selected = !selected;
   }
   
+  private void setType() {
+    if (name.equals("Charmander")) type = "Grass";
+    if (name.equals("Bulbasaur")) type = "Water";
+    if (name.equals("Dratini")) type = "Fire";
+    if (name.equals("Squirtle")) type = "Ice";
+  }
+  
   public void setType(String newType){
     type=newType;
   }
   
   public PImage getPImage(){
-    String picName=getName()+".png";
+    String picName=getPokemonName()+".png";
     PImage pic=loadImage(picName);
     pic.resize(120,120);
     return pic;
   }
   
   public void display(int x, int y, int s) {
-    PImage pic = loadImage(getName() + ".png");
+    PImage pic = loadImage(getPokemonName() + ".png");
     pic.resize(s, s);
     image(pic, x, y);
   }
