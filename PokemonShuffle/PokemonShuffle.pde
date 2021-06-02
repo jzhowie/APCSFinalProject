@@ -19,8 +19,6 @@ void setup() {
   party = new ArrayList<Pokemon>();
   for (int i = 0; i < 4; i++) {
     generator.add(new Pokemon(pokemon[i]));
-    println(generator.get(i).getType());
-    println(generator.get(i).getPokemonName());
   }
 }
 
