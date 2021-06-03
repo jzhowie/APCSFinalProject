@@ -14,12 +14,12 @@ void setup() {
   size(576, 1024);
   start = true;
   stage = 1;
-  types = new ArrayList<String>(Arrays.asList(new String[] {"Fire","Grass","Dragon","Water","Normal","Flying","Electric","Ground"}));
+  String[] types = {"Fire","Grass","Dragon","Water","Normal","Flying","Electric","Ground"};
   String[] pokemon = {"Charmander", "Bulbasaur", "Dratini", "Squirtle","Raticate","Pidgeotto","Pikachu","Sandshrew"};
   generator = new ArrayList<Pokemon>();
   party = new ArrayList<Pokemon>();
   for (int i = 0; i < 8; i++) {
-    generator.add(new Pokemon(pokemon[i],types.get(i)));
+    generator.add(new Pokemon(pokemon[i],types[i]));
   }
 }
 
@@ -111,6 +111,7 @@ void draw() {
     text("Confirm", width/2, height * (0.80));
   }
   else {
+    test.setParty(party);
     test.display();
   }
 }
@@ -169,8 +170,14 @@ void mouseReleased() {
     else if (mouseY > 448 && mouseY < 448 + 144 && mouseX > 0 && mouseX < width) {
       if (party.size() < 4) {
         col = mouseX / 144;
-        row=mouseY/520;
-        col=col+row;
+        if (!containDupe(generator.get(col), party)) {
+          party.add(generator.get(col));
+        }
+      }
+    }
+    else if (mouseY > 540-1441 && mouseY < 540+144 && mouseX > 0 && mouseX < width) {
+      if (party.size() < 4) {
+        col = (mouseX / 144)+4;
         if (!containDupe(generator.get(col), party)) {
           party.add(generator.get(col));
         }
