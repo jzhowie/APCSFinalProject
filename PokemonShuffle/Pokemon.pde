@@ -78,32 +78,55 @@ public class Pokemon{
   }
  
   public float effectiveness(String bossElement){
-    if (this.type.equals("Fighting")){
-      if (bossElement.equals("Normal")||bossElement.equals("Rock")||
-        bossElement.equals("Ice")){
-        return 2;
-      }
-      if (bossElement.equals("Flying")||bossElement.equals("Poison")||bossElement.equals("Bug")||bossElement.equals("Psychic")){
-        return 0.5;
-      }
-      return 1;
-    }
     if (this.type.equals("Normal")){
       if (bossElement.equals("Rock")){
         return 2;
       }
       return 1;
     }
-    if (this.type.equals("Flying")){
-      if (bossElement.equals("Fighting")||bossElement.equals("Bug")||
-        bossElement.equals("Grass")){
+    if (this.type.equals("Fighting")){
+      if (bossElement.equals("Normal")){
         return 2;
       }
-      if (bossElement.equals("Rock")||bossElement.equals("Electric")){
+      if (bossElement.equals("Flying")){
+        return 0.5;
+      }
+      if (bossElement.equals("Poison")){
+        return 0.5;
+      }
+      if (bossElement.equals("Rock")){
+        return 2;
+      }
+      if (bossElement.equals("Bug")){
+        return 0.5;
+      }
+      if (bossElement.equals("Psychic")){
+        return 0.5;
+      }
+      if (bossElement.equals("Ice")){
+        return 2;
+      }
+      return 1;
+    }
+    if (this.type.equals("Flying")){
+      if (bossElement.equals("Fighting")){
+        return 2;
+      }
+      if (bossElement.equals("Rock")){
+        return 0.5;
+      }
+      if (bossElement.equals("Bug")){
+        return 2;
+      }
+      if (bossElement.equals("Grass")){
+        return 2;
+      }
+      if (bossElement.equals("Electric")){
         return 0.5;
       }
       return 1;
     }
+    
     if (this.type.equals("Poison")){
       if (bossElement.equals("Poison")||bossElement.equals("Ground")||
         bossElement.equals("Rock")){
@@ -216,4 +239,5 @@ public class Pokemon{
     }
     return 1;
   }
+ 
 }
