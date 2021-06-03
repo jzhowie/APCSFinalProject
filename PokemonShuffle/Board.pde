@@ -42,6 +42,9 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
 
 void setParty(ArrayList<Pokemon> newParty){
   party=newParty;
+  for (int i=0;i<4;i++){
+    party.get(i).setPNum(i);
+  }
 }
 
 void generateBoard() {
@@ -107,10 +110,10 @@ void display() {
   boolean selected = false;
   textAlign(BASELINE, BASELINE);
   shapeMode(CORNER);
-  PImage p1 = loadImage("Charmander.png");
-  PImage p2 = loadImage("Bulbasaur.png");
-  PImage p3 = loadImage("Dratini.png");
-  PImage p4 = loadImage("Squirtle.png");
+  PImage p1 = party.get(0).getPImage();
+  PImage p2 = party.get(1).getPImage();
+  PImage p3 = party.get(2).getPImage();
+  PImage p4 = party.get(3).getPImage();
   p1.resize(0+80,80);
   p2.resize(0+80,80);
   p3.resize(0+80,80);
