@@ -119,23 +119,6 @@ void mousePressed() {
       //println(row + ", " + col);
       test.getPokemon(row, col).toggleSelect();
     }
-    else if (test.win) {
-      if (mouseX<=360&&mouseX>=180&&mouseY>=500-100&&mouseY<=580-100){
-        if (stage % 5 == 0) {
-          partySelect = true;
-        }
-        stage++;
-        test=new Board(99, stage, party, mode);
-        //just for testing, actual game over should probably send to start menu
-      }
-    }
-    else if (test.gameOver){
-      if (mouseX<=360&&mouseX>=180&&mouseY>=500-100&&mouseY<=580-100){
-        stage = 1;
-        test=new Board(99, stage, party, mode);
-        //just for testing, actual game over should probably send to start menu
-      }
-    }
   }
 }
 
@@ -181,20 +164,39 @@ void mouseReleased() {
     }
   }
   else {
-    int prevRow = row;
-    int prevCol = col;
-    if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) {
-      test.getPokemon(row, col).toggleSelect();
-      try {
-        test.swap(prevRow, prevCol, (mouseY - 448) / 96, mouseX / 96);
-        if (!test.check3Combo()) {
-          test.swap((mouseY - 448) / 96, mouseX / 96, prevRow, prevCol);
+    if (test.win) {
+      if (mouseX<=width/2 + 90&&mouseX>=width/2 - 90 &&mouseY>= 450 - 40&&mouseY<= 450 + 40){
+        if (stage % 5 == 0) {
+          partySelect = true;
         }
-        else {
-          test.scoreCalc();
-        }
+        stage++;
+        test=new Board(99, stage, party, mode);
+        //just for testing, actual game over should probably send to start menu
       }
-      catch (InterruptedException e) {}
+    }
+    else if (test.gameOver){
+      if (mouseX<=width/2 + 90&&mouseX>=width/2 - 90 &&mouseY>= 450 - 40&&mouseY<= 450 + 40){
+        stage = 1;
+        modeSelect = true;
+        //just for testing, actual game over should probably send to start menu
+      }
+    }
+    else {
+      int prevRow = row;
+      int prevCol = col;
+      if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) {
+        test.getPokemon(row, col).toggleSelect();
+        try {
+          test.swap(prevRow, prevCol, (mouseY - 448) / 96, mouseX / 96);
+          if (!test.check3Combo()) {
+            test.swap((mouseY - 448) / 96, mouseX / 96, prevRow, prevCol);
+          }
+          else {
+            test.scoreCalc();
+          }
+        }
+        catch (InterruptedException e) {}
+      }
     }
   }
 }
