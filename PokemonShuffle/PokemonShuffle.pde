@@ -48,31 +48,33 @@ void draw() {
     text("Gamemode(s)", width/2, height/6);
     
     shapeMode(CORNER);
-    fill(255, 0, 0);
-    rect(width/2 - 100, height/2 - 15, 200, 30);
-    fill(0);
-    textSize(25);
-    text("Endless", width/2, height/2);
     
-    fill(255, 0, 0);
-    
-    rect(width/2 - 100, height * 0.55 - 15, 200, 30);
+    fill(#B655DE);
+    rect(width/2 - 200, height * 0.4 - 40, 400, 80);
     fill(0);
-    textSize(25);
+    textSize(35);
+    text("Endless", width/2, height * 0.4);
+    
+    fill(#4E93EA);
+    
+    rect(width/2 - 200, height * 0.55 - 40, 400, 80);
+    fill(0);
+    textSize(35);
     text("Time Trial", width/2, height * 0.55);
     
-    if (mouseY >= height/2 - 15 && mouseY < height/2 + 15 && mouseX > width/2 - 100 && mouseX < width/2 + 100) {
+    textSize(25);
+    if (mouseY >= height * 0.4 - 40 && mouseY < height * 0.4 + 40 && mouseX > width/2 - 200 && mouseX < width/2 + 200) {
       PImage msgBox = loadImage("messageBox.png");
-      msgBox.resize(msgBox.width/2, msgBox.height/2 + 25);
+      msgBox.resize((int) (msgBox.width * 0.6), (int) (msgBox.height * 0.6));
       image(msgBox, width/2, height * 0.82);
       text("Play until you lose.", width/2, height * 0.8);
       textSize(15);
       text("Bosses get progressively harder. \nOption to change party every 5 levels", width/2, height * 0.85);
     }
     
-    if (mouseY >= height * 0.55 - 15 && mouseY < height * 0.55 + 15 && mouseX > width/2 - 100 && mouseX < width/2 + 100) {
+    if (mouseY >= height * 0.55 - 40 && mouseY < height * 0.55 + 40 && mouseX > width/2 - 200 && mouseX < width/2 + 200) {
       PImage msgBox = loadImage("messageBox.png");
-      msgBox.resize(msgBox.width/2, msgBox.height/2 + 25);
+      msgBox.resize((int) (msgBox.width * 0.6), (int) (msgBox.height * 0.6));
       image(msgBox, width/2, height * 0.82);
       text("Short on time?", width/2, height * 0.8);
       textSize(15);
@@ -84,7 +86,7 @@ void draw() {
     background(255);
     fill(0);
     noStroke();
-    textSize(25);
+    textSize(35);
     shapeMode(CORNER);
     textAlign(CENTER, CENTER);
     text("Party Select", width/2, height/6);
@@ -100,10 +102,11 @@ void draw() {
     }
 
     // Confirm?
+    textSize(25);
     fill(#55F766);
-    rect(width/2 - 100, height * (0.80) - 15, 200, 30);
+    rect(width/2 - 75, height * (0.85) - 30, 150, 60);
     fill(0);
-    text("Confirm", width/2, height * (0.80));
+    text("Confirm", width/2, height * (0.85));
   }
   else {
     test.display();
@@ -128,19 +131,19 @@ void mouseReleased() {
     modeSelect = true;
   }
   else if (modeSelect) {
-    if (mouseY > (height/2) - 15 && mouseY < (height/2) + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100) {
+    if (mouseY >= height * 0.4 - 40 && mouseY < height * 0.4 + 40 && mouseX > width/2 - 200 && mouseX < width/2 + 200) {
       partySelect = true;
       modeSelect = false;
       mode = 0;
     }
-    if (mouseY > (height * 0.55) - 15 && mouseY < (height * 0.55) + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100) {
+    if (mouseY >= height * 0.55 - 40 && mouseY < height * 0.55 + 40 && mouseX > width/2 - 200 && mouseX < width/2 + 200) {
       partySelect = true;
       modeSelect = false;
       mode = 1;
     }
   }
   else if (partySelect) {
-    if (mouseY > height * 0.8 - 15 && mouseY < height * 0.8 + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100 && party.size() == 4) {
+    if (mouseY > height * 0.85 - 30 && mouseY < height * 0.85 + 30 && mouseX > (width/2) - 75 && mouseX < (width/2) + 75 && party.size() == 4) {
       partySelect = false;
       boardSetup(); // parameter for mode?
     }
