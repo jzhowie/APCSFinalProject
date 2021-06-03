@@ -110,14 +110,11 @@ void display() {
   boolean selected = false;
   textAlign(BASELINE, BASELINE);
   shapeMode(CORNER);
-  PImage p1 = party.get(0).getPImage();
-  PImage p2 = party.get(1).getPImage();
-  PImage p3 = party.get(2).getPImage();
-  PImage p4 = party.get(3).getPImage();
-  p1.resize(0+80,80);
-  p2.resize(0+80,80);
-  p3.resize(0+80,80);
-  p4.resize(0+80,80);
+  PImage p1 = party.get(0).getPImage(80);
+  PImage p2 = party.get(1).getPImage(80);
+  PImage p3 = party.get(2).getPImage(80);
+  PImage p4 = party.get(3).getPImage(80);
+  
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
       if (board[i][j].isSelected()) {
@@ -138,22 +135,22 @@ void display() {
         else {
           fill(#897575);
           rect(0+96*j, 448+96*i, 96, 96);
-          if (board[i][j].getPNum() == 0){ 
+          if (board[i][j].getPNum() == party.get(0).getPNum()){ 
             
             image(p1,48+96*j,496+96*i);
 
           }
-          if (board[i][j].getPNum() == 1) {
+          if (board[i][j].getPNum() == party.get(1).getPNum()) {
             
             image(p2,48+96*j,496+96*i);
 
           }
-          if (board[i][j].getPNum() == 2) {
+          if (board[i][j].getPNum() == party.get(2).getPNum()) {
             
             image(p3,48+96*j,496+96*i);
 
           }
-          if (board[i][j].getPNum() == 3) {
+          if (board[i][j].getPNum() == party.get(3).getPNum()) {
             
             image(p4,48+96*j,496+96*i);
 
