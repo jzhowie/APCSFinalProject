@@ -96,12 +96,7 @@ void draw() {
       
     }
     for (int i = 0; i < generator.size(); i++) {
-      if (i<4){
-        generator.get(i).display(100 + 125*i, 520, 144);
-      }
-      else{
-        generator.get(i).display(100 + 125*(i%4), 520+144, 144);
-      }
+       generator.get(i).display(72+144* (i % 4) , 520 + 144 * (i / 4), 144);
     }
 
     // Confirm?
@@ -166,11 +161,11 @@ void mouseReleased() {
       partySelect = false;
       boardSetup(); // parameter for mode?
     }
-    else if (mouseY > 448 && mouseY < 448 + 144 && mouseX > 0 && mouseX < width) {
+    else if (mouseY > 448 && mouseY < 448 + 288 && mouseX > 0 && mouseX < width) {
       if (party.size() < 4) {
         col = mouseX / 144;
-        row=mouseY/520;
-        col=col+row;
+        row=(mouseY - 448) /144;
+        col=col+row*4;
         if (!containDupe(generator.get(col), party)) {
           party.add(generator.get(col));
         }
