@@ -40,9 +40,11 @@ public class Boss{
   }
   
   public void display() {
-    shapeMode(CORNER);
-    fill(#F5FC24);
-    rect(width/2 - 75, height/5 - 75, 150, 150);
+    PImage boss = loadImage("Pikachu.png");
+    image(boss, width/2, height/5);
+    //shapeMode(CORNER);
+    //fill(#F5FC24);
+    //rect(width/2 - 75, height/5 - 75, 150, 150);
   }
     
 }
