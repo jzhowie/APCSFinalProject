@@ -50,20 +50,23 @@ public class Pokemon{
   }
   
   private void setType() {
-    if (name.equals("Charmander")) { type = "Grass"; pNum = 0; }
-    if (name.equals("Bulbasaur")) { type = "Water"; pNum = 1; }
-    if (name.equals("Dratini")) { type = "Fire"; pNum = 2; }
-    if (name.equals("Squirtle")) { type = "Ice"; pNum = 3; }
+    if (name.equals("Charmander")) { type = "Fire"; pNum = 0; }
+    if (name.equals("Bulbasaur")) { type = "Grass"; pNum = 1; }
+    if (name.equals("Dratini")) { type = "Dragon"; pNum = 2; }
+    if (name.equals("Squirtle")) { type = "Water"; pNum = 3; }
+    if (name.equals("Raticate")) { type = "Normal"; pNum = 4; }
+    if (name.equals("Pidgeotto")) { type = "Flying"; pNum = 5; }
+    if (name.equals("Pikachu")) { type = "Electric"; pNum = 6; }
+    if (name.equals("Sandshrew")) { type = "Ground"; pNum = 7; }
   }
   
   public void setType(String newType){
     type=newType;
   }
   
-  public PImage getPImage(){
-    String picName=getPokemonName()+".png";
-    PImage pic=loadImage(picName);
-    pic.resize(120,120);
+  public PImage getPImage(int s){
+    PImage pic=loadImage(getPokemonName()+".png");
+    pic.resize(s, s);
     return pic;
   }
   
