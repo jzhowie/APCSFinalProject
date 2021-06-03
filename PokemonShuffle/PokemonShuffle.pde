@@ -173,7 +173,7 @@ void mouseReleased() {
           partySelect = true;
         }
         stage++;
-        test=new Board(99, stage, party, mode);
+        test=new Board(6, stage, party, mode);
         //just for testing, actual game over should probably send to start menu
       }
     }
@@ -205,7 +205,7 @@ void mouseReleased() {
 }
 
 void boardSetup() {
-  test = new Board(99, stage, party, mode); // set to 1 to test game over
+  test = new Board(6, stage, party, mode); // set to 1 to test game over
   test.display();
 }
 
