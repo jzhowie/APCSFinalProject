@@ -14,12 +14,12 @@ void setup() {
   size(576, 1024);
   start = true;
   stage = 1;
-  types = new ArrayList<String>(Arrays.asList(new String[] {"Grass", "Water", "Fire", "Ice"}));
+  types = new ArrayList<String>(Arrays.asList(new String[] {"Fire","Grass","Dragon","Water","Steel","Flying","Electric","Ground"}));
   String[] pokemon = {"Charmander", "Bulbasaur", "Dratini", "Squirtle","Klefki","Pidgeotto","Pikachu","Sandshrew"};
   generator = new ArrayList<Pokemon>();
   party = new ArrayList<Pokemon>();
-  for (int i = 0; i < 4; i++) {
-    generator.add(new Pokemon(pokemon[i]));
+  for (int i = 0; i < pokemon.length; i++) {
+    generator.add(new Pokemon(pokemon[i],types.get(i)));
   }
 }
 
@@ -96,7 +96,12 @@ void draw() {
       
     }
     for (int i = 0; i < generator.size(); i++) {
-      generator.get(i).display(100 + 125*i, 520, 144);
+      if (i<4){
+        generator.get(i).display(100 + 125*i, 520, 144);
+      }
+      else{
+        generator.get(i).display(100 + 125*(i%4), 520+144, 144);
+      }
     }
 
     // Confirm?
