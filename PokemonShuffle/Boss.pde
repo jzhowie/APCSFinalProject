@@ -21,9 +21,7 @@ public class Boss{
   }
   
   public void display(int score) {
-    shapeMode(CORNER);
-    fill(#F5FC24);
-    rect(width/2 - 75, height/5 - 75, 150, 150);
+    display();
     
     fill(#64454D);
     rect(width/2 - 107, height/5 + 120, 214, 20);
@@ -39,6 +37,12 @@ public class Boss{
     textSize(15);
     textAlign(CENTER, CENTER);
     text(getType(), width/2 , height/5 - 127);
+  }
+  
+  public void display() {
+    shapeMode(CORNER);
+    fill(#F5FC24);
+    rect(width/2 - 75, height/5 - 75, 150, 150);
   }
     
 }

@@ -2,6 +2,7 @@ Board test;
 int row;
 int col;
 int stage;
+int mode;
 boolean start;
 boolean modeSelect;
 boolean partySelect;
@@ -124,14 +125,14 @@ void mousePressed() {
           partySelect = true;
         }
         stage++;
-        test=new Board(99, stage, party);
+        test=new Board(99, stage, party, mode);
         //just for testing, actual game over should probably send to start menu
       }
     }
     else if (test.gameOver){
       if (mouseX<=360&&mouseX>=180&&mouseY>=500-100&&mouseY<=580-100){
         stage = 1;
-        test=new Board(99, stage, party);
+        test=new Board(99, stage, party, mode);
         //just for testing, actual game over should probably send to start menu
       }
     }
@@ -147,6 +148,12 @@ void mouseReleased() {
     if (mouseY > (height/2) - 15 && mouseY < (height/2) + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100) {
       partySelect = true;
       modeSelect = false;
+      mode = 0;
+    }
+    if (mouseY > (height * 0.55) - 15 && mouseY < (height * 0.55) + 15 && mouseX > (width/2) - 100 && mouseX < (width/2) + 100) {
+      partySelect = true;
+      modeSelect = false;
+      mode = 1;
     }
   }
   else if (partySelect) {
@@ -191,7 +198,7 @@ void mouseReleased() {
 }
 
 void boardSetup() {
-  test = new Board(99, stage, party); // set to 1 to test game over
+  test = new Board(99, stage, party, mode); // set to 1 to test game over
   test.display();
 }
 

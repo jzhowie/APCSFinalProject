@@ -5,6 +5,8 @@ public class Board {
   int currentScore;
   int movesLeft;
   int level;
+  int gamemode;
+  int limit;
   boolean gameOver=false;
   boolean win=false;
   Boss giant;
@@ -17,7 +19,7 @@ public class Board {
   "Bug", "Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon"};
   ArrayList<Pokemon> party;
 
-Board(int moves, int lvl, ArrayList<Pokemon> p) {
+Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
   board = new Pokemon[6][6];
   rows = new ArrayList<ArrayList<Integer>>();
   cols = new ArrayList<ArrayList<Integer>>();
@@ -27,10 +29,15 @@ Board(int moves, int lvl, ArrayList<Pokemon> p) {
   win=false;
   currentScore = 0;
   movesLeft = moves;
+  gamemode = mode;
   String bossType=allTypes[(int)(Math.random()*allTypes.length)];
   giant = new Boss(10000,bossType);
   
   generateBoard();
+  if (mode == 1) {
+     //limit = millis() + 121000;
+     limit = millis() + 10000;
+  }
 }
 
 void setParty(ArrayList<Pokemon> newParty){
@@ -178,8 +185,20 @@ void display() {
   
   fill(0);
   textSize(20);
-  text("Score: " + getCurrentScore() + "\nMoves: " + getMovesLeft() + "\nStage: " + getStage(), 0+4, 20+4);
-  giant.display(getCurrentScore());
+  
+  if (mode == 0) {
+    text("Score: " + getCurrentScore() + "\nMoves: " + getMovesLeft() + "\nStage: " + getStage(), 0+4, 20+4);
+    giant.display(getCurrentScore());
+  }
+  if (mode == 1) {
+    if ((limit - millis()) / 1000 % 60 / 10 == 0) {
+      text("Score: " + getCurrentScore() + "\nTime: " + (limit - millis()) / 1000 / 60 + ":0" + (limit - millis()) / 1000 % 60, 0+4, 20+4);
+    }
+    else {
+      text("Score: " + getCurrentScore() + "\nTime: " + (limit - millis()) / 1000 / 60 + ":" + (limit - millis()) / 1000 % 60, 0+4, 20+4);
+    }
+    giant.display();
+  }
   
   checkWin();
   if (win){
@@ -337,15 +356,24 @@ boolean check3Combo(){
   }
 
 void checkWin(){
+  if (mode == 0) {
    if (giant.getNeededScore()<=this.currentScore){
      win=true;
    }
+  }
  }
 
 void checkGameOver(){
+  if (mode == 0) {
    if (giant.getNeededScore()>this.currentScore&&this.movesLeft==0){
      gameOver=true;
    }
+  }
+  if (mode == 1) {
+    if (millis() > limit) {
+      gameOver=true;
+    }
+  }
  }
 
 //void check4Combo(){
