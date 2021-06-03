@@ -31,7 +31,7 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
   movesLeft = moves;
   gamemode = mode;
   String bossType=allTypes[(int)(Math.random()*allTypes.length)];
-  giant = new Boss(10000,bossType);
+  giant = new Boss(1000 + 250 * level,bossType);
   
   generateBoard();
   if (mode == 1) {
@@ -222,7 +222,12 @@ void display() {
     fill(255);
     textAlign(CENTER, CENTER);
     textSize(35);
-    text("Game Over...",width/2, 200);
+    if (mode == 0) {
+      text("Ran out of moves...",width/2, 200);
+    }
+    if (mode == 1) {
+      text("Ran out of time...",width/2, 200);
+    }
     
     textSize(24);
     text("Score: " + getCurrentScore(), width/2, 300);
@@ -230,7 +235,7 @@ void display() {
     fill(#9E7AD8);
     rect(width/2 - 90,450 - 40,180,80);
     fill(0);
-    text("Mode Select",width/2,450);
+    text("Select Mode",width/2,450);
    
   }
   
