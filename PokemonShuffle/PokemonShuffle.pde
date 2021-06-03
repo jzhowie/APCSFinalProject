@@ -15,7 +15,7 @@ void setup() {
   start = true;
   stage = 1;
   types = new ArrayList<String>(Arrays.asList(new String[] {"Grass", "Water", "Fire", "Ice"}));
-  String[] pokemon = {"Charmander", "Bulbasaur", "Dratini", "Squirtle"};
+  String[] pokemon = {"Charmander", "Bulbasaur", "Dratini", "Squirtle","Klefki","Pidgeotto","Pikachu","Sandshrew"};
   generator = new ArrayList<Pokemon>();
   party = new ArrayList<Pokemon>();
   for (int i = 0; i < 4; i++) {
