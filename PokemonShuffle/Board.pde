@@ -31,7 +31,7 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
   movesLeft = moves;
   gamemode = mode;
   String bossType=allTypes[(int)(Math.random()*allTypes.length)];
-  giant = new Boss(1000 + 250 * level,bossType);
+  giant = new Boss(10000 + 250 * level,bossType);
   
   generateBoard();
   if (mode == 1) {
