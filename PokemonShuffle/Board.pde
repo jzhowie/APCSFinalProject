@@ -164,19 +164,19 @@ void display() {
   if (selected) {
     
     if (board[selectedRow][selectedCol].getPNum() == -1) fill(#FFFFFF);
-    if (board[selectedRow][selectedCol].getPNum() == 0) {
+    if (board[selectedRow][selectedCol].getPNum() == party.get(0).getPNum()) {
 
       image(p1,mouseX, mouseY);
     }
-    if (board[selectedRow][selectedCol].getPNum() == 1) {
+    if (board[selectedRow][selectedCol].getPNum() == party.get(1).getPNum()) {
 
        image(p2,mouseX, mouseY);
     }
-    if (board[selectedRow][selectedCol].getPNum() == 2) {
+    if (board[selectedRow][selectedCol].getPNum() == party.get(2).getPNum()) {
 
       image(p3,mouseX, mouseY);
     }
-    if (board[selectedRow][selectedCol].getPNum() == 3) {
+    if (board[selectedRow][selectedCol].getPNum() == party.get(3).getPNum()) {
 
       image(p4,mouseX, mouseY);
     }
@@ -205,13 +205,14 @@ void display() {
     shapeMode(CORNER);
     background(0);
     fill(255);
-    textAlign(BASELINE, BASELINE);
-    textSize(24);
-    text("You are win",200, 480-100);
+    textAlign(CENTER, CENTER);
+    textSize(35);
+    text("You are win",width/2, 200);
+    
     fill(#9E7AD8);
-    rect(180,500-100,180,80);
+    rect(width/2 - 90,450 - 40,180,80);
     fill(0);
-    text("Next stage",220,550-100);
+    text("Next stage",width/2,450);
   }
   
   checkGameOver();
@@ -219,13 +220,17 @@ void display() {
     shapeMode(CORNER);
     background(0);
     fill(255);
-    textAlign(BASELINE, BASELINE);
+    textAlign(CENTER, CENTER);
+    textSize(35);
+    text("Game Over...",width/2, 200);
+    
     textSize(24);
-    text("Game Over...",200, 480-100);
+    text("Score: " + getCurrentScore(), width/2, 300);
+    
     fill(#9E7AD8);
-    rect(180,500-100,180,80);
+    rect(width/2 - 90,450 - 40,180,80);
     fill(0);
-    text("Restart?",220,550-100);
+    text("Mode Select",width/2,450);
    
   }
   
