@@ -49,10 +49,12 @@ Austin: Party picker screen now uses pngs to display the base 4 Pokemon, plannin
 ### June 1:
 Jason: <strike> Attempted to implement a display function and constructor that only takes in a pokemon name in Pokemon.</strike> Program works fine up until you click the "confirm" button, rolled back changes (should have branched), tinkered with graphics.
 
+Austin: Added a getPImage method for the Pokemon that uses the Pokemon's name and attempted to convert the display method in board to use the party Pokemon array so that there is more freedom to display different Pokemon.
+
 ### June 2:
 Jason: Implemented a Pokemon display function for party setup (board took a performance hit because all objects were initializing their own PImage) and a time trial mode.
 
-Austin:
+Austin: Added another Pokemon class constructor to add both types and the Pokemon's name when being initialized in generator during the party picker screen.
 
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
