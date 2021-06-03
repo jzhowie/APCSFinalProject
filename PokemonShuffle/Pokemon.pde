@@ -17,6 +17,13 @@ public class Pokemon{
     pNum = 0;
     setType();
   }
+  Pokemon(String n, String t) {
+    selected = false;
+    name = n;
+    type=t;
+    pNum = 0;
+    setType();
+  }
    
   public String getType(){
     return type;
