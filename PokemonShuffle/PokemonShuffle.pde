@@ -100,7 +100,17 @@ void draw() {
     for (int i = 0; i < generator.size(); i++) {
        generator.get(i).display(72+144* (i % 4) , 520 + 144 * (i / 4), 144);
     }
-
+    if (mouseY > 448 && mouseY < 448 + 288 && mouseX > 0 && mouseX < width){
+      col = mouseX / 144;
+      row=(mouseY - 448) /144;
+      col=col+row*4;
+      String type = generator.get(col).getType();
+      String name = generator.get(col).getPokemonName();
+      textSize(25);
+      fill(0);
+      textAlign(CENTER, CENTER);
+      text(name+": "+type+" Type", 576/2,425);
+    }
     // Confirm?
     textSize(25);
     fill(#55F766);
@@ -157,14 +167,7 @@ void mouseReleased() {
         }
       }
     }
-    else if (mouseY > height/3 - 50 && mouseY < height/3 + 50 && mouseX > width/2 - 200 && mouseX < width / 2 + 200) {
-      if (party.size() > 0) {
-        col = (mouseX - (width/2 - 200)) / 100;
-        if (col < party.size()) {
-          party.remove(col);
-        }
-      }
-    }
+    
   }
   else {
     if (test.win) {
