@@ -31,7 +31,7 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
   movesLeft = moves;
   gamemode = mode;
   String bossType=allTypes[(int)(Math.random()*allTypes.length)];
-  giant = new Boss(10000,bossType);
+  giant = new Boss(10000 + 250 * level,bossType);
   
   generateBoard();
   if (mode == 1) {
@@ -169,7 +169,11 @@ void display() {
 
       image(p1,mouseX, mouseY);
     }
+<<<<<<< HEAD
     if (board[selectedRow][selectedCol].getPNum() ==  party.get(1).getPNum()) {
+=======
+    if (board[selectedRow][selectedCol].getPNum() == party.get(1).getPNum()) {
+>>>>>>> 8935208f52a99160171521389e208abebd234076
 
        image(p2,mouseX, mouseY);
     }
@@ -206,13 +210,14 @@ void display() {
     shapeMode(CORNER);
     background(0);
     fill(255);
-    textAlign(BASELINE, BASELINE);
-    textSize(24);
-    text("You are win",200, 480-100);
+    textAlign(CENTER, CENTER);
+    textSize(35);
+    text("You are win",width/2, 200);
+    
     fill(#9E7AD8);
-    rect(180,500-100,180,80);
+    rect(width/2 - 90,450 - 40,180,80);
     fill(0);
-    text("Next stage",220,550-100);
+    text("Next stage",width/2,450);
   }
   
   checkGameOver();
@@ -220,13 +225,22 @@ void display() {
     shapeMode(CORNER);
     background(0);
     fill(255);
-    textAlign(BASELINE, BASELINE);
+    textAlign(CENTER, CENTER);
+    textSize(35);
+    if (mode == 0) {
+      text("Ran out of moves...",width/2, 200);
+    }
+    if (mode == 1) {
+      text("Ran out of time...",width/2, 200);
+    }
+    
     textSize(24);
-    text("Game Over...",200, 480-100);
+    text("Score: " + getCurrentScore(), width/2, 300);
+    
     fill(#9E7AD8);
-    rect(180,500-100,180,80);
+    rect(width/2 - 90,450 - 40,180,80);
     fill(0);
-    text("Restart?",220,550-100);
+    text("Select Mode",width/2,450);
    
   }
   
