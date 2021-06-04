@@ -3,51 +3,46 @@ public class Pokemon{
   private int pNum;
   private String type;
   private boolean selected;
+  private boolean frozen;
   private String name;
   
   Pokemon(String element, int temporary){
     selected=false;
+    frozen = false;
     pNum=temporary;
     type=element;
   }
   
   Pokemon(String n) {
     selected = false;
+    frozen = false;
     name = n;
     pNum = 0;
     setType();
   }
+  
   Pokemon(String n, String t) {
     selected = false;
+    frozen = false;
     name = n;
     type=t;
     pNum = 0;
     setType();
   }
    
-  public String getType(){
-    return type;
-  }
+  public String getType() { return type; }
+  public void setType(String newType) { type=newType; }
   
-  public String getPokemonName(){
-    return name;
-  }
+  public String getPokemonName() { return name; }
   
-  public int getPNum(){
-    return pNum;  
-  }
+  public int getPNum() { return pNum; }
+  public void setPNum(int newTemp) { pNum=newTemp; }
   
-  public void setPNum(int newTemp){
-    pNum=newTemp;
-  }
+  public boolean isSelected() { return selected; }
+  public void toggleSelect() { selected = !selected; }
   
-  public boolean isSelected(){
-    return selected;
-  }
-  
-  public void toggleSelect() {
-    selected = !selected;
-  }
+  public boolean isFrozen() { return frozen; }
+  public void toggleFrozen() { frozen = !frozen; }
   
   private void setType() {
     if (name.equals("Charmander")) { type = "Fire"; pNum = 0; }
@@ -60,16 +55,13 @@ public class Pokemon{
     if (name.equals("Sandshrew")) { type = "Ground"; pNum = 7; }
   }
   
-  public void setType(String newType){
-    type=newType;
-  }
-  
   public PImage getPImage(int s){
     PImage pic=loadImage(getPokemonName()+".png");
     pic.resize(s, s);
     return pic;
   }
   
+  //Very slow when displaying board b/c you are loading 36 PIamges opposed to 4
   public void display(int x, int y, int s) {
     PImage pic = loadImage(getPokemonName() + ".png");
     pic.resize(s, s);
