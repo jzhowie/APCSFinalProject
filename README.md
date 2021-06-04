@@ -58,6 +58,7 @@ Austin: Added another Pokemon class constructor to add both types and the Pokemo
 
 ### June 3:
 Jason: Fixed issues around more individual pokemon in party picker screen and displaying on the board. Also modified the buttons to be larger and more colorful.
+Austin: Added multiple images in data that will be displayed as the boss. The image is displayed based off the type it is generated with.
 
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
