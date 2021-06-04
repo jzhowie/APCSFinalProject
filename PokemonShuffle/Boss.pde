@@ -39,8 +39,56 @@ public class Boss{
     text(getType(), width/2 , height/5 - 127);
   }
   
+  private String getName(){
+    if (type.equals("Normal")){
+      return "Snorlax";
+    }
+    if (type.equals("Fighting")){
+      return "Machamp";
+    }
+    if (type.equals("Flying")){
+      return "Pidgeotto";
+    }
+    if (type.equals("Poison")){
+      return "Weezing";
+    }
+    if (type.equals("Ground")){
+      return "Sandshrew";
+    }
+    if (type.equals("Rock")){
+      return "Geodude";
+    }
+    if (type.equals("Bug")){
+      return "Caterpie";
+    }
+    if (type.equals("Fire")){
+      return "Moltres";
+    }
+    if (type.equals("Water")){
+      return "Starmie";
+    }
+    if (type.equals("Grass")){
+      return "Scyther";
+    }
+    if (type.equals("Electric")){
+      return "Zapdos";
+    }
+    if (type.equals("Psychic")){
+      return "Mewtwo";
+    }
+    if (type.equals("Ice")){
+      return "Articuno";
+    }
+    if (type.equals("Dragon")){
+      return "Dragonite";
+    }
+    
+    return "Pikachu";
+  }
+  
   public void display() {
-    PImage boss = loadImage("Pikachu.png");
+    String imgName=getName()+".png";
+    PImage boss = loadImage(imgName);
     image(boss, width/2, height/5);
     //shapeMode(CORNER);
     //fill(#F5FC24);
