@@ -102,6 +102,11 @@ void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
 
 //"updates" board everytime something happens
 void display() {
+  
+  if (movesLeft % 5 == 0) {
+    giant.modifyBoard(board);
+  }
+  
   background(255);
   noStroke();
   fill(0);
@@ -156,7 +161,6 @@ void display() {
 
           }
           
-          if (i == 0) board[i][j].frozen();
           if (board[i][j].isFrozen()) {
             fill(157, 154, 242, 215);
             rect(0+96*j, 448+96*i, 96, 96);
@@ -199,11 +203,9 @@ void display() {
   if (mode == 1) {
     if ((limit - millis()) / 1000 % 60 / 10 == 0) {
       text("Score: " + getCurrentScore() + "\nTime: " + (limit - millis()) / 1000 / 60 + ":0" + (limit - millis()) / 1000 % 60, 0+4, 20+4);
-      giant.display(getCurrentScore());
     }
     else {
       text("Score: " + getCurrentScore() + "\nTime: " + (limit - millis()) / 1000 / 60 + ":" + (limit - millis()) / 1000 % 60, 0+4, 20+4);
-      giant.display(getCurrentScore());
     }
     giant.display();
   }
