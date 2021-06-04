@@ -133,7 +133,7 @@ void mousePressed() {
       test.getPokemon(row, col).toggleSelect();
       
       if (test.getPokemon(row, col).isFrozen()) {
-        test.getPokemon(row, col).selectFalse();
+        test.getPokemon(row, col).setSelect(false);
       }
     }
   }
@@ -195,7 +195,7 @@ void mouseReleased() {
       int prevRow = row;
       int prevCol = col;
       if (test.getPokemon(prevRow, prevCol).isFrozen()) {
-        test.getPokemon(prevRow, prevCol).selectFalse();
+        test.getPokemon(prevRow, prevCol).setSelect(false);
       }
       else if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) {
         test.getPokemon(row, col).toggleSelect();
