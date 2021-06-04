@@ -56,6 +56,9 @@ Jason: Implemented a Pokemon display function for party setup (board took a perf
 
 Austin: Added another Pokemon class constructor to add both types and the Pokemon's name when being initialized in generator during the party picker screen.
 
+### June 3:
+Jason: Fixed issues around more individual pokemon in party picker screen and displaying on the board. Also modified the buttons to be larger and more colorful.
+
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
 **May 24:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
