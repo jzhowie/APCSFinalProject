@@ -156,6 +156,12 @@ void display() {
 
           }
           
+          if (i == 0) board[i][j].frozen();
+          if (board[i][j].isFrozen()) {
+            fill(157, 154, 242, 215);
+            rect(0+96*j, 448+96*i, 96, 96);
+          }
+          
         }
       }
     }

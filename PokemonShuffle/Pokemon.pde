@@ -40,9 +40,12 @@ public class Pokemon{
   
   public boolean isSelected() { return selected; }
   public void toggleSelect() { selected = !selected; }
+  public void selectFalse() { selected = false; }
   
   public boolean isFrozen() { return frozen; }
   public void toggleFrozen() { frozen = !frozen; }
+  
+  public void frozen() { frozen = true; }
   
   private void setType() {
     if (name.equals("Charmander")) { type = "Fire"; pNum = 0; }

@@ -131,6 +131,10 @@ void mousePressed() {
       col = mouseX / 96;
       //println(row + ", " + col);
       test.getPokemon(row, col).toggleSelect();
+      
+      if (test.getPokemon(row, col).isFrozen()) {
+        test.getPokemon(row, col).selectFalse();
+      }
     }
   }
 }
@@ -190,11 +194,14 @@ void mouseReleased() {
     else {
       int prevRow = row;
       int prevCol = col;
-      if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) {
+      if (test.getPokemon(prevRow, prevCol).isFrozen()) {
+        test.getPokemon(prevRow, prevCol).selectFalse();
+      }
+      else if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) {
         test.getPokemon(row, col).toggleSelect();
         try {
           test.swap(prevRow, prevCol, (mouseY - 448) / 96, mouseX / 96);
-          if (!test.check3Combo()) {
+          if (!test.check3Combo() || test.getPokemon(prevRow, prevCol).isFrozen() || test.getPokemon((mouseY - 448) / 96, mouseX / 96).isFrozen()) {
             test.swap((mouseY - 448) / 96, mouseX / 96, prevRow, prevCol);
           }
           else {
