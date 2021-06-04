@@ -36,7 +36,7 @@ public class Boss{
     text("HP", width/2 - 130, height/5 + 127);
     textSize(15);
     textAlign(CENTER, CENTER);
-    text(getType(), width/2 , height/5 - 127);
+    text(getName()+"\n "+getType()+" Type", width/2 , height/5 - 127);
   }
   
   private String getName(){

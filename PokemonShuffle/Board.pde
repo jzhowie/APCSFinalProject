@@ -193,9 +193,11 @@ void display() {
   if (mode == 1) {
     if ((limit - millis()) / 1000 % 60 / 10 == 0) {
       text("Score: " + getCurrentScore() + "\nTime: " + (limit - millis()) / 1000 / 60 + ":0" + (limit - millis()) / 1000 % 60, 0+4, 20+4);
+      giant.display(getCurrentScore());
     }
     else {
       text("Score: " + getCurrentScore() + "\nTime: " + (limit - millis()) / 1000 / 60 + ":" + (limit - millis()) / 1000 % 60, 0+4, 20+4);
+      giant.display(getCurrentScore());
     }
     giant.display();
   }
