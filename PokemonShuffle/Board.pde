@@ -41,11 +41,10 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
 }
 
 void setParty(ArrayList<Pokemon> newParty){
-  
-  for (int i=0;i<4;i++){
-    newParty.get(i).setPNum(i);
-  }
   party=newParty;
+  for (int i=0;i<4;i++){
+    party.get(i).setPNum(i);
+  }
 }
 
 void generateBoard() {
@@ -169,11 +168,7 @@ void display() {
 
       image(p1,mouseX, mouseY);
     }
-<<<<<<< HEAD
-    if (board[selectedRow][selectedCol].getPNum() ==  party.get(1).getPNum()) {
-=======
     if (board[selectedRow][selectedCol].getPNum() == party.get(1).getPNum()) {
->>>>>>> 8935208f52a99160171521389e208abebd234076
 
        image(p2,mouseX, mouseY);
     }
