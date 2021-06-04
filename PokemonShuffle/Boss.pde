@@ -87,12 +87,20 @@ public class Boss{
   }
   
   public void display() {
+    noStroke();
     String imgName=getName()+".png";
     PImage boss = loadImage(imgName);
     image(boss, width/2, height/5);
     //shapeMode(CORNER);
     //fill(#F5FC24);
     //rect(width/2 - 75, height/5 - 75, 150, 150);
+  }
+  
+  public void modifyBoard(Pokemon[][] t) {
+      for (int i = 0; i < t.length; i++) {
+        t[i][t.length-1-i].setFrozen(true);
+        t[i][i].setFrozen(true);
+      }
   }
     
 }
