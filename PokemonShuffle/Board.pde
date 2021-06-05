@@ -119,6 +119,8 @@ void display() {
   PImage p2 = party.get(1).getPImage(80);
   PImage p3 = party.get(2).getPImage(80);
   PImage p4 = party.get(3).getPImage(80);
+  PImage rock = loadImage("Rock.png");
+  rock.resize(80, 80);
   
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
@@ -140,6 +142,10 @@ void display() {
         else {
           fill(#897575);
           rect(0+96*j, 448+96*i, 96, 96);
+          if (board[i][j].getPNum() == -2) {
+            image(rock,48+96*j,496+96*i);
+          }
+          
           if (board[i][j].getPNum() == party.get(0).getPNum()){ 
             
             image(p1,48+96*j,496+96*i);
@@ -162,8 +168,11 @@ void display() {
           }
           
           if (board[i][j].isFrozen()) {
+            stroke(#456AEA);
+            strokeWeight(3);
             fill(157, 154, 242, 215);
-            rect(0+96*j, 448+96*i, 96, 96);
+            rect(0+96*j, 448+96*i, 93, 93);
+            noStroke();
           }
           
         }
