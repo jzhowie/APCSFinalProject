@@ -57,6 +57,11 @@ public class Pokemon{
     if (name.equals("Sandshrew")) { type = "Ground"; pNum = 7; }
   }
   
+  public void setRock() {
+    pNum = -2;
+    name = "Rock";
+  }
+  
   public PImage getPImage(int s){
     PImage pic=loadImage(getPokemonName()+".png");
     pic.resize(s, s);
