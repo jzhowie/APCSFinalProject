@@ -61,6 +61,9 @@ Jason: Fixed issues around more individual pokemon in party picker screen and di
 
 Austin: Added multiple images in data that will be displayed as the boss. The image is displayed based off the type it is generated with.
 
+### June 4:
+Jason: Started working on boss manipulation of the board, freezing Pokemon so they can't be moved and must be part of a combo to remove the frozen block.
+
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
 **May 24:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
