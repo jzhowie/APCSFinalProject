@@ -98,8 +98,10 @@ public class Boss{
   
   public void modifyBoard(Pokemon[][] t) {
       for (int i = 0; i < t.length; i++) {
-        t[i][t.length-1-i].setFrozen(true);
-        t[i][i].setFrozen(true);
+        //t[i][t.length-1-i].setFrozen(true);
+        //t[i][i].setFrozen(true);
+        
+        t[i][0].setRock();
       }
   }
     
