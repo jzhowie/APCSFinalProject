@@ -4,11 +4,13 @@ public class Pokemon{
   private String type;
   private boolean selected;
   private boolean frozen;
+  private boolean rock;
   private String name;
   
   Pokemon(String element, int temporary){
     selected=false;
     frozen = false;
+    rock = false;
     pNum=temporary;
     type=element;
   }
@@ -16,6 +18,7 @@ public class Pokemon{
   Pokemon(String n) {
     selected = false;
     frozen = false;
+    rock = false;
     name = n;
     pNum = 0;
     setType();
@@ -24,6 +27,7 @@ public class Pokemon{
   Pokemon(String n, String t) {
     selected = false;
     frozen = false;
+    rock = false;
     name = n;
     type=t;
     pNum = 0;
@@ -46,6 +50,8 @@ public class Pokemon{
   public void toggleFrozen() { frozen = !frozen; }
   public void setFrozen(boolean f) { frozen = f; }
   
+  public boolean isRock() { return rock; }
+  
   private void setType() {
     if (name.equals("Charmander")) { type = "Fire"; pNum = 0; }
     if (name.equals("Bulbasaur")) { type = "Grass"; pNum = 1; }
@@ -60,6 +66,7 @@ public class Pokemon{
   public void setRock() {
     pNum = -2;
     name = "Rock";
+    rock = true;
   }
   
   public PImage getPImage(int s){
