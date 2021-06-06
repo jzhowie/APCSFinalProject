@@ -67,6 +67,8 @@ Jason: Started working on boss manipulation of the board, freezing Pokemon so th
 ### June 5:
 Jason: Started working on rock disruptor, implemented not being able to swap with a rock, need to figure out how to keep it from being removed.
 
+Austin: Started on the level select screen, started implementing clickable levels in the screen.
+
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
 **May 24:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
