@@ -135,8 +135,20 @@ void draw() {
     text("Confirm", width/2, height * (0.85));
   }
   else if (levelSelect){
-    PImage level=loadImage("Level.jpg");
-    image(level,576,1024);
+    shapeMode(CORNER);
+    background(255);
+    fill(0);
+    noStroke();
+    textSize(25); //n needs tweaking
+    textAlign(CENTER, CENTER);
+
+    imageMode(CENTER);
+    PImage title = loadImage("TitleScreen.png");
+    title.resize(title.width/2, title.height/2);
+    image(title, width/2, (int)(height/12));
+    textSize(50);
+    textAlign(CENTER, CENTER);
+    text("Levels:", 576/2,225);
   }
   else {
     test.display();
@@ -197,6 +209,10 @@ void mouseReleased() {
         }
       }
     }
+  
+    
+  }
+  else if (levelSelect){
     
   }
   else {
