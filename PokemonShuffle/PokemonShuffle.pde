@@ -9,6 +9,7 @@ boolean partySelect;
 boolean levelSelect;
 ArrayList<Pokemon> generator;
 ArrayList<Pokemon> party;
+ArrayList<Pokemon> levels;
 ArrayList<String> types;
 
 void setup() {
@@ -17,10 +18,17 @@ void setup() {
   stage = 1;
   types = new ArrayList<String>(Arrays.asList(new String[] {"Fire","Grass","Dragon","Water","Normal","Flying","Electric","Ground"}));
   String[] pokemon = {"Charmander", "Bulbasaur", "Dratini", "Squirtle","Raticate","Pidgeotto","Pikachu","Sandshrew"};
+  String[] bosses = {"Butterfree"};
+  String[] bossTypes={"Bug"};
   generator = new ArrayList<Pokemon>();
   party = new ArrayList<Pokemon>();
+  levels = new ArrayList<Pokemon>();
   for (int i = 0; i < 8; i++) {
     generator.add(new Pokemon(pokemon[i],types.get(i)));
+
+  }
+  for (int i=0;i<bosses.length;i++){
+      levels.add(new Pokemon(bosses[i],bossTypes[i])); //TEMP FOR LEVELS
   }
 }
 
@@ -135,6 +143,7 @@ void draw() {
     text("Confirm", width/2, height * (0.85));
   }
   else if (levelSelect){
+
     shapeMode(CORNER);
     background(255);
     fill(0);
@@ -149,6 +158,9 @@ void draw() {
     textSize(50);
     textAlign(CENTER, CENTER);
     text("Levels:", 576/2,225);
+    for (int i = 0; i < levels.size(); i++) {
+      levels.get(i).display(width/2 - 150 + 100 * i, height/3, 100);      
+    }
   }
   else {
     test.display();
