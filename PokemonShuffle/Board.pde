@@ -273,7 +273,7 @@ void comboCheck() {
       int row = i;
       int col = j;
       
-      while (col < board.length - 1 && p == board[row][col+1].getPNum()) {
+      while (col < board.length - 1 && p == board[row][col+1].getPNum() && !board[row][col].isRock()) {
         len++;
         col++;
       }
@@ -296,7 +296,7 @@ void comboCheck() {
       int col = i;
       int row = j;
       
-      while (row < board.length - 1 && p == board[row+1][col].getPNum()) {
+      while (row < board.length - 1 && p == board[row+1][col].getPNum() && !board[row][col].isRock()) {
         len++;
         row++;
       }
