@@ -310,6 +310,18 @@ void comboCheck() {
   }
 }
 
+ArrayList<ArrayList<Integer>> rockCheck() {
+  ArrayList<ArrayList<Integer>> rock = new ArrayList<ArrayList<Integer>>();
+  for (int i = 0; i < board.length; i++) {
+    for (int j = 0; j < board[0].length; j++) {
+      if (board[i][j].isRock()) {
+        rock.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, j})));
+      }
+    }
+  }
+  return rock;
+}
+
 //Clear combos from bottom to top
 void clearCombo() {
  for (int i = 0; i < board.length; i++) {
@@ -333,34 +345,44 @@ void scoreCalc() throws InterruptedException {
   //score calculation
   decrementMoves();
   while (check3Combo()) {
-  comboCheck();
-  
-  int baseScore = 50; // potential to add bonus for extra combos
-  while(rows.size() > 0) {
-    ArrayList<Integer> temp = rows.remove(rows.size() - 1);
-    int len = 0;
-    float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
-    addScore((int)(baseScore * temp.get(2) * multiplier));
-    while (len < temp.get(2)) {
-      board[temp.get(0)][temp.get(1) + len].setPNum(-1);
-      len++;
-    }
-    }
-  
-  while(cols.size() > 0) {
-    ArrayList<Integer> temp = cols.remove(cols.size() - 1);
-    int len = 0;
-    float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
-    addScore((int)(baseScore * temp.get(2) * multiplier));
-    while (len < temp.get(2)) {
-      board[temp.get(0) + len][temp.get(1)].setPNum(-1);
-      len++;
-    }
+    comboCheck();
+    ArrayList<ArrayList<Integer>> rockList = rockCheck();
+    
+    int baseScore = 50; // potential to add bonus for extra combos
+    while(rows.size() > 0) {
+      ArrayList<Integer> temp = rows.remove(rows.size() - 1);
+      int len = 0;
+      float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
+      addScore((int)(baseScore * temp.get(2) * multiplier));
+      while (len < temp.get(2)) {
+        board[temp.get(0)][temp.get(1) + len].setPNum(-1);
+        len++;
+      }
     }
     
-    // Tweaks:
-    // Have board display after removing combos, dropping new ones, removing, repeat
-    clearCombo();
+    while(cols.size() > 0) {
+      ArrayList<Integer> temp = cols.remove(cols.size() - 1);
+      int len = 0;
+      float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
+      addScore((int)(baseScore * temp.get(2) * multiplier));
+      while (len < temp.get(2)) {
+        board[temp.get(0) + len][temp.get(1)].setPNum(-1);
+        len++;
+      }
+    }
+      
+    // Removing rocks if they are adjacent to a combo  
+    for (int i = 0; i < rockList.size(); i++) {
+      int r = rockList.get(i).get(0);
+      int c = rockList.get(i).get(1);
+      
+      if ((r > 0 && board[r-1][c].getPNum() == -1) || (r < board.length - 1 && board[r+1][c].getPNum() == -1) || (c > 0 && board[r][c-1].getPNum() == -1) || (c < board.length - 1 && board[r][c+1].getPNum() == -1)) {
+        board[r][c].setPNum(-1);
+      }
+    }
+      // Tweaks:
+      // Have board display after removing combos, dropping new ones, removing, repeat
+      clearCombo();
   }
   }
 
