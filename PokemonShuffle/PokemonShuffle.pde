@@ -6,6 +6,7 @@ int mode;
 boolean start;
 boolean modeSelect;
 boolean partySelect;
+boolean levelSelect;
 ArrayList<Pokemon> generator;
 ArrayList<Pokemon> party;
 ArrayList<String> types;
@@ -61,6 +62,12 @@ void draw() {
     fill(0);
     textSize(35);
     text("Time Trial", width/2, height * 0.55);
+    fill(#4E93EA);
+    
+    rect(width/2 - 200, height * 0.70 - 40, 400, 80);
+    fill(0);
+    textSize(35);
+    text("Level Select", width/2, height * 0.7);
     
     textSize(25);
     if (mouseY >= height * 0.4 - 40 && mouseY < height * 0.4 + 40 && mouseX > width/2 - 200 && mouseX < width/2 + 200) {
@@ -79,6 +86,15 @@ void draw() {
       text("Short on time?", width/2, height * 0.8);
       textSize(15);
       text("Unlimited moves. \nLimited time. Get score. (WIP)", width/2, height * 0.85);
+    }
+    
+    if (mouseY >= height * 0.7 - 40 && mouseY < height * 0.7 + 40 && mouseX > width/2 - 200 && mouseX < width/2 + 200) {
+      PImage msgBox = loadImage("messageBox.png");
+      msgBox.resize((int) (msgBox.width * 0.6), (int) (msgBox.height * 0.6));
+      image(msgBox, width/2, height * 0.82);
+      text("Progressive playthrough!", width/2, height * 0.8);
+      textSize(15);
+      text("Beat Pokemon that continuously get stronger. \nLimited time. Battle a boss at the end of a world. (WIP)", width/2, height * 0.85);
     }
     
   }
@@ -118,6 +134,10 @@ void draw() {
     fill(0);
     text("Confirm", width/2, height * (0.85));
   }
+  else if (levelSelect){
+    PImage level=loadImage("Level.jpg");
+    image(level,576,1024);
+  }
   else {
     test.display();
   }
@@ -125,7 +145,7 @@ void draw() {
 
 // orb moving during board
 void mousePressed() {
-  if (!start && !modeSelect && !partySelect) {
+  if (!start && !modeSelect && !partySelect && !levelSelect) {
     if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) { // and if game started
       row = (mouseY - 448) / 96;
       col = mouseX / 96;
@@ -154,6 +174,12 @@ void mouseReleased() {
       partySelect = true;
       modeSelect = false;
       mode = 1;
+    }
+    if (mouseY >= height * 0.7 - 40 && mouseY < height * 0.7 + 40 && mouseX > width/2 - 200 && mouseX < width/2 + 200){
+      partySelect = false;
+      modeSelect = false;
+      levelSelect = true;
+      mode = 2;
     }
   }
   else if (partySelect) {
