@@ -81,28 +81,28 @@ void draw() {
     if (mouseY >= height * 0.4 - 40 && mouseY < height * 0.4 + 40 && mouseX > width/2 - 200 && mouseX < width/2 + 200) {
       PImage msgBox = loadImage("messageBox.png");
       msgBox.resize((int) (msgBox.width * 0.6), (int) (msgBox.height * 0.6));
-      image(msgBox, width/2, height * 0.82);
-      text("Play until you lose.", width/2, height * 0.8);
+      image(msgBox, width/2, height * 0.9);
+      text("Play until you lose.", width/2, height * 0.88);
       textSize(15);
-      text("Bosses get progressively harder. \nOption to change party every 5 levels", width/2, height * 0.85);
+      text("Bosses get progressively harder. \nOption to change party every 5 levels", width/2, height * 0.93);
     }
     
     if (mouseY >= height * 0.55 - 40 && mouseY < height * 0.55 + 40 && mouseX > width/2 - 200 && mouseX < width/2 + 200) {
       PImage msgBox = loadImage("messageBox.png");
       msgBox.resize((int) (msgBox.width * 0.6), (int) (msgBox.height * 0.6));
-      image(msgBox, width/2, height * 0.82);
-      text("Short on time?", width/2, height * 0.8);
+      image(msgBox, width/2, height * 0.9);
+      text("Short on time?", width/2, height * 0.88);
       textSize(15);
-      text("Unlimited moves. \nLimited time. Get score. (WIP)", width/2, height * 0.85);
+      text("Unlimited moves. \nLimited time. Get score. (WIP)", width/2, height * 0.93);
     }
     
     if (mouseY >= height * 0.7 - 40 && mouseY < height * 0.7 + 40 && mouseX > width/2 - 200 && mouseX < width/2 + 200) {
       PImage msgBox = loadImage("messageBox.png");
       msgBox.resize((int) (msgBox.width * 0.6), (int) (msgBox.height * 0.6));
-      image(msgBox, width/2, height * 0.82);
-      text("Progressive playthrough!", width/2, height * 0.8);
+      image(msgBox, width/2, height * 0.9);
+      text("Progressive playthrough!", width/2, height * 0.88);
       textSize(15);
-      text("Beat Pokemon that continuously get stronger. \nLimited time. Battle a boss at the end of a world. (WIP)", width/2, height * 0.85);
+      text("Beat Pokemon that continuously get stronger. \nLimited time. Battle a boss at the end of a world. (WIP)", width/2, height * 0.93);
     }
     
   }
