@@ -18,8 +18,8 @@ void setup() {
   stage = 1;
   types = new ArrayList<String>(Arrays.asList(new String[] {"Fire","Grass","Dragon","Water","Normal","Flying","Electric","Ground"}));
   String[] pokemon = {"Charmander", "Bulbasaur", "Dratini", "Squirtle","Raticate","Pidgeotto","Pikachu","Sandshrew"};
-  String[] bosses = {"Butterfree"};
-  String[] bossTypes={"Bug"};
+  String[] bosses = {"Butterfree","Charmander", "Bulbasaur", "Dratini"};
+  String[] bossTypes={"Bug","Fire","Grass","Dragon"};
   generator = new ArrayList<Pokemon>();
   party = new ArrayList<Pokemon>();
   levels = new ArrayList<Pokemon>();
@@ -160,6 +160,16 @@ void draw() {
     text("Levels:", 576/2,225);
     for (int i = 0; i < levels.size(); i++) {
       levels.get(i).display(width/2 - 150 + 100 * i, height/3, 100);      
+    }
+    if (mouseY > height/3 && mouseY < height/3 + 100 && mouseX > 0 && mouseX < width ){
+      col = mouseX/144;
+      row=(mouseY - height/3) /100;
+      String type = levels.get(col).getType();
+      String name = levels.get(col).getPokemonName();
+      textSize(25);
+      fill(0);
+      textAlign(CENTER, CENTER);
+      text("Level "+col+": "+name, 576/2,425);
     }
   }
   else {
