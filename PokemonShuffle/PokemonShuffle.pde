@@ -159,7 +159,7 @@ void draw() {
     textAlign(CENTER, CENTER);
     text("Levels:", 576/2,225);
     for (int i = 0; i < levels.size(); i++) {
-      levels.get(i).display(width/2 - 150 + 100 * i, height/3, 100);      
+      levels.get(i).display(72+144* (i % 4) , height/3, 144);      
     }
     if (mouseY > height/3 && mouseY < height/3 + 100 && mouseX > 0 && mouseX < width ){
       col = mouseX/144;
@@ -169,7 +169,7 @@ void draw() {
       textSize(25);
       fill(0);
       textAlign(CENTER, CENTER);
-      text("Level "+col+": "+name, 576/2,425);
+      text("Level "+(col+1)+": "+name, 576/2,425);
     }
   }
   else {
