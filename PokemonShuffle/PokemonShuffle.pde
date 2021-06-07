@@ -161,7 +161,7 @@ void draw() {
     for (int i = 0; i < levels.size(); i++) {
       levels.get(i).display(72+144* (i % 4) , height/3, 144);      
     }
-    if (mouseY > height/3 && mouseY < height/3 + 100 && mouseX > 0 && mouseX < width ){
+    if (mouseY > height/3-100 && mouseY < height/3 + 100 && mouseX > 0 && mouseX < width ){
       col = mouseX/144;
       row=(mouseY - height/3) /100;
       String type = levels.get(col).getType();
