@@ -69,6 +69,13 @@ Jason: Started working on rock disruptor, implemented not being able to swap wit
 
 Austin: Started on the level select screen, started implementing clickable levels in the screen.
 
+### June 6:
+Jason: Finished implementation of rock disruptor, rock is only able to be removed when it is adjacent to a combo.
+
+Austin:
+
+### June 7:
+
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
 **May 24:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
