@@ -201,7 +201,7 @@ void display() {
   textSize(20);
   textAlign(BASELINE, BASELINE);
   
-  if (mode == 0) {
+  if (mode == 0 || mode == 2) {
     text("Score: " + getCurrentScore() + "\nMoves: " + getMovesLeft() + "\nStage: " + getStage(), 0+4, 20+4);
     giant.display(getCurrentScore());
   }

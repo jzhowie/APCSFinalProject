@@ -245,7 +245,6 @@ void mouseReleased() {
     if (mouseY > height/3-100 && mouseY < height/3 + 100 && mouseX > 0 && mouseX < width ){
       col = mouseX/144;
       row=(mouseY - height/3) /100;
-      mode=3;
       partySelect=true;
       String type=levels.get(col).getType();
       boardSetup(levels.get(col).getType());
