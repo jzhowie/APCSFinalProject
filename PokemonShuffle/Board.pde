@@ -302,6 +302,17 @@ ArrayList<ArrayList<Integer>> rockCheck() {
   return rock;
 }
 
+void blockCheck() {
+  for (int i = 0; i < board.length; i++) {
+    for (int j = 0; j < board[0].length; j++) {
+      if (board[i][j].isBlock()) {
+        board[i][j].decrementBlockTurns();
+        if (board[i][j].getBlockTurns() <= 0) board[i][j].setPNum(-1);
+      }
+    }
+  }
+}
+
 //Clear combos from bottom to top
 void clearCombo() {
  for (int i = 0; i < board.length; i++) {
@@ -364,6 +375,7 @@ void scoreCalc() throws InterruptedException {
       // Have board display after removing combos, dropping new ones, removing, repeat
       clearCombo();
   }
+  blockCheck();
   }
 
 boolean check3Combo(){
