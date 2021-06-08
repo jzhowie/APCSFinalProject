@@ -5,12 +5,15 @@ public class Pokemon{
   private boolean selected;
   private boolean frozen;
   private boolean rock;
+  private boolean block;
+  private int blockTurns;
   private String name;
   
   Pokemon(String element, int temporary){
     selected=false;
     frozen = false;
     rock = false;
+    block = false;
     pNum=temporary;
     type=element;
   }
@@ -19,6 +22,7 @@ public class Pokemon{
     selected = false;
     frozen = false;
     rock = false;
+    block = false;
     name = n;
     pNum = 0;
     setType();
@@ -28,6 +32,7 @@ public class Pokemon{
     selected = false;
     frozen = false;
     rock = false;
+    block = false;
     name = n;
     type=t;
     pNum = 0;
@@ -52,6 +57,9 @@ public class Pokemon{
   
   public boolean isRock() { return rock; }
   
+  public boolean isBlock() { return block; }
+  public void decrementBlockTurns() { blockTurns--; }
+  
   private void setType() {
     if (name.equals("Charmander")) { type = "Fire"; pNum = 0; }
     if (name.equals("Bulbasaur")) { type = "Grass"; pNum = 1; }
@@ -67,6 +75,13 @@ public class Pokemon{
     pNum = -2;
     name = "Rock";
     rock = true;
+  }
+  
+  public void setBlock() {
+    pNum = -3;
+    name = "Block";
+    block = true;
+    blockTurns = 5;
   }
   
   public PImage getPImage(int s){
