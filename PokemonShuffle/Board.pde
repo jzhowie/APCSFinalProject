@@ -146,7 +146,12 @@ void display() {
           fill(#897575);
           rect(0+96*j, 448+96*i, 96, 96);
           
-          if (board[i][j].getPNum() == -3) image(block,48+96*j,496+96*i);
+          if (board[i][j].getPNum() == -3) {
+            fill(255);
+            image(block,48+96*j,496+96*i);
+            textAlign(CENTER, CENTER);
+            text(board[i][j].getBlockTurns(), 48+96*j,496+96*i);
+          }
           if (board[i][j].getPNum() == -2) image(rock,48+96*j,496+96*i);
           
           if (board[i][j].getPNum() == party.get(0).getPNum()) image(p1,48+96*j,496+96*i);
