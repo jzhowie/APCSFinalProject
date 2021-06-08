@@ -98,11 +98,17 @@ public class Boss{
   
   public void modifyBoard(Pokemon[][] t) {
       for (int i = 0; i < t.length; i++) {
-        //t[i][t.length-1-i].setFrozen(true);
-        //t[i][i].setFrozen(true);
-        
-        //t[i][0].setRock();
-        t[i][0].setBlock();
+        if (getType().equals("Water") || getType().equals("Dragon") || getType().equals("Ice") || getType().equals("Poison"))  {
+          t[i][t.length-1-i].setFrozen(true);
+          t[i][i].setFrozen(true);
+        }
+        if (getType().equals("Flying") || getType().equals("Electric") || getType().equals("Normal") || getType().equals("Grass") || getType().equals("Bug") || getType().equals("Rock")) {
+          t[i][0].setRock();
+        }
+        if (getType().equals("Fighting") || getType().equals("Psychic") || getType().equals("Steel") || getType().equals("Ground") || getType().equals("Fire")) {
+          t[0][i].setBlock();
+          t[i][i].setBlock();
+        }
       }
   }
     
