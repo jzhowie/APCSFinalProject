@@ -120,7 +120,10 @@ void display() {
   PImage p3 = party.get(2).getPImage(80);
   PImage p4 = party.get(3).getPImage(80);
   PImage rock = loadImage("Rock.png");
+  PImage block = loadImage("Block.png");
+  
   rock.resize(80, 80);
+  block.resize(80, 80);
   
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
@@ -142,30 +145,14 @@ void display() {
         else {
           fill(#897575);
           rect(0+96*j, 448+96*i, 96, 96);
-          if (board[i][j].getPNum() == -2) {
-            image(rock,48+96*j,496+96*i);
-          }
           
-          if (board[i][j].getPNum() == party.get(0).getPNum()){ 
-            
-            image(p1,48+96*j,496+96*i);
-
-          }
-          if (board[i][j].getPNum() == party.get(1).getPNum()) {
-            
-            image(p2,48+96*j,496+96*i);
-
-          }
-          if (board[i][j].getPNum() == party.get(2).getPNum()) {
-            
-            image(p3,48+96*j,496+96*i);
-
-          }
-          if (board[i][j].getPNum() == party.get(3).getPNum()) {
-            
-            image(p4,48+96*j,496+96*i);
-
-          }
+          if (board[i][j].getPNum() == -3) image(block,48+96*j,496+96*i);
+          if (board[i][j].getPNum() == -2) image(rock,48+96*j,496+96*i);
+          
+          if (board[i][j].getPNum() == party.get(0).getPNum()) image(p1,48+96*j,496+96*i);
+          if (board[i][j].getPNum() == party.get(1).getPNum()) image(p2,48+96*j,496+96*i);
+          if (board[i][j].getPNum() == party.get(2).getPNum()) image(p3,48+96*j,496+96*i);
+          if (board[i][j].getPNum() == party.get(3).getPNum()) image(p4,48+96*j,496+96*i);
           
           if (board[i][j].isFrozen()) {
             stroke(#456AEA);
@@ -181,24 +168,11 @@ void display() {
   }
   
   if (selected) {
-    
     if (board[selectedRow][selectedCol].getPNum() == -1) fill(#FFFFFF);
-    if (board[selectedRow][selectedCol].getPNum() == party.get(0).getPNum()) {
-
-      image(p1,mouseX, mouseY);
-    }
-    if (board[selectedRow][selectedCol].getPNum() == party.get(1).getPNum()) {
-
-       image(p2,mouseX, mouseY);
-    }
-    if (board[selectedRow][selectedCol].getPNum() == party.get(2).getPNum()) {
-
-      image(p3,mouseX, mouseY);
-    }
-    if (board[selectedRow][selectedCol].getPNum() == party.get(3).getPNum()) {
-
-      image(p4,mouseX, mouseY);
-    }
+    if (board[selectedRow][selectedCol].getPNum() == party.get(0).getPNum()) image(p1,mouseX, mouseY);
+    if (board[selectedRow][selectedCol].getPNum() == party.get(1).getPNum()) image(p2,mouseX, mouseY);
+    if (board[selectedRow][selectedCol].getPNum() == party.get(2).getPNum()) image(p3,mouseX, mouseY);
+    if (board[selectedRow][selectedCol].getPNum() == party.get(3).getPNum()) image(p4,mouseX, mouseY);
   }
   
   
