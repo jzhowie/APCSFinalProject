@@ -40,6 +40,7 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
   }
 }
 
+
 void setParty(ArrayList<Pokemon> newParty){
   party=newParty;
   for (int i=0;i<4;i++){
@@ -240,6 +241,9 @@ void display() {
   
 }
 
+void setBoss(Boss newBoss){
+  this.giant=newBoss;
+}
 
 // PRINTLN IN HERE FOR DEBUGGING
 void comboCheck() {
