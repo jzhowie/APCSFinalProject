@@ -59,7 +59,7 @@ public class Boss{
       return "Geodude";
     }
     if (type.equals("Bug")){
-      return "Caterpie";
+      return "Butterfree";
     }
     if (type.equals("Fire")){
       return "Moltres";
