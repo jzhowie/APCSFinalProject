@@ -72,12 +72,12 @@ Austin: Started on the level select screen, started implementing clickable level
 ### June 6:
 Jason: Finished implementation of rock disruptor, rock is only able to be removed when it is adjacent to a combo.
 
-Austin:
+Austin: 
 
 ### June 7:
 Jason: Added implementation of block disruptor, which is similar to rock but it only goes away after you make a certain amount of moves.
 
-Austin: 
+Austin: Tried implementing the actual level selection with mouseClicked, but there are issues with what happens after the mouse is clicked.
 
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
