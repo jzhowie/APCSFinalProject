@@ -65,13 +65,12 @@ void draw() {
     text("Endless", width/2, height * 0.4);
     
     fill(#4E93EA);
-    
     rect(width/2 - 200, height * 0.55 - 40, 400, 80);
     fill(0);
     textSize(35);
     text("Time Trial", width/2, height * 0.55);
-    fill(#4E93EA);
     
+    fill(#DB9237);
     rect(width/2 - 200, height * 0.70 - 40, 400, 80);
     fill(0);
     textSize(35);
@@ -186,7 +185,7 @@ void mousePressed() {
       //println(row + ", " + col);
       test.getPokemon(row, col).toggleSelect();
       
-      if (test.getPokemon(row, col).isFrozen() || test.getPokemon(row, col).isRock()) {
+      if (test.getPokemon(row, col).isFrozen() || test.getPokemon(row, col).isRock() || test.getPokemon(row, col).isBlock()) {
         test.getPokemon(row, col).setSelect(false);
       }
     }
@@ -244,7 +243,7 @@ void mouseReleased() {
           partySelect = true;
         }
         stage++;
-        test=new Board(6, stage, party, mode);
+        test=new Board(99, stage, party, mode);
         //just for testing, actual game over should probably send to start menu
       }
     }
@@ -258,14 +257,14 @@ void mouseReleased() {
     else {
       int prevRow = row;
       int prevCol = col;
-      if (test.getPokemon(prevRow, prevCol).isFrozen() || test.getPokemon(prevRow, prevCol).isRock()) {
+      if (test.getPokemon(prevRow, prevCol).isFrozen() || test.getPokemon(prevRow, prevCol).isRock() || test.getPokemon(prevRow, prevCol).isBlock()) {
         test.getPokemon(prevRow, prevCol).setSelect(false);
       }
       else if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) {
         test.getPokemon(row, col).toggleSelect();
         try {
           test.swap(prevRow, prevCol, (mouseY - 448) / 96, mouseX / 96);
-          if (!test.check3Combo() || test.getPokemon(prevRow, prevCol).isFrozen() || test.getPokemon((mouseY - 448) / 96, mouseX / 96).isFrozen() || test.getPokemon(prevRow, prevCol).isRock() || test.getPokemon((mouseY - 448) / 96, mouseX / 96).isRock()) {
+          if (!test.check3Combo() || test.getPokemon(prevRow, prevCol).isFrozen() || test.getPokemon((mouseY - 448) / 96, mouseX / 96).isFrozen() || test.getPokemon(prevRow, prevCol).isRock() || test.getPokemon((mouseY - 448) / 96, mouseX / 96).isRock() || test.getPokemon(prevRow, prevCol).isBlock() || test.getPokemon((mouseY - 448) / 96, mouseX / 96).isBlock()) {
             test.swap((mouseY - 448) / 96, mouseX / 96, prevRow, prevCol);
           }
           else {
