@@ -93,7 +93,6 @@ Pokemon getPokemon(int row, int col) { return board[row][col]; }
 void addScore(int s) { currentScore += s; }
 void decrementMoves() { movesLeft--; }
 
-
 void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
   Thread.sleep(100);
   Pokemon temp = board[r1][c1];
@@ -241,8 +240,9 @@ void display() {
   
 }
 
-void setBoss(Boss newBoss){
-  this.giant=newBoss;
+void setBoss(){
+  this.giant.setType("Bug");
+
 }
 
 // PRINTLN IN HERE FOR DEBUGGING
