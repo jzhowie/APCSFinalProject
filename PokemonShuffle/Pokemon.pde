@@ -58,6 +58,7 @@ public class Pokemon{
   public boolean isRock() { return rock; }
   
   public boolean isBlock() { return block; }
+  public int getBlockTurns() { return blockTurns; }
   public void decrementBlockTurns() { blockTurns--; }
   
   private void setType() {
