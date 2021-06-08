@@ -103,7 +103,7 @@ void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
 //"updates" board everytime something happens
 void display() {
   
-  if (movesLeft % 5 == 0) {
+  if (movesLeft % 7 == 0) {
     giant.modifyBoard(board);
   }
   
@@ -335,6 +335,7 @@ private void shift(int row, int col) {
 void scoreCalc() throws InterruptedException {
   //score calculation
   decrementMoves();
+  blockCheck();
   while (check3Combo()) {
     comboCheck();
     ArrayList<ArrayList<Integer>> rockList = rockCheck();
@@ -375,7 +376,6 @@ void scoreCalc() throws InterruptedException {
       // Have board display after removing combos, dropping new ones, removing, repeat
       clearCombo();
   }
-  blockCheck();
   }
 
 boolean check3Combo(){
