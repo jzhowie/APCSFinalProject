@@ -242,7 +242,16 @@ void mouseReleased() {
     
   }
   else if (levelSelect){
-    
+    if (mouseY > height/3-100 && mouseY < height/3 + 100 && mouseX > 0 && mouseX < width ){
+      col = mouseX/144;
+      row=(mouseY - height/3) /100;
+      String name = levels.get(col).getPokemonName();
+      test.setBoss();
+      mode=3;
+      levelSelect=false;
+      partySelect=true;
+      test.display();
+    }
   }
   else {
     if (test.win) {
