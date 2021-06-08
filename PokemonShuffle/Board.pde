@@ -32,12 +32,28 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
   gamemode = mode;
   String bossType=allTypes[(int)(Math.random()*allTypes.length)];
   giant = new Boss(5000 + 250 * level,bossType);
-  
+ 
   generateBoard();
   if (mode == 1) {
      //limit = millis() + 121000;
      limit = millis() + 100000+25000*level;
   }
+  
+}
+
+Board(int moves, int lvl, ArrayList<Pokemon> p, int mode, String type) {
+  board = new Pokemon[6][6];
+  rows = new ArrayList<ArrayList<Integer>>();
+  cols = new ArrayList<ArrayList<Integer>>();
+  level = lvl;
+  party = p;
+  gameOver=false;
+  win=false;
+  currentScore = 0;
+  movesLeft = moves;
+  gamemode = mode;
+  giant = new Boss(5000 + 250 * level,type);
+  
 }
 
 
@@ -240,8 +256,8 @@ void display() {
   
 }
 
-void setBoss(){
-  this.giant.setType("Bug");
+void setBoss(Boss newBoss){
+  giant=newBoss;
 
 }
 
