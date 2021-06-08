@@ -7,6 +7,7 @@ boolean start;
 boolean modeSelect;
 boolean partySelect;
 boolean levelSelect;
+boolean tempLevel;
 ArrayList<Pokemon> generator;
 ArrayList<Pokemon> party;
 ArrayList<Pokemon> levels;
@@ -18,8 +19,8 @@ void setup() {
   stage = 1;
   types = new ArrayList<String>(Arrays.asList(new String[] {"Fire","Grass","Dragon","Water","Normal","Flying","Electric","Ground"}));
   String[] pokemon = {"Charmander", "Bulbasaur", "Dratini", "Squirtle","Raticate","Pidgeotto","Pikachu","Sandshrew"};
-  String[] bosses = {"Butterfree","Charmander", "Bulbasaur", "Dratini"};
-  String[] bossTypes={"Bug","Fire","Grass","Dragon"};
+  String[] bosses = {"Butterfree","Moltres", "Scyther", "Starmie"};
+  String[] bossTypes={"Bug","Fire","Grass","Water"};
   generator = new ArrayList<Pokemon>();
   party = new ArrayList<Pokemon>();
   levels = new ArrayList<Pokemon>();
@@ -215,6 +216,34 @@ void mouseReleased() {
       mode = 2;
     }
   }
+  else if (partySelect&&tempLevel) {
+    if (mouseY > height * 0.85 - 30 && mouseY < height * 0.85 + 30 && mouseX > (width/2) - 75 && mouseX < (width/2) + 75 && party.size() == 4) {
+      partySelect = false;
+      tempLevel=false;
+      test.generateBoard();
+      test.display(); // parameter for mode?
+    }
+    else if (mouseY > 448 && mouseY < 448 + 288 && mouseX > 0 && mouseX < width) {
+      if (party.size() < 4) {
+        col = mouseX / 144;
+        row=(mouseY - 448) /144;
+        col=col+row*4;
+        if (!containDupe(generator.get(col), party)) {
+          party.add(generator.get(col));
+        }
+      }
+    }
+    
+    else if (mouseY > height/3 - 50 && mouseY < height/3 + 50 && mouseX > width/2 - 200 && mouseX < width / 2 + 200) {
+        if (party.size() > 0) {
+          col = (mouseX - (width/2 - 200)) / 100;
+          if (col < party.size()) {
+            party.remove(col);
+          }
+        }
+      }
+    
+  }
   else if (partySelect) {
     if (mouseY > height * 0.85 - 30 && mouseY < height * 0.85 + 30 && mouseX > (width/2) - 75 && mouseX < (width/2) + 75 && party.size() == 4) {
       partySelect = false;
@@ -249,7 +278,7 @@ void mouseReleased() {
       String type=levels.get(col).getType();
       boardSetup(levels.get(col).getType());
       levelSelect=false;
-
+      tempLevel=true;
     }
   }
   else {
