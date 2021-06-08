@@ -247,7 +247,7 @@ void comboCheck() {
       int row = i;
       int col = j;
       
-      while (col < board.length - 1 && p == board[row][col+1].getPNum() && !board[row][col].isRock()) {
+      while (col < board.length - 1 && p == board[row][col+1].getPNum() && !board[row][col].isRock() && !board[row][col].isBlock()) {
         len++;
         col++;
       }
@@ -270,7 +270,7 @@ void comboCheck() {
       int col = i;
       int row = j;
       
-      while (row < board.length - 1 && p == board[row+1][col].getPNum() && !board[row][col].isRock()) {
+      while (row < board.length - 1 && p == board[row+1][col].getPNum() && !board[row][col].isRock() && !board[row][col].isBlock()) {
         len++;
         row++;
       }
@@ -363,7 +363,7 @@ void scoreCalc() throws InterruptedException {
 boolean check3Combo(){
   for (int i=0;i<6;i++){
      for (int y=0;y<4;y++){
-       if (!board[i][y].isRock() && board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()){
+       if (!board[i][y].isBlock() && !board[i][y].isRock() && board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()){
          //notes which elements are in a row
          return true;
        }
@@ -371,7 +371,7 @@ boolean check3Combo(){
   }
     for (int i=0;i<6;i++){
      for (int y=0;y<4;y++){
-       if (!board[y][i].isRock() && board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()){
+       if (!board[y][i].isBlock() && !board[y][i].isRock() && board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()){
            //notes which elements are in a row
            return true;
          }
