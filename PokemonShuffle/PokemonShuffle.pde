@@ -245,12 +245,12 @@ void mouseReleased() {
     if (mouseY > height/3-100 && mouseY < height/3 + 100 && mouseX > 0 && mouseX < width ){
       col = mouseX/144;
       row=(mouseY - height/3) /100;
-      String name = levels.get(col).getPokemonName();
-      test.setBoss();
       mode=3;
-      levelSelect=false;
       partySelect=true;
-      test.display();
+      String type=levels.get(col).getType();
+      boardSetup(levels.get(col).getType());
+      levelSelect=false;
+
     }
   }
   else {
@@ -297,6 +297,11 @@ void mouseReleased() {
 void boardSetup() {
   test = new Board(99, stage, party, mode); // set to 1 to test game over
   test.display();
+}
+
+void boardSetup(String bossType) {
+  test = new Board(99, stage, party, mode,bossType); // set to 1 to test game over
+  
 }
 
 boolean containDupe(Pokemon input, ArrayList<Pokemon> test) {
