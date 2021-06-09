@@ -8,6 +8,7 @@ public class Board {
   int gamemode;
   int limit;
   int combo;
+  int increase;
   boolean gameOver=false;
   boolean win=false;
   Boss giant;
@@ -108,6 +109,7 @@ int getCurrentScore() { return currentScore; }
 int getMovesLeft() { return movesLeft; }
 int getStage() { return level; }
 int getCombo() { return combo; }
+int getIncrease() { return increase; }
 Pokemon getPokemon(int row, int col) { return board[row][col]; }
 
 void addScore(int s) { currentScore += s; }
@@ -196,7 +198,9 @@ void display() {
   textAlign(BASELINE, BASELINE);
   
   if (mode == 0 || mode == 2) {
-    text("Score: " + getCurrentScore() + "\nMoves: " + getMovesLeft() + "\nStage: " + getStage(), 0+4, 20+4);
+    String msg = "Score: " + getCurrentScore() + "\nMoves: " + getMovesLeft() + "\nStage: " + getStage();
+    if (increase > 0) msg = "Score: " + getCurrentScore() + " (+" + getIncrease() + ")" + "\nMoves: " + getMovesLeft() + "\nStage: " + getStage();
+    text(msg, 0+4, 20+4);
     if (getCombo() > 0) {
       textAlign(RIGHT, RIGHT);
       text("Combo:", width - 4, 0 + 24);
@@ -206,13 +210,18 @@ void display() {
     giant.display(getCurrentScore());
   }
   if (mode == 1) {
+    String msg = "Score: " + getCurrentScore() + "\nTime: " + (limit - millis()) / 1000 / 60 + ":" + (limit - millis()) / 1000 % 60;
     if ((limit - millis()) / 1000 % 60 / 10 == 0) {
-      text("Score: " + getCurrentScore() + "\nTime: " + (limit - millis()) / 1000 / 60 + ":0" + (limit - millis()) / 1000 % 60, 0+4, 20+4);
+      msg = "Score: " + getCurrentScore() +"\nTime: " + (limit - millis()) / 1000 / 60 + ":0" + (limit - millis()) / 1000 % 60;
     }
-    else {
-      text("Score: " + getCurrentScore() + "\nTime: " + (limit - millis()) / 1000 / 60 + ":" + (limit - millis()) / 1000 % 60, 0+4, 20+4);
+    if (increase > 0) {
+      msg = "Score: " + getCurrentScore() + " (+" + getIncrease() + ")" + "\nTime: " + (limit - millis()) / 1000 / 60 + ":" + (limit - millis()) / 1000 % 60;
+      if ((limit - millis()) / 1000 % 60 / 10 == 0) {
+        msg = "Score: " + getCurrentScore() + " (+" + getIncrease() + ")" +"\nTime: " + (limit - millis()) / 1000 / 60 + ":0" + (limit - millis()) / 1000 % 60;
+      }
     }
-    
+    text(msg, 0+4, 20+4);
+ 
     if (getCombo() > 0) {
       textAlign(RIGHT, RIGHT);
       text("Combo:", width - 4, 0 + 24);
@@ -386,6 +395,7 @@ void scoreCalc() {
   decrementMoves();
   blockCheck();
   combo = 0;
+  increase = 0;
   
   while (check3Combo()) {
     comboCheck();
@@ -397,6 +407,7 @@ void scoreCalc() {
       int len = 0;
       float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
       addScore((int)(baseScore * temp.get(2) * multiplier));
+      increase += (int)(baseScore * temp.get(2) * multiplier); 
       while (len < temp.get(2)) {
         if (board[temp.get(0)][temp.get(1) + len].isFrozen()) {
           board[temp.get(0)][temp.get(1) + len].setFrozen(false);
@@ -415,6 +426,7 @@ void scoreCalc() {
       int len = 0;
       float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
       addScore((int)(baseScore * temp.get(2) * multiplier));
+      increase += (int)(baseScore * temp.get(2) * multiplier); 
       while (len < temp.get(2)) {
         if (board[temp.get(0) + len][temp.get(1)].isFrozen()) {
           board[temp.get(0) + len][temp.get(1)].setFrozen(false);
