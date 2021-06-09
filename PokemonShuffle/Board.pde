@@ -114,7 +114,6 @@ void addScore(int s) { currentScore += s; }
 void decrementMoves() { movesLeft--; }
 
 void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
-  Thread.sleep(100);
   Pokemon temp = board[r1][c1];
   board[r1][c1] = board[r2][c2];
   board[r2][c2] = temp;
@@ -136,18 +135,17 @@ void display() {
   PImage p4 = party.get(3).getPImage(80);
   PImage rock = loadImage("Rock.png");
   PImage block = loadImage("Block.png");
-  
+  PImage grid = loadImage("Grid.jpg");
+  image(grid, 288, 736);
   rock.resize(80, 80);
   block.resize(80, 80);
   
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
       if (board[i][j].isSelected()) {
-        fill(0);
         selected = true;
         selectedRow = i;
         selectedCol = j;
-        rect(0+96*j, 448+96*i, 96, 96);
       }
       else {
         if (board[i][j].getPNum() == -1) {
@@ -158,9 +156,6 @@ void display() {
           text("R", 10+96*j, 458+96*i);
         }
         else {
-          fill(#897575);
-          rect(0+96*j, 448+96*i, 96, 96);
-          
           if (board[i][j].getPNum() == -3) {
             fill(255);
             image(block,48+96*j,496+96*i);
@@ -373,10 +368,16 @@ void clearCombo() {
 }
 
 private void shift(int row, int col) {
-  for (int i = row; i > 0; i--) {
+  int i = row;
+  while (i > 0 && !board[i-1][col].isFrozen()) {
     board[i][col] = board[i-1][col];
+    i--;
   }
-  board[0][col] = new Pokemon(party.get((int)(Math.random() * 4)).getPokemonName());
+  
+  board[i][col] = new Pokemon(party.get((int)(Math.random() * 4)).getPokemonName());
+  if (i != 0) {
+    board[i][col].setEmpty();
+  }
 }
 
 //Take values from arrayList (remove()), turn into -1 (cleared)
