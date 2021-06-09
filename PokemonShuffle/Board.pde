@@ -229,17 +229,33 @@ void display() {
   
   checkWin();
   if (win){
-    shapeMode(CORNER);
-    background(0);
-    fill(255);
-    textAlign(CENTER, CENTER);
-    textSize(35);
-    text("You are win",width/2, 200);
+    if (mode==2){
+      shapeMode(CORNER);
+      background(0);
+      fill(255);
+      textAlign(CENTER, CENTER);
+      textSize(35);
+      text("Wild Pokemon defeated!",width/2, 200);
+      
+      fill(#9E7AD8);
+      textSize(15);
+      rect(width/2 - 90,450 - 40,180,80);
+      fill(0);
+      text("Back to Level Select",width/2,450);
+    }
+    else{
+      shapeMode(CORNER);
+      background(0);
+      fill(255);
+      textAlign(CENTER, CENTER);
+      textSize(35);
+      text("You are win",width/2, 200);
     
-    fill(#9E7AD8);
-    rect(width/2 - 90,450 - 40,180,80);
-    fill(0);
-    text("Next stage",width/2,450);
+      fill(#9E7AD8);
+      rect(width/2 - 90,450 - 40,180,80);
+      fill(0);
+      text("Next stage",width/2,450);
+    }
   }
   
   checkGameOver();
@@ -451,7 +467,7 @@ boolean check3Combo(){
   }
 
 void checkWin(){
-  if (mode == 0) {
+  if (mode == 0||mode==2) {
    if (giant.getNeededScore()<=this.currentScore){
      win=true;
    }

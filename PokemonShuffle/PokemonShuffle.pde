@@ -284,12 +284,17 @@ void mouseReleased() {
   else {
     if (test.win) {
       if (mouseX<=width/2 + 90&&mouseX>=width/2 - 90 &&mouseY>= 450 - 40&&mouseY<= 450 + 40){
-        if (stage % 5 == 0) {
-          partySelect = true;
+        if (mode==0){ 
+          if (stage % 5 == 0) {
+            partySelect = true;
+          }
+          stage++;
+          test=new Board(99, stage, party, mode);
+          //just for testing, actual game over should probably send to start menu
         }
-        stage++;
-        test=new Board(99, stage, party, mode);
-        //just for testing, actual game over should probably send to start menu
+        if (mode==2){
+          levelSelect=true;
+        }
       }
     }
     else if (test.gameOver){
