@@ -82,7 +82,7 @@ Austin: Tried implementing the actual level selection with mouseClicked, but the
 ### June 8:
 Jason: Added a combo variable to track number of combos erased per turn and modified frozen disruption and not the Pokemon to be erased when matched.
 
-Austin: 
+Austin: Level select now correctly creates a board with the chosen boss, as well as redirecting the player to the level select screen after the player defeats the boss.
 
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
