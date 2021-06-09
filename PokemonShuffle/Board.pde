@@ -399,7 +399,7 @@ void scoreCalc() {
       float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
       addScore((int)(baseScore * temp.get(2) * multiplier));
       while (len < temp.get(2)) {
-        if (board[temp.get(0)][temp.get(1) + len].isFrozen()) {
+        if (board[temp.get(0) + len][temp.get(1)].isFrozen()) {
           board[temp.get(0) + len][temp.get(1)].setFrozen(false);
           len++;
         }
