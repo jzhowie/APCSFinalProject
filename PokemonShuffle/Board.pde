@@ -204,7 +204,7 @@ void display() {
     text("Score: " + getCurrentScore() + "\nMoves: " + getMovesLeft() + "\nStage: " + getStage(), 0+4, 20+4);
     if (getCombo() > 0) {
       textAlign(RIGHT, RIGHT);
-      text("Combo: " + getCombo(), width - 4, 0 + 24);
+      text("Combo:", width - 4, 0 + 24);
       textSize(36);
       text(getCombo(), width - 8, 40 + 24);
     }
@@ -220,7 +220,7 @@ void display() {
     
     if (getCombo() > 0) {
       textAlign(RIGHT, RIGHT);
-      text("Combo: ", width - 4, 0 + 24);
+      text("Combo:", width - 4, 0 + 24);
       textSize(36);
       text(getCombo(), width - 8, 40 + 24);
     }
