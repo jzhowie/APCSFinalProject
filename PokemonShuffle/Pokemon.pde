@@ -52,6 +52,7 @@ public class Pokemon{
   public void setSelect(boolean s) { selected = s; }
   
   public boolean isFrozen() { return frozen; }
+  public boolean isEmpty() { return pNum == -4; }
   public void toggleFrozen() { frozen = !frozen; }
   public void setFrozen(boolean f) { frozen = f; }
   
