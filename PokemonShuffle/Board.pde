@@ -405,7 +405,7 @@ void scoreCalc() {
     while(rows.size() > 0) {
       ArrayList<Integer> temp = rows.remove(rows.size() - 1);
       int len = 0;
-      float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
+      float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType()) * ((combo / 4 * 0.025) + 1);
       addScore((int)(baseScore * temp.get(2) * multiplier));
       increase += (int)(baseScore * temp.get(2) * multiplier); 
       while (len < temp.get(2)) {
@@ -424,7 +424,7 @@ void scoreCalc() {
     while(cols.size() > 0) {
       ArrayList<Integer> temp = cols.remove(cols.size() - 1);
       int len = 0;
-      float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
+      float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType()) * ((combo / 4 * 0.025) + 1);
       addScore((int)(baseScore * temp.get(2) * multiplier));
       increase += (int)(baseScore * temp.get(2) * multiplier); 
       while (len < temp.get(2)) {
