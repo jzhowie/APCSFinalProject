@@ -437,6 +437,23 @@ void scoreCalc() {
         board[r][c].setPNum(-1);
       }
     }
+    
+    for (int i = 0; i < board.length; i++) {
+      for (int j = 0; j < board[0].length; j++) {
+        if (board[i][j].isEmpty()) {
+          println();
+          for (int k = i; k > -1; k--) {
+            boolean freeze = false;
+            if (board[k][j].isFrozen()) {
+              freeze = true;
+            }
+            if (!freeze && !board[i][j].isFrozen()) {
+              board[i][j].setPNum(-1);
+            }
+          }
+        }
+      }
+    }
       // Tweaks:
       // Have board display after removing combos, dropping new ones, removing, repeat
       clearCombo();
