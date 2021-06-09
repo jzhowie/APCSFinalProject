@@ -85,6 +85,11 @@ public class Pokemon{
     blockTurns = 5;
   }
   
+  public void setEmpty() {
+    pNum = -4;
+    name = "Empty";
+  }
+  
   public PImage getPImage(int s){
     PImage pic=loadImage(getPokemonName()+".png");
     pic.resize(s, s);
