@@ -34,9 +34,6 @@ public class Boss{
     textSize(15);
     textAlign(CENTER, CENTER);
     text("HP", width/2 - 130, height/5 + 127);
-    textSize(15);
-    textAlign(CENTER, CENTER);
-    text(getName()+"\n "+getType()+" Type", width/2 , height/5 - 127);
   }
   
   private String getName(){
@@ -91,6 +88,10 @@ public class Boss{
     String imgName=getName()+".png";
     PImage boss = loadImage(imgName);
     image(boss, width/2, height/5);
+    
+    textSize(15);
+    textAlign(CENTER, CENTER);
+    text(getName()+"\n "+getType()+" Type", width/2 , height/5 - 127);
     //shapeMode(CORNER);
     //fill(#F5FC24);
     //rect(width/2 - 75, height/5 - 75, 150, 150);
