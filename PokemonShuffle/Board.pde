@@ -381,8 +381,14 @@ void scoreCalc() {
       float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
       addScore((int)(baseScore * temp.get(2) * multiplier));
       while (len < temp.get(2)) {
-        board[temp.get(0)][temp.get(1) + len].setPNum(-1);
-        len++;
+        if (board[temp.get(0)][temp.get(1) + len].isFrozen()) {
+          board[temp.get(0)][temp.get(1) + len].setFrozen(false);
+          len++;
+        }
+        else {
+          board[temp.get(0)][temp.get(1) + len].setPNum(-1);
+          len++;
+        }
       }
       combo++;
     }
@@ -393,8 +399,14 @@ void scoreCalc() {
       float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
       addScore((int)(baseScore * temp.get(2) * multiplier));
       while (len < temp.get(2)) {
-        board[temp.get(0) + len][temp.get(1)].setPNum(-1);
-        len++;
+        if (board[temp.get(0)][temp.get(1) + len].isFrozen()) {
+          board[temp.get(0) + len][temp.get(1)].setFrozen(false);
+          len++;
+        }
+        else {
+          board[temp.get(0) + len][temp.get(1)].setPNum(-1);
+          len++;
+        }
       }
       combo++;
     }
