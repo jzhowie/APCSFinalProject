@@ -7,6 +7,7 @@ public class Board {
   int level;
   int gamemode;
   int limit;
+  int combo;
   boolean gameOver=false;
   boolean win=false;
   Boss giant;
@@ -28,6 +29,7 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
   gameOver=false;
   win=false;
   currentScore = 0;
+  combo = 0;
   movesLeft = moves;
   gamemode = mode;
   String bossType=allTypes[(int)(Math.random()*allTypes.length)];
@@ -50,6 +52,7 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode, String type) {
   gameOver=false;
   win=false;
   currentScore = 0;
+  combo = 0;
   movesLeft = moves;
   gamemode = mode;
   giant = new Boss(5000 + 250 * level,type);
@@ -57,12 +60,12 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode, String type) {
 }
 
 
-void setParty(ArrayList<Pokemon> newParty){
-  party=newParty;
-  for (int i=0;i<4;i++){
-    party.get(i).setPNum(i);
-  }
-}
+//void setParty(ArrayList<Pokemon> newParty){
+//  party=newParty;
+//  for (int i=0;i<4;i++){
+//    party.get(i).setPNum(i);
+//  }
+//}
 
 void generateBoard() {
   for (int i = 0; i < board.length; i++) {
@@ -104,6 +107,7 @@ void generateBoard() {
 int getCurrentScore() { return currentScore; }
 int getMovesLeft() { return movesLeft; }
 int getStage() { return level; }
+int getCombo() { return combo; }
 Pokemon getPokemon(int row, int col) { return board[row][col]; }
 
 void addScore(int s) { currentScore += s; }
@@ -118,11 +122,6 @@ void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
 
 //"updates" board everytime something happens
 void display() {
-  
-  if (movesLeft % 7 == 0) {
-    giant.modifyBoard(board);
-  }
-  
   background(255);
   noStroke();
   fill(0);
@@ -203,6 +202,12 @@ void display() {
   
   if (mode == 0 || mode == 2) {
     text("Score: " + getCurrentScore() + "\nMoves: " + getMovesLeft() + "\nStage: " + getStage(), 0+4, 20+4);
+    if (getCombo() > 0) {
+      textAlign(RIGHT, RIGHT);
+      text("Combo: " + getCombo(), width - 4, 0 + 24);
+      textSize(36);
+      text(getCombo(), width - 8, 40 + 24);
+    }
     giant.display(getCurrentScore());
   }
   if (mode == 1) {
@@ -211,6 +216,13 @@ void display() {
     }
     else {
       text("Score: " + getCurrentScore() + "\nTime: " + (limit - millis()) / 1000 / 60 + ":" + (limit - millis()) / 1000 % 60, 0+4, 20+4);
+    }
+    
+    if (getCombo() > 0) {
+      textAlign(RIGHT, RIGHT);
+      text("Combo: ", width - 4, 0 + 24);
+      textSize(36);
+      text(getCombo(), width - 8, 40 + 24);
     }
     giant.display();
   }
@@ -352,10 +364,12 @@ private void shift(int row, int col) {
 }
 
 //Take values from arrayList (remove()), turn into -1 (cleared)
-void scoreCalc() throws InterruptedException {
+void scoreCalc() {
   //score calculation
   decrementMoves();
   blockCheck();
+  combo = 0;
+  
   while (check3Combo()) {
     comboCheck();
     ArrayList<ArrayList<Integer>> rockList = rockCheck();
@@ -370,6 +384,7 @@ void scoreCalc() throws InterruptedException {
         board[temp.get(0)][temp.get(1) + len].setPNum(-1);
         len++;
       }
+      combo++;
     }
     
     while(cols.size() > 0) {
@@ -381,6 +396,7 @@ void scoreCalc() throws InterruptedException {
         board[temp.get(0) + len][temp.get(1)].setPNum(-1);
         len++;
       }
+      combo++;
     }
       
     // Removing rocks if they are adjacent to a combo  
@@ -395,6 +411,10 @@ void scoreCalc() throws InterruptedException {
       // Tweaks:
       // Have board display after removing combos, dropping new ones, removing, repeat
       clearCombo();
+  }
+  
+  if (movesLeft % 3 == 0) {
+    giant.modifyBoard(board);
   }
   }
 
