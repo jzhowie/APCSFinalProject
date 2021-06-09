@@ -79,6 +79,11 @@ Jason: Added implementation of block disruptor, which is similar to rock but it 
 
 Austin: Tried implementing the actual level selection with mouseClicked, but there are issues with what happens after the mouse is clicked.
 
+### June 8:
+Jason: Added a combo variable to track number of combos erased per turn and modified frozen disruption and not the Pokemon to be erased when matched.
+
+Austin: 
+
 ## UML Diagram Updates:
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
 **May 24:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
