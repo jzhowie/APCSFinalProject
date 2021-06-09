@@ -48,7 +48,6 @@ public class Pokemon{
   public void setPNum(int newTemp) { pNum=newTemp; }
   
   public boolean isSelected() { return selected; }
-  public void toggleSelect() { selected = !selected; }
   public void setSelect(boolean s) { selected = s; }
   
   public boolean isFrozen() { return frozen; }
