@@ -204,7 +204,7 @@ void display() {
     text("Score: " + getCurrentScore() + "\nMoves: " + getMovesLeft() + "\nStage: " + getStage(), 0+4, 20+4);
     if (getCombo() > 0) {
       textAlign(RIGHT, RIGHT);
-      text("Combo: " + getCombo(), width - 4, 0 + 24);
+      text("Combo:", width - 4, 0 + 24);
       textSize(36);
       text(getCombo(), width - 8, 40 + 24);
     }
@@ -220,7 +220,7 @@ void display() {
     
     if (getCombo() > 0) {
       textAlign(RIGHT, RIGHT);
-      text("Combo: ", width - 4, 0 + 24);
+      text("Combo:", width - 4, 0 + 24);
       textSize(36);
       text(getCombo(), width - 8, 40 + 24);
     }
@@ -397,8 +397,14 @@ void scoreCalc() {
       float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
       addScore((int)(baseScore * temp.get(2) * multiplier));
       while (len < temp.get(2)) {
-        board[temp.get(0)][temp.get(1) + len].setPNum(-1);
-        len++;
+        if (board[temp.get(0)][temp.get(1) + len].isFrozen()) {
+          board[temp.get(0)][temp.get(1) + len].setFrozen(false);
+          len++;
+        }
+        else {
+          board[temp.get(0)][temp.get(1) + len].setPNum(-1);
+          len++;
+        }
       }
       combo++;
     }
@@ -409,8 +415,14 @@ void scoreCalc() {
       float multiplier=board[temp.get(0)][temp.get(1)].effectiveness(giant.getType());
       addScore((int)(baseScore * temp.get(2) * multiplier));
       while (len < temp.get(2)) {
-        board[temp.get(0) + len][temp.get(1)].setPNum(-1);
-        len++;
+        if (board[temp.get(0)][temp.get(1) + len].isFrozen()) {
+          board[temp.get(0) + len][temp.get(1)].setFrozen(false);
+          len++;
+        }
+        else {
+          board[temp.get(0) + len][temp.get(1)].setPNum(-1);
+          len++;
+        }
       }
       combo++;
     }
