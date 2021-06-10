@@ -234,11 +234,11 @@ void mouseReleased() {
       partySelect = false;
       boardSetup(); // parameter for mode?
     }
-    else if (mouseY > 0 && mouseY < 76 && mouseX > 500 && mouseX < width&&tempLevel==false) {
+    else if (mouseY > 0 && mouseY < 150 && mouseX > 500-76 && mouseX < width&&tempLevel==false) {
        partySelect=false;
        modeSelect=true;
     }
-    else if (mouseY > 0 && mouseY < 76 && mouseX > 500 && mouseX < width&&tempLevel) {
+    else if (mouseY > 0 && mouseY < 150 && mouseX > 500-76 && mouseX < width&&tempLevel) {
        partySelect=false;
        levelSelect=true;
        tempLevel=false;
@@ -287,7 +287,7 @@ void mouseReleased() {
       levelSelect=false;
       tempLevel=true;
     }
-    else if (mouseY > 0 && mouseY < 76 && mouseX > 500 && mouseX < width) {
+    else if (mouseY > 0 && mouseY < 150 && mouseX > 500-76 && mouseX < width) {
        levelSelect=false;
        modeSelect=true;
     }
