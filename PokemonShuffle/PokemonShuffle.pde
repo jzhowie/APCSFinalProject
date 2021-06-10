@@ -246,14 +246,29 @@ void mouseReleased() {
       }
     }
     
-    else if (mouseY > height/3 - 50 && mouseY < height/3 + 50 && mouseX > width/2 - 200 && mouseX < width / 2 + 200) {
-        if (party.size() > 0) {
-          col = (mouseX - (width/2 - 200)) / 100;
-          if (col < party.size()) {
-            party.remove(col);
+    else if (mouseY > 448 && mouseY < 448 + 288 && mouseX > 0 && mouseX < width) {
+      if (party.size() < 4) {
+        col = mouseX / 144;
+        row=(mouseY - 448) /144;
+        col=col+row*4;
+        if (!containDupe(generator.get(col), party)&&getMegas(party)==0) {
+          if (generator.get(col).canMega()){
+             party.add(generator.get(col));
+             test.addMegas();
           }
         }
+        if (!containDupe(generator.get(col), party)&&getMegas(party)==1){
+          if (!generator.get(col).canMega()){
+             party.add(generator.get(col));
+          }
+          if (generator.get(col).canMega()){
+             party.add(generator.get(col));
+             party.remove(generator.get(col));
+          }
+        }
+
       }
+    }
     
   }
   else if (partySelect) {
@@ -275,17 +290,22 @@ void mouseReleased() {
         col = mouseX / 144;
         row=(mouseY - 448) /144;
         col=col+row*4;
-        if (!containDupe(generator.get(col), party)&&test.getMegas()==0) {
+        if (!containDupe(generator.get(col), party)&&getMegas(party)==0) {
           if (generator.get(col).canMega()){
              party.add(generator.get(col));
-             test.addMegas();
+             
           }
         }
-        else if (!containDupe(generator.get(col), party)) {
+        if (!containDupe(generator.get(col), party)&&getMegas(party)==1){
           if (!generator.get(col).canMega()){
              party.add(generator.get(col));
           }
+          if (generator.get(col).canMega()){
+             party.add(generator.get(col));
+             party.remove(generator.get(col));
+          }
         }
+
       }
     }
     
@@ -377,4 +397,14 @@ boolean containDupe(Pokemon input, ArrayList<Pokemon> test) {
     if (input == test.get(i)) return true;
   }
   return false;
+}
+
+int getMegas(ArrayList<Pokemon> party){
+  int count=0;
+  for (Pokemon p:party){
+    if (p.canMega()){
+      count++;
+    }
+  }
+  return count;
 }
