@@ -125,12 +125,12 @@ void draw() {
     megastone.resize(20, 20);
     
     for (int i = 0; i < party.size(); i++) {
-      if (party.get(i).canMega()) image(megastone, width/2 - 150 + 100 * i, height/3 - 50);
+      if (party.get(i).canMega()) image(megastone, width/2 - 110 + 100 * i, height/3 - 40);
       party.get(i).display(width/2 - 150 + 100 * i, height/3, 100);
       
     }
     for (int i = 0; i < generator.size(); i++) {
-      if (generator.get(i).canMega()) image(megastone, 72+144* (i % 4) , 448 + 144 * (i / 4));
+      if (generator.get(i).canMega()) image(megastone, 125+144* (i % 4) , 460 + 144 * (i / 4));
        generator.get(i).display(72+144* (i % 4) , 520 + 144 * (i / 4), 144);
     }
     if (mouseY > 448 && mouseY < 448 + 288 && mouseX > 0 && mouseX < width){
@@ -336,16 +336,13 @@ void mouseReleased() {
   }
 }
 
-
-
 void boardSetup() {
-  test = new Board(99, stage, party, mode); // set to 1 to test game over
+  test = new Board(10, stage, party, mode); // set to 1 to test game over
   test.display();
 }
 
 void boardSetup(String bossType) {
   test = new Board(25, stage, party, mode,bossType); // set to 1 to test game over
-  
 }
 
 boolean containDupe(Pokemon input, ArrayList<Pokemon> test) {
