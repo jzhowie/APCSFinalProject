@@ -4,8 +4,6 @@ public class Pokemon{
   private String type;
   private boolean selected;
   private boolean frozen;
-  private boolean rock;
-  private boolean block;
 
   private int blockTurns;
   private String name;
@@ -18,8 +16,6 @@ public class Pokemon{
   Pokemon(String element, int temporary){
     selected=false;
     frozen = false;
-    rock = false;
-    block = false;
     megaCounter = 0;
     pNum=temporary;
     type=element;
@@ -28,8 +24,6 @@ public class Pokemon{
   Pokemon(String n) {
     selected = false;
     frozen = false;
-    rock = false;
-    block = false;
     megaCounter = 0;
     name = n;
     pNum = 0;
@@ -39,8 +33,6 @@ public class Pokemon{
   Pokemon(String n, String t) {
     selected = false;
     frozen = false;
-    rock = false;
-    block = false;
     megaCounter = 0;
     name = n;
     type=t;
@@ -64,17 +56,17 @@ public class Pokemon{
   public void toggleFrozen() { frozen = !frozen; }
   public void setFrozen(boolean f) { frozen = f; }
   
-  public boolean isRock() { return rock; }
+  public boolean isRock() { return pNum == -2; }
   
-  public boolean isBlock() { return block; }
+  public boolean isBlock() { return pNum == -3; }
   public int getBlockTurns() { return blockTurns; }
   public void decrementBlockTurns() { blockTurns--; }
   
   public boolean isMega(){ return isMega; }
   public boolean canMega(){return canMega;}
-  public void setCanMega(boolean possible){canMega=possible;}
   public void increaseMegaCounter(){megaCounter++;}
   public int countMega() { return megaCounter; }
+  
   public void checkMega(){ 
     if (megaCounter>=megaMax){
       isMega=true;
@@ -96,22 +88,11 @@ public class Pokemon{
   public void setRock() {
     pNum = -2;
     name = "Rock";
-    rock = true;
-  }
-  
-  public void setMegaName(){
-    if (pNum==0&&isMega){
-      name="MegaCharizard";
-    }
-    if (pNum==3&&isMega){
-      name="MegaBlastoise";
-    }
   }
   
   public void setBlock() {
     pNum = -3;
     name = "Block";
-    block = true;
     blockTurns = 5;
   }
   
@@ -131,10 +112,6 @@ public class Pokemon{
     PImage pic = loadImage(getPokemonName() + ".png");
     pic.resize(s, s);
     image(pic, x, y);
-  }
-  
-  public void setName(String newName){
-    name=newName;
   }
  
   public float effectiveness(String bossElement){
