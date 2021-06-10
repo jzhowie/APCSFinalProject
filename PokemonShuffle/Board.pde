@@ -9,6 +9,7 @@ public class Board {
   int limit;
   int combo;
   int increase;
+  int countMegas;
   boolean gameOver=false;
   boolean win=false;
   Boss giant;
@@ -31,6 +32,7 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
   win=false;
   currentScore = 0;
   combo = 0;
+  countMegas=0;
   movesLeft = moves;
   gamemode = mode;
   String bossType=allTypes[(int)(Math.random()*allTypes.length)];
@@ -110,6 +112,8 @@ int getMovesLeft() { return movesLeft; }
 int getStage() { return level; }
 int getCombo() { return combo; }
 int getIncrease() { return increase; }
+int getMegas() { return countMegas; }
+void addMegas() {countMegas++;}
 Pokemon getPokemon(int row, int col) { return board[row][col]; }
 
 void addScore(int s) { currentScore += s; }
