@@ -6,12 +6,14 @@ public class Pokemon{
   private boolean frozen;
   private boolean rock;
   private boolean block;
-  private boolean isMega;
-  private boolean canMega;
+
   private int blockTurns;
   private String name;
+  
   private int megaCounter;
   private int megaMax;
+  private boolean isMega;
+  private boolean canMega;
   
   Pokemon(String element, int temporary){
     selected=false;
@@ -66,6 +68,7 @@ public class Pokemon{
   public int getBlockTurns() { return blockTurns; }
   public void decrementBlockTurns() { blockTurns--; }
   public boolean isMega(){ return isMega; }
+  public boolean canMega(){return canMega;}
   public void setCanMega(boolean possible){canMega=possible;}
   public void increaseMegaCounter(){megaCounter++;}
   public void checkMega(){ 
