@@ -43,7 +43,14 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
      //limit = millis() + 121000;
      limit = millis() + 100000+25000*level;
   }
-  
+  for (Pokemon pokemon:p){
+    if (pokemon.getPokemonName().equals("Charmander2")){
+      pokemon.setName("Charmander");
+    }
+    if (pokemon.getPokemonName().equals("Squirtle2")){
+      pokemon.setName("Squirtle");
+    }
+  }
 }
 
 Board(int moves, int lvl, ArrayList<Pokemon> p, int mode, String type) {
