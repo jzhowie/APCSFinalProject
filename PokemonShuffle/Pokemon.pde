@@ -16,6 +16,7 @@ public class Pokemon{
   Pokemon(String element, int temporary){
     selected=false;
     frozen = false;
+    isMega = false;
     megaCounter = 0;
     pNum=temporary;
     type=element;
@@ -24,6 +25,7 @@ public class Pokemon{
   Pokemon(String n) {
     selected = false;
     frozen = false;
+    isMega = false;
     megaCounter = 0;
     name = n;
     pNum = 0;
@@ -33,6 +35,7 @@ public class Pokemon{
   Pokemon(String n, String t) {
     selected = false;
     frozen = false;
+    isMega = false;
     megaCounter = 0;
     name = n;
     type=t;
@@ -53,7 +56,6 @@ public class Pokemon{
   
   public boolean isFrozen() { return frozen; }
   public boolean isEmpty() { return pNum == -4; }
-  public void toggleFrozen() { frozen = !frozen; }
   public void setFrozen(boolean f) { frozen = f; }
   
   public boolean isRock() { return pNum == -2; }
