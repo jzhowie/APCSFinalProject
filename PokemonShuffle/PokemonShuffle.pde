@@ -13,6 +13,7 @@ ArrayList<Pokemon> party;
 ArrayList<Pokemon> levels;
 ArrayList<String> types;
 
+
 void setup() {
   size(576, 1024);
   start = true;
@@ -35,6 +36,8 @@ void setup() {
 
 void draw() {
   // starting screen hopefully
+  PImage back=loadImage("Back.png");
+  back.resize(76,76);
   if (start) {
     shapeMode(CORNER);
     background(255);
@@ -50,6 +53,7 @@ void draw() {
     text("<< Click anywhere to proceed >>", width/2, height * 0.80);
   }
   else if (modeSelect) {
+    image(back,576-38,76);
     background(255);
     fill(0);
     noStroke();
@@ -107,6 +111,7 @@ void draw() {
     
   }
   else if (partySelect) {
+    
     background(255);
     fill(0);
     noStroke();
@@ -141,6 +146,7 @@ void draw() {
     rect(width/2 - 75, height * (0.85) - 30, 150, 60);
     fill(0);
     text("Confirm", width/2, height * (0.85));
+    image(back,576-38,76);
   }
   else if (levelSelect){
 
@@ -150,7 +156,7 @@ void draw() {
     noStroke();
     textSize(25); //n needs tweaking
     textAlign(CENTER, CENTER);
-
+    image(back,576-38,76);
     imageMode(CENTER);
     PImage title = loadImage("TitleScreen.png");
     title.resize(title.width/2, title.height/2);
@@ -249,6 +255,15 @@ void mouseReleased() {
       partySelect = false;
       boardSetup(); // parameter for mode?
     }
+    else if (mouseY > 0 && mouseY < 76 && mouseX > 500 && mouseX < width&&tempLevel==false) {
+       partySelect=false;
+       modeSelect=true;
+    }
+    else if (mouseY > 0 && mouseY < 76 && mouseX > 500 && mouseX < width&&tempLevel) {
+       partySelect=false;
+       levelSelect=true;
+       tempLevel=false;
+    }
     else if (mouseY > 448 && mouseY < 448 + 288 && mouseX > 0 && mouseX < width) {
       if (party.size() < 4) {
         col = mouseX / 144;
@@ -279,6 +294,10 @@ void mouseReleased() {
       boardSetup(levels.get(col).getType());
       levelSelect=false;
       tempLevel=true;
+    }
+    else if (mouseY > 0 && mouseY < 76 && mouseX > 500 && mouseX < width) {
+       levelSelect=false;
+       modeSelect=true;
     }
   }
   else {
@@ -327,13 +346,15 @@ void mouseReleased() {
   }
 }
 
+
+
 void boardSetup() {
   test = new Board(99, stage, party, mode); // set to 1 to test game over
   test.display();
 }
 
 void boardSetup(String bossType) {
-  test = new Board(99, stage, party, mode,bossType); // set to 1 to test game over
+  test = new Board(25, stage, party, mode,bossType); // set to 1 to test game over
   
 }
 
