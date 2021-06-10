@@ -4,6 +4,8 @@
 
 **Group Members:** Austin Ngan, Jason Zhou
 
+**Compile / Run Instructions:** Open in Processing.
+
 **Project Description:**
 
 We are trying to create a Pokemon Shuffle “clone”, mainly focusing on its matching elements and interactions with Pokemon types. The basis of the project should have its match elements and “damage” components, as well as a turn limit for each level. The user will be able to choose from either levels to progress through the game, or a free play mode where they simply match until they want to stop. In the levels, the player will have a set amount of moves they can do and have to reach a certain score in order to beat the level.
@@ -85,5 +87,6 @@ Jason: Added a combo variable to track number of combos erased per turn and modi
 Austin: Level select now correctly creates a board with the chosen boss, as well as redirecting the player to the level select screen after the player defeats the boss.
 
 ## UML Diagram Updates:
+**Project as of June 3:** https://drive.google.com/file/d/1H9EwH_R6WllpA8--SVgJByXFP4gX6f99/view?usp=sharing  
 **May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
 **May 24:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
