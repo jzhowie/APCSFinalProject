@@ -249,10 +249,10 @@ void mouseReleased() {
         row=(mouseY - 448) /144;
         col=col+row*4;
         if (!containDupe(generator.get(col), party)&&getMegas(party)==0) {
-          if (generator.get(col).canMega()){
+          
              party.add(generator.get(col));
              
-          }
+          
         }
         if (!containDupe(generator.get(col), party)&&getMegas(party)==1){
           if (!generator.get(col).canMega()){
