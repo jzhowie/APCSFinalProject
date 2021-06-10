@@ -119,11 +119,22 @@ Pokemon getPokemon(int row, int col) { return board[row][col]; }
 void addScore(int s) { currentScore += s; }
 void decrementMoves() { movesLeft--; }
 
+boolean boardMega(){ 
+ for (Pokemon p:this.party){
+    if (p.isMega()){
+      return true;
+    }
+ }
+ return false;
+}
+
 void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
   Pokemon temp = board[r1][c1];
   board[r1][c1] = board[r2][c2];
   board[r2][c2] = temp;
 }
+
+
 
 //"updates" board everytime something happens
 void display() {
@@ -315,7 +326,14 @@ void comboCheck() {
       }
       if (len >= 3) {
         //println(i + ", " + j + ", " + len);        
-        
+        if (board[i][j].canMega()){
+          for (Pokemon pok:party){
+            if (pok.getPNum()==board[j][i].getPNum()){
+              pok.increaseMegaCounter();
+            }
+          }
+          cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {j, i, len})));
+        }
         rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, j, len})));
       }
       j = col;
@@ -338,7 +356,14 @@ void comboCheck() {
       }
       if (len >= 3) {
         //println(j + ", " + i + ", " + len);
-        
+        if (board[j][i].canMega()){
+          for (Pokemon pok:party){
+            if (pok.getPNum()==board[j][i].getPNum()){
+              pok.increaseMegaCounter();
+            }
+          }
+          cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {j, i, len})));
+        }
         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {j, i, len})));
       }
       j = row;
