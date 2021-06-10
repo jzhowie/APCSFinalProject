@@ -87,7 +87,7 @@ Austin: Level select now correctly creates a board with the chosen boss, as well
 ### June 9:
 Jason: Finished implementation of frozen disruptor, it stays in place and doesn't spawn any new Pokemon below it. Made some minor changes to how score and the Boss are displayed.
 
-Austin:
+Austin: Started working on mega evolutions for Charizard and Blastoise, their mega counters will add everytime that specific Pokemon gets a combo.
 
 ## UML Diagram Updates:
 **Project as of June 3:** https://drive.google.com/file/d/1H9EwH_R6WllpA8--SVgJByXFP4gX6f99/view?usp=sharing  
