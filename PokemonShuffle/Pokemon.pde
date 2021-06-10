@@ -95,6 +95,15 @@ public class Pokemon{
     rock = true;
   }
   
+  public void setMegaName(){
+    if (pNum==0&&isMega){
+      name="MegaCharizard";
+    }
+    if (pNum==3&&isMega){
+      name="MegaBlastoise";
+    }
+  }
+  
   public void setBlock() {
     pNum = -3;
     name = "Block";
