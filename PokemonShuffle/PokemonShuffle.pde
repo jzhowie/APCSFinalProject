@@ -11,28 +11,21 @@ boolean tempLevel;
 ArrayList<Pokemon> generator;
 ArrayList<Pokemon> party;
 ArrayList<Pokemon> levels;
-ArrayList<String> types;
 
 
 void setup() {
   size(576, 1024);
   start = true;
   stage = 1;
-  types = new ArrayList<String>(Arrays.asList(new String[] {"Fire","Grass","Dragon","Water","Normal","Flying","Electric","Ground"}));
-  String[] pokemon = {"Charmander2", "Bulbasaur", "Dratini", "Squirtle2","Raticate","Pidgeotto","Pikachu","Sandshrew"};
+  String[] pokemon = {"Charmander", "Bulbasaur", "Dratini", "Squirtle","Raticate","Pidgeotto","Pikachu","Sandshrew"};
   String[] bosses = {"Butterfree","Moltres", "Scyther", "Starmie"};
   String[] bossTypes={"Bug","Fire","Grass","Water"};
   generator = new ArrayList<Pokemon>();
   party = new ArrayList<Pokemon>();
   levels = new ArrayList<Pokemon>();
   for (int i = 0; i < 8; i++) {
-    generator.add(new Pokemon(pokemon[i],types.get(i)));
+    generator.add(new Pokemon(pokemon[i]));
 
-  }
-  for (int i = 0; i < 8; i++) {
-    if (generator.get(i).getType().equals("Fire")||generator.get(i).getType().equals("Water")){
-      generator.get(i).setCanMega(true);
-    }
   }
   for (int i=0;i<bosses.length;i++){
       levels.add(new Pokemon(bosses[i],bossTypes[i])); //TEMP FOR LEVELS
@@ -128,11 +121,16 @@ void draw() {
     // Party box
     fill(#595F59);
     rect(width/2 - 205, height/3 - 55, 410, 110);
+    PImage megastone = loadImage("MegaStone.png");
+    megastone.resize(20, 20);
+    
     for (int i = 0; i < party.size(); i++) {
+      if (party.get(i).canMega()) image(megastone, width/2 - 150 + 100 * i, height/3 - 50);
       party.get(i).display(width/2 - 150 + 100 * i, height/3, 100);
       
     }
     for (int i = 0; i < generator.size(); i++) {
+      if (generator.get(i).canMega()) image(megastone, 72+144* (i % 4) , 448 + 144 * (i / 4));
        generator.get(i).display(72+144* (i % 4) , 520 + 144 * (i / 4), 144);
     }
     if (mouseY > 448 && mouseY < 448 + 288 && mouseX > 0 && mouseX < width){
