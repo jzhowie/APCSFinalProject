@@ -13,15 +13,6 @@ public class Pokemon{
   private boolean isMega;
   private boolean canMega;
   
-  Pokemon(String element, int temporary){
-    selected=false;
-    frozen = false;
-    isMega = false;
-    megaCounter = 0;
-    pNum=temporary;
-    type=element;
-  }
-  
   Pokemon(String n) {
     selected = false;
     frozen = false;
