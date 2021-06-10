@@ -19,7 +19,7 @@ void setup() {
   start = true;
   stage = 1;
   types = new ArrayList<String>(Arrays.asList(new String[] {"Fire","Grass","Dragon","Water","Normal","Flying","Electric","Ground"}));
-  String[] pokemon = {"Charmander", "Bulbasaur", "Dratini", "Squirtle","Raticate","Pidgeotto","Pikachu","Sandshrew"};
+  String[] pokemon = {"Charmander2", "Bulbasaur", "Dratini", "Squirtle2","Raticate","Pidgeotto","Pikachu","Sandshrew"};
   String[] bosses = {"Butterfree","Moltres", "Scyther", "Starmie"};
   String[] bossTypes={"Bug","Fire","Grass","Water"};
   generator = new ArrayList<Pokemon>();
