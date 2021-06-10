@@ -2,10 +2,12 @@ public class Boss{
 
   private int neededScore;
   private String type;
+  private int initialMoves;
   
-  Boss(int score, String element){
+  Boss(int score, String element, int moves){
     neededScore=score;
     type=element;
+    initialMoves = moves;
   }
   
   public int getNeededScore(){
@@ -97,18 +99,53 @@ public class Boss{
     //rect(width/2 - 75, height/5 - 75, 150, 150);
   }
   
-  public void modifyBoard(Pokemon[][] t) {
-      for (int i = 0; i < t.length; i++) {
-        if (getType().equals("Water") || getType().equals("Dragon") || getType().equals("Ice") || getType().equals("Poison"))  {
-          if (!t[i][t.length-1].isEmpty()) t[i][t.length-1-i].setFrozen(true);
+  public void modifyBoard(Pokemon[][] t, int m) {
+    if (initialMoves != m && (initialMoves - m) % 4 == 0) {
+      if (getType().equals("Water") || getType().equals("Dragon") || getType().equals("Ice") || getType().equals("Poison")) {
+        if (Math.random() < 0.500) {
+          for (int i = 0; i < t.length; i++) {
+            if (!t[i][i].isEmpty()) t[i][i].setFrozen(true);
+            if (!t[i][t.length-1].isEmpty()) t[i][t.length-1-i].setFrozen(true);
+          }
         }
-        if (getType().equals("Flying") || getType().equals("Electric") || getType().equals("Normal") || getType().equals("Grass") || getType().equals("Bug") || getType().equals("Rock")) {
-          t[i][0].setRock();
-        }
-        if (getType().equals("Fighting") || getType().equals("Psychic") || getType().equals("Steel") || getType().equals("Ground") || getType().equals("Fire")) {
-          t[i][i].setBlock();
+        else {
+          if (!t[2][2].isEmpty()) t[2][2].setFrozen(true);
+          if (!t[2][3].isEmpty()) t[2][3].setFrozen(true);
+          if (!t[3][2].isEmpty()) t[3][2].setFrozen(true);
+          if (!t[3][3].isEmpty()) t[3][3].setFrozen(true);
         }
       }
+      if (getType().equals("Flying") || getType().equals("Electric") || getType().equals("Normal") || getType().equals("Grass") || getType().equals("Bug") || getType().equals("Rock")) {
+        if (Math.random() < 0.500) {
+          int col = (int) (Math.random() * 6);
+          for (int i = 0; i < t.length; i++) {
+            t[col][0].setRock();
+            t[col][5].setRock();
+          }
+        }
+        else {
+          for (int i = 1; i < t.length - 1; i++) {
+            t[1][i].setRock();
+            t[i][1].setRock();
+            t[5][i].setRock();
+            t[i][5].setRock();
+          }
+        }
+      }
+      if (getType().equals("Fighting") || getType().equals("Psychic") || getType().equals("Steel") || getType().equals("Ground") || getType().equals("Fire")) {
+        if (Math.random() < 0.500) {
+          for (int i = 0; i < t.length; i++) {
+            t[i][i].setBlock();
+          }
+        }
+        else {
+          int col = (int) (Math.random() * 6);
+          for (int i = 0; i < t.length; i++) {
+            t[col][i].setBlock();
+          }
+        }
+      }
+    }
   }
     
 }

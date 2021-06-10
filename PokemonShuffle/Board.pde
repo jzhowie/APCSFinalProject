@@ -10,8 +10,8 @@ public class Board {
   int combo;
   int increase;
   int countMegas;
-  boolean gameOver=false;
-  boolean win=false;
+  boolean gameOver;
+  boolean win;
   Boss giant;
   
   ArrayList<ArrayList<Integer>> rows; //for combo calc in rows
@@ -36,7 +36,7 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
   movesLeft = moves;
   gamemode = mode;
   String bossType=allTypes[(int)(Math.random()*allTypes.length)];
-  giant = new Boss(5000 + 250 * level,bossType);
+  giant = new Boss(5000 + 250 * level,bossType, moves);
  
   generateBoard();
   if (mode == 1) {
@@ -57,17 +57,9 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode, String type) {
   combo = 0;
   movesLeft = moves;
   gamemode = mode;
-  giant = new Boss(5000 + 250 * level,type);
+  giant = new Boss(5000 + 250 * level,type, moves);
   
 }
-
-
-//void setParty(ArrayList<Pokemon> newParty){
-//  party=newParty;
-//  for (int i=0;i<4;i++){
-//    party.get(i).setPNum(i);
-//  }
-//}
 
 void generateBoard() {
   for (int i = 0; i < board.length; i++) {
@@ -85,24 +77,6 @@ void generateBoard() {
       }
     }
   }
- //THIS PART IS FOR TESTING TYPE EFFECTIVENESS
- //for (int i=0;i<board.length;i++){
- //  for (int y=0;y<board.length;y++){
- //    if (board[i][y].getPNum()==0){
- //      board[i][y].setType("Grass");
-       
- //    }
- //    if (board[i][y].getPNum()==1){
- //      board[i][y].setType("Water");
- //    }
- //    if (board[i][y].getPNum()==2){
- //      board[i][y].setType("Fire");
- //    }
- //    if (board[i][y].getPNum()==3){
- //      board[i][y].setType("Ice");
- //    }
- //  }
- //}
 }
 
 // ACCESSORS AND MODIFIERS
@@ -132,8 +106,6 @@ void swap(int r1, int c1, int r2, int c2) throws InterruptedException {
   board[r1][c1] = board[r2][c2];
   board[r2][c2] = temp;
 }
-
-
 
 //"updates" board everytime something happens
 void display() {
@@ -205,8 +177,6 @@ void display() {
     if (board[selectedRow][selectedCol].getPNum() == party.get(2).getPNum()) image(p3,mouseX, mouseY);
     if (board[selectedRow][selectedCol].getPNum() == party.get(3).getPNum()) image(p4,mouseX, mouseY);
   }
-  
-  
   
   fill(0);
   textSize(20);
@@ -284,12 +254,8 @@ void display() {
     fill(255);
     textAlign(CENTER, CENTER);
     textSize(35);
-    if (mode == 0) {
-      text("Ran out of moves...",width/2, 200);
-    }
-    if (mode == 1) {
-      text("Ran out of time...",width/2, 200);
-    }
+    if (mode == 0) text("Ran out of moves...",width/2, 200);
+    if (mode == 1) text("Ran out of time...",width/2, 200);
     
     textSize(24);
     text("Score: " + getCurrentScore(), width/2, 300);
@@ -301,11 +267,6 @@ void display() {
    
   }
   
-}
-
-void setBoss(Boss newBoss){
-  giant=newBoss;
-
 }
 
 // PRINTLN IN HERE FOR DEBUGGING
@@ -324,11 +285,7 @@ void comboCheck() {
         len++;
         col++;
       }
-      if (len >= 3) {
-        //println(i + ", " + j + ", " + len);        
-
-        rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, j, len})));
-      }
+      if (len >= 3) rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, j, len})));
       j = col;
     }
   }
@@ -347,11 +304,7 @@ void comboCheck() {
         len++;
         row++;
       }
-      if (len >= 3) {
-        //println(j + ", " + i + ", " + len);
-
-        cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {j, i, len})));
-      }
+      if (len >= 3) cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {j, i, len})));
       j = row;
     }
   }
@@ -361,9 +314,7 @@ ArrayList<ArrayList<Integer>> rockCheck() {
   ArrayList<ArrayList<Integer>> rock = new ArrayList<ArrayList<Integer>>();
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
-      if (board[i][j].isRock()) {
-        rock.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, j})));
-      }
+      if (board[i][j].isRock()) rock.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, j})));
     }
   }
   return rock;
@@ -399,9 +350,7 @@ private void shift(int row, int col) {
   }
   
   board[i][col] = new Pokemon(party.get((int)(Math.random() * 4)).getPokemonName());
-  if (i != 0) {
-    board[i][col].setEmpty();
-  }
+  if (i != 0) board[i][col].setEmpty();
 }
 
 //Take values from arrayList (remove()), turn into -1 (cleared)
@@ -502,10 +451,7 @@ void scoreCalc() {
       // Have board display after removing combos, dropping new ones, removing, repeat
       clearCombo();
   }
-  
-  if (movesLeft % 3 == 0) {
-    giant.modifyBoard(board);
-  }
+    giant.modifyBoard(board, movesLeft);
   }
 
 boolean check3Combo(){
@@ -548,77 +494,4 @@ void checkGameOver(){
     }
   }
  }
-
-//void check4Combo(){
-//  for (int i=0;i<6;i++){
-//     for (int y=0;y<3;y++){
-//         if (board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()&&board[i][y].getPNum()==board[i][y+3].getPNum()){
-//           //notes which elements are in a row
-//           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, 4})));
-//           println(i + ", " + y);
-//       }
-//     }
-//  }
-//  for (int i=0;i<6;i++){
-//   for (int y=0;y<3;y++){ 
-//       if (board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()&&board[y][i].getPNum()==board[y+3][i].getPNum()){
-//         //notes which elements are in a row
-//         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, 4})));
-//         println(y + ", " + i);
-//       }
-//     }
-//   }
-// }
- 
-// void check5Combo(){
-//  for (int i=0;i<6;i++){
-//     for (int y=0;y<2;y++){
-//         if (board[i][y].getPNum()==board[i][y+1].getPNum()&&board[i][y].getPNum()==board[i][y+2].getPNum()&&board[i][y].getPNum()==board[i][y+3].getPNum()&&board[i][y].getPNum()==board[i][y+4].getPNum()){
-//           //notes which elements are in a row
-//           rows.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {i, y, 5})));
-//           println(i + ", " + y);
-//       }
-//     }
-//  }
-//  for (int i=0;i<6;i++){
-//   for (int y=0;y<2;y++){ 
-//       if (board[y][i].getPNum()==board[y+1][i].getPNum()&&board[y][i].getPNum()==board[y+2][i].getPNum()&&board[y][i].getPNum()==board[y+3][i].getPNum()&&board[y][i].getPNum()==board[y+4][i].getPNum()){
-//         //notes which elements are in a row
-//         cols.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {y, i, 5})));
-//         println(y + ", " + i);
-//       }
-//     }
-//   }
-// }
-//void check6Combo(){
-//  // ho
-//  boolean combo = true;
-//  for (int i=0; i<6; i++){
-//    for (int y=0; y<6; y++){
-//      if (board[i][y] != board[i][0]){
-//        combo = false;
-//      }
-//    }
-//    if (combo) {
-//      println(i + ", " + 0);
-//    }
-//    combo = true;
-//  }
-  
-//  combo = true;
-//  // vert
-//   for (int i=0; i<6; i++){
-//     int temp = board[0][i].getPNum();
-//     for (int y=0; y<6; y++){
-//       if (board[y][i].getPNum() != temp){
-//         // no 6 combo
-//         combo = false;
-//       }
-//     }
-//     if (combo) {
-//      println(0 + ", " + i);
-//     }
-//    combo = true;
-//  }
-//}
 }
