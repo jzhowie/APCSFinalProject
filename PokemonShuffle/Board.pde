@@ -416,7 +416,6 @@ void scoreCalc() {
   while (check3Combo()) {
     comboCheck();
     ArrayList<ArrayList<Integer>> rockList = rockCheck();
-    
     int baseScore = 50; // potential to add bonus for extra combos
     while(rows.size() > 0) {
       ArrayList<Integer> temp = rows.remove(rows.size() - 1);
@@ -426,6 +425,7 @@ void scoreCalc() {
           for (Pokemon pok:party){
             if (pok.getPNum()==board[temp.get(0)][temp.get(1)].getPNum()){
               pok.increaseMegaCounter();
+              println(pok.countMega());
             }
           }
           
@@ -454,6 +454,7 @@ void scoreCalc() {
           for (Pokemon pok:party){
             if (pok.getPNum()==board[temp.get(0)][temp.get(1)].getPNum()){
               pok.increaseMegaCounter();
+              println(pok.countMega());
             }
           }
         }

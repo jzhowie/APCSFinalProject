@@ -20,9 +20,9 @@ public class Pokemon{
     frozen = false;
     rock = false;
     block = false;
+    megaCounter = 0;
     pNum=temporary;
     type=element;
-    canMega=false;
   }
   
   Pokemon(String n) {
@@ -30,6 +30,7 @@ public class Pokemon{
     frozen = false;
     rock = false;
     block = false;
+    megaCounter = 0;
     name = n;
     pNum = 0;
     setType();
@@ -40,6 +41,7 @@ public class Pokemon{
     frozen = false;
     rock = false;
     block = false;
+    megaCounter = 0;
     name = n;
     type=t;
     pNum = 0;
@@ -67,10 +69,12 @@ public class Pokemon{
   public boolean isBlock() { return block; }
   public int getBlockTurns() { return blockTurns; }
   public void decrementBlockTurns() { blockTurns--; }
+  
   public boolean isMega(){ return isMega; }
   public boolean canMega(){return canMega;}
   public void setCanMega(boolean possible){canMega=possible;}
   public void increaseMegaCounter(){megaCounter++;}
+  public int countMega() { return megaCounter; }
   public void checkMega(){ 
     if (megaCounter>=megaMax){
       isMega=true;
@@ -79,14 +83,14 @@ public class Pokemon{
     
   
   private void setType() {
-    if (name.equals("Charmander")) { type = "Fire"; pNum = 0; }
-    if (name.equals("Bulbasaur")) { type = "Grass"; pNum = 1; }
-    if (name.equals("Dratini")) { type = "Dragon"; pNum = 2; }
-    if (name.equals("Squirtle")) { type = "Water"; pNum = 3; }
-    if (name.equals("Raticate")) { type = "Normal"; pNum = 4; }
-    if (name.equals("Pidgeotto")) { type = "Flying"; pNum = 5; }
-    if (name.equals("Pikachu")) { type = "Electric"; pNum = 6; }
-    if (name.equals("Sandshrew")) { type = "Ground"; pNum = 7; }
+    if (name.equals("Charmander")) { type = "Fire"; pNum = 0; canMega = true; }
+    if (name.equals("Bulbasaur")) { type = "Grass"; pNum = 1; canMega = false; }
+    if (name.equals("Dratini")) { type = "Dragon"; pNum = 2; canMega = false; }
+    if (name.equals("Squirtle")) { type = "Water"; pNum = 3; canMega = true; }
+    if (name.equals("Raticate")) { type = "Normal"; pNum = 4; canMega = false; }
+    if (name.equals("Pidgeotto")) { type = "Flying"; pNum = 5; canMega = false; }
+    if (name.equals("Pikachu")) { type = "Electric"; pNum = 6; canMega = false; }
+    if (name.equals("Sandshrew")) { type = "Ground"; pNum = 7; canMega = false; }
   }
   
   public void setRock() {
