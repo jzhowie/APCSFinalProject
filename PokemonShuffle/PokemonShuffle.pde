@@ -228,49 +228,7 @@ void mouseReleased() {
       mode = 2;
     }
   }
-  else if (partySelect&&tempLevel) {
-    if (mouseY > height * 0.85 - 30 && mouseY < height * 0.85 + 30 && mouseX > (width/2) - 75 && mouseX < (width/2) + 75 && party.size() == 4) {
-      partySelect = false;
-      tempLevel=false;
-      test.generateBoard();
-      test.display(); // parameter for mode?
-    }
-    else if (mouseY > 448 && mouseY < 448 + 288 && mouseX > 0 && mouseX < width) {
-      if (party.size() < 4) {
-        col = mouseX / 144;
-        row=(mouseY - 448) /144;
-        col=col+row*4;
-        if (!containDupe(generator.get(col), party)) {
-          party.add(generator.get(col));
-        }
-      }
-    }
-    
-    else if (mouseY > 448 && mouseY < 448 + 288 && mouseX > 0 && mouseX < width) {
-      if (party.size() < 4) {
-        col = mouseX / 144;
-        row=(mouseY - 448) /144;
-        col=col+row*4;
-        if (!containDupe(generator.get(col), party)&&getMegas(party)==0) {
-          if (generator.get(col).canMega()){
-             party.add(generator.get(col));
-             test.addMegas();
-          }
-        }
-        if (!containDupe(generator.get(col), party)&&getMegas(party)==1){
-          if (!generator.get(col).canMega()){
-             party.add(generator.get(col));
-          }
-          if (generator.get(col).canMega()){
-             party.add(generator.get(col));
-             party.remove(generator.get(col));
-          }
-        }
 
-      }
-    }
-    
-  }
   else if (partySelect) {
     if (mouseY > height * 0.85 - 30 && mouseY < height * 0.85 + 30 && mouseX > (width/2) - 75 && mouseX < (width/2) + 75 && party.size() == 4) {
       partySelect = false;
