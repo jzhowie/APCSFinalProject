@@ -29,6 +29,12 @@ void setup() {
     generator.add(new Pokemon(pokemon[i],types.get(i)));
 
   }
+  for (int i = 0; i < 8; i++) {
+    if (generator.get(i).getType().equals("Fire")||generator.get(i).getType().equals("Water"){
+      generator.get(i).setCanMega(true);
+    }
+
+  }
   for (int i=0;i<bosses.length;i++){
       levels.add(new Pokemon(bosses[i],bossTypes[i])); //TEMP FOR LEVELS
   }
@@ -38,6 +44,7 @@ void draw() {
   // starting screen hopefully
   PImage back=loadImage("Back.png");
   back.resize(76,76);
+  
   if (start) {
     shapeMode(CORNER);
     background(255);
@@ -186,7 +193,7 @@ void draw() {
 // orb moving during board
 void mousePressed() {
   if (!start && !modeSelect && !partySelect && !levelSelect) {
-    if (mouseY >= 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) { // and if game started
+    if (mouseY > 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) { // and if game started
       row = (mouseY - 448) / 96;
       col = mouseX / 96;
       //println(row + ", " + col);
