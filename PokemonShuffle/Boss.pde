@@ -119,8 +119,7 @@ public class Boss{
         if (Math.random() < 0.500) {
           int col = (int) (Math.random() * 6);
           for (int i = 0; i < t.length; i++) {
-            t[col][0].setRock();
-            t[col][5].setRock();
+            t[col][i].setRock();
           }
         }
         else {
