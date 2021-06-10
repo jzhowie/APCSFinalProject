@@ -74,8 +74,6 @@ Austin: Started on the level select screen, started implementing clickable level
 ### June 6:
 Jason: Finished implementation of rock disruptor, rock is only able to be removed when it is adjacent to a combo.
 
-Austin: 
-
 ### June 7:
 Jason: Added implementation of block disruptor, which is similar to rock but it only goes away after you make a certain amount of moves.
 
@@ -85,6 +83,11 @@ Austin: Tried implementing the actual level selection with mouseClicked, but the
 Jason: Added a combo variable to track number of combos erased per turn and modified frozen disruption and not the Pokemon to be erased when matched.
 
 Austin: Level select now correctly creates a board with the chosen boss, as well as redirecting the player to the level select screen after the player defeats the boss.
+
+### June 9:
+Jason: Finished implementation of frozen disruptor, it stays in place and doesn't spawn any new Pokemon below it. Made some minor changes to how score and the Boss are displayed.
+
+Austin:
 
 ## UML Diagram Updates:
 **Project as of June 3:** https://drive.google.com/file/d/1H9EwH_R6WllpA8--SVgJByXFP4gX6f99/view?usp=sharing  
