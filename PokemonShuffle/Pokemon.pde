@@ -6,8 +6,11 @@ public class Pokemon{
   private boolean frozen;
   private boolean rock;
   private boolean block;
+  private boolean isMega;
   private int blockTurns;
   private String name;
+  private int megaCounter;
+  private int megaMax;
   
   Pokemon(String element, int temporary){
     selected=false;
@@ -60,6 +63,14 @@ public class Pokemon{
   public boolean isBlock() { return block; }
   public int getBlockTurns() { return blockTurns; }
   public void decrementBlockTurns() { blockTurns--; }
+  public boolean isMega(){ return isMega; }
+  public void increaseMegaCounter(){megaCounter++;}
+  public void checkMega(){ 
+    if (megaCounter>=megaMax){
+      isMega=true;
+    } 
+  }
+    
   
   private void setType() {
     if (name.equals("Charmander")) { type = "Fire"; pNum = 0; }
