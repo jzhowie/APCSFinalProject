@@ -124,9 +124,12 @@ void display() {
   PImage rock = loadImage("Rock.png");
   PImage block = loadImage("Block.png");
   PImage grid = loadImage("Grid.jpg");
+
+  
   image(grid, 288, 736);
   rock.resize(80, 80);
   block.resize(80, 80);
+
   
   for (int i = 0; i < board.length; i++) {
     for (int j = 0; j < board[0].length; j++) {
@@ -215,7 +218,16 @@ void display() {
     }
     giant.display();
   }
-  
+  for (Pokemon poke:party){
+    if (poke.checkMega()){
+      if (poke.getPNum()==0){
+        poke.setPokemonName("MegaCharizard");
+      }
+      if (poke.getPNum()==3){
+        poke.setPokemonName("MegaBlastoise");
+      }
+    }
+  }
   checkWin();
   if (win){
     if (mode==2){
