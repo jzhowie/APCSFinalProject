@@ -193,7 +193,6 @@ void mousePressed() {
     if (mouseY > 448 && mouseY < 1024 && mouseX > 0 && mouseX < 576) { // and if game started
       row = (mouseY - 448) / 96;
       col = mouseX / 96;
-      //println(row + ", " + col);
       test.getPokemon(row, col).setSelect(true);
       
       if (test.getPokemon(row, col).isFrozen() || test.getPokemon(row, col).isRock() || test.getPokemon(row, col).isBlock()) {
@@ -247,10 +246,7 @@ void mouseReleased() {
         row=(mouseY - 448) /144;
         col=col+row*4;
         if (!containDupe(generator.get(col), party)&&getMegas(party)==0) {
-          
              party.add(generator.get(col));
-             
-          
         }
         if (!containDupe(generator.get(col), party)&&getMegas(party)==1){
           if (!generator.get(col).canMega()){
@@ -298,7 +294,7 @@ void mouseReleased() {
             partySelect = true;
           }
           stage++;
-          test=new Board(99, stage, party, mode);
+          test=new Board(10, stage, party, mode);
           //just for testing, actual game over should probably send to start menu
         }
         if (mode==2){
@@ -342,7 +338,7 @@ void boardSetup() {
 }
 
 void boardSetup(String bossType) {
-  test = new Board(25, stage, party, mode,bossType); // set to 1 to test game over
+  test = new Board(20, stage, party, mode,bossType); // set to 1 to test game over
 }
 
 boolean containDupe(Pokemon input, ArrayList<Pokemon> test) {

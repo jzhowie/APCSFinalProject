@@ -36,12 +36,12 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
   movesLeft = moves;
   gamemode = mode;
   String bossType=allTypes[(int)(Math.random()*allTypes.length)];
-  giant = new Boss(5000 + 250 * level,bossType, moves);
+  giant = new Boss(moves * 250 + (int) (Math.random() * (500 * level)),bossType, moves);
  
   generateBoard();
   if (mode == 1) {
      //limit = millis() + 121000;
-     limit = millis() + 100000+25000*level;
+     limit = millis() + 61000;
   }
 }
 
@@ -57,7 +57,7 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode, String type) {
   combo = 0;
   movesLeft = moves;
   gamemode = mode;
-  giant = new Boss(5000 + 250 * level,type, moves);
+  giant = new Boss(moves * 250 + (int) (Math.random() * (500 * level)),type, moves);
   
 }
 
@@ -242,6 +242,7 @@ void display() {
     
       fill(#9E7AD8);
       rect(width/2 - 90,450 - 40,180,80);
+      textSize(20);
       fill(0);
       text("Next stage",width/2,450);
     }
@@ -373,7 +374,6 @@ void scoreCalc() {
           for (Pokemon pok:party){
             if (pok.getPNum()==board[temp.get(0)][temp.get(1)].getPNum()){
               pok.increaseMegaCounter();
-              println(pok.countMega());
             }
           }
           
@@ -402,7 +402,6 @@ void scoreCalc() {
           for (Pokemon pok:party){
             if (pok.getPNum()==board[temp.get(0)][temp.get(1)].getPNum()){
               pok.increaseMegaCounter();
-              println(pok.countMega());
             }
           }
         }
@@ -434,7 +433,6 @@ void scoreCalc() {
     for (int i = 0; i < board.length; i++) {
       for (int j = 0; j < board[0].length; j++) {
         if (board[i][j].isEmpty()) {
-          println();
           for (int k = i; k > -1; k--) {
             boolean freeze = false;
             if (board[k][j].isFrozen()) {
