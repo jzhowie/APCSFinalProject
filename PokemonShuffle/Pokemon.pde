@@ -18,6 +18,7 @@ public class Pokemon{
     frozen = false;
     isMega = false;
     megaCounter = 0;
+    megaMax = 5;
     name = n;
     pNum = 0;
     setType();
@@ -28,6 +29,7 @@ public class Pokemon{
     frozen = false;
     isMega = false;
     megaCounter = 0;
+    megaMax = 5;
     name = n;
     type=t;
     pNum = 0;
@@ -60,10 +62,8 @@ public class Pokemon{
   public void increaseMegaCounter(){megaCounter++;}
   public int countMega() { return megaCounter; }
   
-  public void checkMega(){ 
-    if (megaCounter>=megaMax){
-      isMega=true;
-    } 
+  public boolean checkMega(){ 
+    return megaCounter>=megaMax;
   }
     
   
@@ -96,6 +96,10 @@ public class Pokemon{
   
   public PImage getPImage(int s){
     PImage pic=loadImage(getPokemonName()+".png");
+    if (checkMega()) {
+      if (pNum == 0) pic = loadImage("MegaCharizard.png");
+      if (pNum == 3) pic = loadImage("MegaBlastoise.png");
+    }
     pic.resize(s, s);
     return pic;
   }

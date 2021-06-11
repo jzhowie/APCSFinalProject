@@ -218,16 +218,6 @@ void display() {
     }
     giant.display();
   }
-  for (Pokemon poke:party){
-    if (poke.checkMega()){
-      if (poke.getPNum()==0){
-        poke.setPokemonName("MegaCharizard");
-      }
-      if (poke.getPNum()==3){
-        poke.setPokemonName("MegaBlastoise");
-      }
-    }
-  }
   checkWin();
   if (win){
     if (mode==2){
