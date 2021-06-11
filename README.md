@@ -10,7 +10,7 @@
 
 We are trying to create a Pokemon Shuffle “clone”, mainly focusing on its matching elements and interactions with Pokemon types. The basis of the project should have its match elements and “damage” components, as well as a turn limit for each level. The user will be able to choose from either levels to progress through the game, or a free play mode where they simply match until they want to stop. In the levels, the player will have a set amount of moves they can do and have to reach a certain score in order to beat the level.
 
-**Prototype:** https://docs.google.com/document/d/1n__b3dagQLo8h0CAY-NgloRj4c0hSL9zSHTDt-R-eH8/edit?usp=sharing
+**Design Document Link:** https://docs.google.com/document/d/1n__b3dagQLo8h0CAY-NgloRj4c0hSL9zSHTDt-R-eH8/edit?usp=sharing
 
 ## Development Log:
 ### May 25:
@@ -89,7 +89,7 @@ Jason: Finished implementation of frozen disruptor, it stays in place and doesn'
 
 Austin: Started working on mega evolutions for Charizard and Blastoise, their mega counters will add everytime that specific Pokemon gets a combo.
 
-## UML Diagram Updates:
-**Project as of June 3:** https://drive.google.com/file/d/1H9EwH_R6WllpA8--SVgJByXFP4gX6f99/view?usp=sharing  
-**May 29:** https://drive.google.com/file/d/1xNGIy_zpkd7C0Rtd6X70NHZmNEkU4-X-/view?usp=sharing  
-**May 24:** https://drive.google.com/file/d/1ELlNXD1teTN4-YNPTtRZDYKZbeG_eWeP/view?usp=sharing
+### June 10:
+Jason: Made boss disruption pattern more random, troubleshooted the creation of Mega Pokemon.
+
+Austin:
