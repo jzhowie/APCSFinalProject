@@ -126,8 +126,8 @@ public class Boss{
           for (int i = 1; i < t.length - 1; i++) {
             t[1][i].setRock();
             t[i][1].setRock();
-            t[5][i].setRock();
-            t[i][5].setRock();
+            t[4][i].setRock();
+            t[i][4].setRock();
           }
         }
       }
