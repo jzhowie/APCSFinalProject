@@ -246,13 +246,20 @@ void display() {
       fill(255);
       textAlign(CENTER, CENTER);
       textSize(35);
-      text("You are win",width/2, 200);
+      text("Pokemon defeated!",width/2, 200);
     
       fill(#9E7AD8);
       rect(width/2 - 90,450 - 40,180,80);
       textSize(20);
       fill(0);
       text("Next stage",width/2,450);
+      
+      
+      fill(#9E7AD8);
+      rect(width/2 - 90,450 + 80,180,80);
+      textSize(20);
+      fill(0);
+      text("Back to menu?",width/2,490);
     }
   }
   
