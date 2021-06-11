@@ -122,6 +122,10 @@ void draw() {
     fill(#595F59);
     rect(width/2 - 205, height/3 - 55, 410, 110);
     PImage megastone = loadImage("MegaStone.png");
+    megastone.resize(50, 50);
+    image (megastone,50,50);
+    textSize(12);
+    text("- Only one Pokemon with this icon can be in a party", 255, 50);
     megastone.resize(20, 20);
     
     for (int i = 0; i < party.size(); i++) {
@@ -301,10 +305,11 @@ void mouseReleased() {
           levelSelect=true;
         }
       }
-      if (mouseX<=width/2 + 90&&mouseX>=width/2 - 90 &&mouseY>= 450 + 40&&mouseY<= 450 + 80){
+      if (mouseX<=width/2 + 90&&mouseX>=width/2 - 90 &&mouseY>= 450 + 80&&mouseY<= 450 + 80+80){
         stage = 1;
         modeSelect = true;
-        
+        fill(#9E7AD8);
+
       }
     }
     else if (test.gameOver){
