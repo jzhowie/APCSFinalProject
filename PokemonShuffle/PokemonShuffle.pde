@@ -301,12 +301,17 @@ void mouseReleased() {
           levelSelect=true;
         }
       }
+      if (mouseX<=width/2 + 90&&mouseX>=width/2 - 90 &&mouseY>= 450 + 40&&mouseY<= 450 + 80){
+        stage = 1;
+        modeSelect = true;
+        
+      }
     }
     else if (test.gameOver){
       if (mouseX<=width/2 + 90&&mouseX>=width/2 - 90 &&mouseY>= 450 - 40&&mouseY<= 450 + 40){
         stage = 1;
         modeSelect = true;
-        //just for testing, actual game over should probably send to start menu
+        
       }
     }
     else {
