@@ -66,6 +66,9 @@ public class Pokemon{
     return megaCounter>=megaMax;
   }
     
+  public void resetCounter(){
+    megaCounter=0;
+  }
   
   private void setType() {
     if (name.equals("Charmander")) { type = "Fire"; pNum = 0; canMega = true; }
