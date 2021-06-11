@@ -92,4 +92,4 @@ Austin: Started working on mega evolutions for Charizard and Blastoise, their me
 ### June 10:
 Jason: Made boss disruption pattern more random, troubleshooted the creation of Mega Pokemon.
 
-Austin:
+Austin: Finished implementing the mega evolutions, who have a higher spawn rate and score when the specified Pokemon become Mega-Evolved. Also implemented a button that takes the user back to the mode select screen after a win.
