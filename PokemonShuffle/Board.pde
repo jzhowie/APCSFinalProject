@@ -353,13 +353,34 @@ void clearCombo() {
 
 private void shift(int row, int col) {
   int i = row;
+  boolean mega=false;
+  int megaNum=0;
+  for (int y=0;y<party.size();y++){
+    if (party.get(y).isMega()){
+      mega=true;
+      megaNum=y;
+    }
+  }
   while (i > 0 && !board[i-1][col].isFrozen()) {
     board[i][col] = board[i-1][col];
     i--;
   }
   
-  board[i][col] = new Pokemon(party.get((int)(Math.random() * 4)).getPokemonName());
+  
   if (i != 0) board[i][col].setEmpty();
+  
+  if (mega){
+    int coinflip=(int)(Math.random()*7);
+    if (coinflip<5){
+      board[i][col] = new Pokemon(party.get(megaNum).getPokemonName());
+    }
+    else{
+      board[i][col] = new Pokemon(party.get((int)(Math.random() * 4)).getPokemonName());
+    }
+  }
+  else{
+    board[i][col] = new Pokemon(party.get((int)(Math.random() * 4)).getPokemonName());
+  }
 }
 
 //Take values from arrayList (remove()), turn into -1 (cleared)
@@ -382,6 +403,9 @@ void scoreCalc() {
           for (Pokemon pok:party){
             if (pok.getPNum()==board[temp.get(0)][temp.get(1)].getPNum()){
               pok.increaseMegaCounter();
+            }
+            if (pok.checkMega()){
+              multiplier*=1.25;
             }
           }
           
@@ -410,6 +434,9 @@ void scoreCalc() {
           for (Pokemon pok:party){
             if (pok.getPNum()==board[temp.get(0)][temp.get(1)].getPNum()){
               pok.increaseMegaCounter();
+            }
+            if (pok.checkMega()){
+              multiplier*=1.25;
             }
           }
         }
