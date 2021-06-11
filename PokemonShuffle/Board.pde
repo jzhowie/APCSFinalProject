@@ -43,6 +43,9 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode) {
      //limit = millis() + 121000;
      limit = millis() + 61000;
   }
+  for (Pokemon poke:party){
+    poke.resetCounter();
+  }
 }
 
 Board(int moves, int lvl, ArrayList<Pokemon> p, int mode, String type) {
@@ -59,6 +62,9 @@ Board(int moves, int lvl, ArrayList<Pokemon> p, int mode, String type) {
   gamemode = mode;
   giant = new Boss(moves * 250 + (int) (Math.random() * (500 * level)),type, moves);
   
+  for (Pokemon poke:party){
+    poke.resetCounter();
+  }
 }
 
 void generateBoard() {
