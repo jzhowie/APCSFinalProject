@@ -369,9 +369,9 @@ private void shift(int row, int col) {
   
   if (i != 0) board[i][col].setEmpty();
   
-  if (mega){
-    int coinflip=(int)(Math.random()*7);
-    if (coinflip<5){
+  else if (mega){
+    int coinflip=(int)(Math.random()*2);
+    if (coinflip==0){
       board[i][col] = new Pokemon(party.get(megaNum).getPokemonName());
     }
     else{
